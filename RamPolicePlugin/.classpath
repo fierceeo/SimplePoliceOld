@@ -2,6 +2,6 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="/home/vp/MinecraftServer/mainserver/Spigot/Spigot-API/target/spigot-api-1.14.4-R0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="https://hub.spigotmc.org/nexus/content/repositories/snapshots/org/spigotmc/spigot-api/1.15-R0.1-SNAPSHOT/spigot-api-1.15-R0.1-20191212.025254-7-shaded.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
