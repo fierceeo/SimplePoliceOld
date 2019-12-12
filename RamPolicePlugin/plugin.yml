@@ -1,0 +1,19 @@
+name: RamPolicePlugin
+author: ramdon_person
+main: com.voidcitymc.www.main
+version: 1.0
+api-version:
+
+police.add:
+   description: add police
+   default: op
+police.*:
+   description: add police
+   default: op
+   children:
+      police.add: true
+
+commands:
+   police:
+      description: Your description
+      usage: /police
