@@ -1,5 +1,8 @@
 package com.voidcitymc.www;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+
 //import java.util.*;
 //import org.bukkit.command.*;
 //import org.bukkit.event.*;
@@ -11,9 +14,11 @@ public class worker {
 
 	
 
-public void addPlayerToYMAL (String player) {
-	
-
+public String playerToUUID (String player) {
+	return Bukkit.getPlayer(player).getUniqueId().toString();
+}
+public String playerToString (Player player) {
+	return player.toString();
 }
 
 public void addPolice (String uuid) {
