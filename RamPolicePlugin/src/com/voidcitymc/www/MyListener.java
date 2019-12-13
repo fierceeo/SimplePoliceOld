@@ -43,11 +43,10 @@ import org.bukkit.entity.Player;
 public class MyListener implements Listener {
 	
     @EventHandler
-	public void onDamage(EntityDamageByEntityEvent event) {
+	public void onDamage(Entity damager, Entity damagee, EntityDamageEvent.DamageCause cause, double damage) {
     	worker work = new worker();
-    	if (event.getEntity() instanceof Player && event.getEntity() instanceof Player) {
+    	if (damager.getEntity() instanceof Player && damagee.getEntity() instanceof Player) {
     		//check if the player who punched someone is a police and has the police bitan
-		Entity damager = event.getDamager();
     		Player damagerPlayer = (Player)damager
     		if (work.allreadyPolice(work.playerToUUID(work.playerToString(damagerPlayer)) ) //put stuff here too) {
     			
