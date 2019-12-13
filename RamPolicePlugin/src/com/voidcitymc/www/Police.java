@@ -23,10 +23,8 @@ worker work = new worker();
 
 //creates string called playerFromCommand that is the selected player uuid
 String playerFromCommand = "null";
-String playerFromCommandString = "null";
 if (args.length > 1) {
 	playerFromCommand = Bukkit.getPlayer(args[1]).getUniqueId().toString();	
-	playerFromCommandString = Bukkit.getPlayer(args[1]).toString();	
 }
 
 // convert string to uuid: UUID returnUUID = UUID.fromString(uuidVarname);
@@ -35,7 +33,7 @@ if (args.length > 1) {
 
 
 //Add police
-if (player.hasPermission()) {
+if (player.hasPermission("police.add")) {
 // need to check if player has perm ^
 if (args[0].equalsIgnoreCase("add")) {
 	if (playerFromCommand != "null") {
@@ -50,7 +48,7 @@ if (args[0].equalsIgnoreCase("add")) {
 }
 
 //Remove
-if (player.hasPermission()) {
+if (player.hasPermission("police.remove")) {
 
 if (args[0].equalsIgnoreCase("remove")) {
 	if (playerFromCommand != "null") {
@@ -64,10 +62,10 @@ if (args[0].equalsIgnoreCase("remove")) {
 }
 
 
-if (player.hasPermission()) {
+if (player.hasPermission("police.help")) {
 	
 if (args[0].equalsIgnoreCase("help")) {
-	player.sendMessage("[ramdon_person's Police Plugin]");
+	player.sendMessage("[Police]");
 	player.sendMessage("Commands:");
 	player.sendMessage("");
 }

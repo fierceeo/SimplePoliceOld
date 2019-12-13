@@ -2,18 +2,25 @@ name: RamPolicePlugin
 author: ramdon_person
 main: com.voidcitymc.www.main
 version: 1.0
-api-version:
-
-police.add:
-   description: add police
-   default: op
-police.*:
-   description: add police
-   default: op
-   children:
-      police.add: true
-
+api-version: 1.15
 commands:
    police:
       description: Your description
       usage: /police
+
+permissions:
+  police.add:
+    description: Allows you to add a police
+    default: false
+  police.remove:
+    description: Allows you to remove a police
+    default: false
+  police.help:
+    description: Allows you to see the help pages
+    default: false
+  police.list:
+    description: Allows you to see the list of police
+    default: false
+  police.arrest:
+    description: Allows you to arrest someone
+    default: false
