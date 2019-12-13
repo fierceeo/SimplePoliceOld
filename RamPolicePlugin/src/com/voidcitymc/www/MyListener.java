@@ -12,9 +12,9 @@ public class MyListener implements Listener {
     @EventHandler
 	public void onDamage(EntityDamageByEntityEvent event) {
     	worker work = new worker();
-    	if (event.getEntity() instanceof Player && event.getEntity() instanceof player) {
+    	if (event.getEntity() instanceof Player && event.getEntity() instanceof Player) {
     		//check if the player who punched someone is a police and has the police bitan
-    		if (work.allreadyPolice(work.playerToUUID(work.playerToString(event.getDamager()))) //put stuff here too) {
+    		if (work.allreadyPolice(work.playerToUUID(work.playerToString(event.getDamager())) ) //put stuff here too) {
     			
     		}
     	
