@@ -16,7 +16,7 @@ public class MyListener implements Listener {
     		//check if the player who punched someone is a police and has the police bitan
     		Entity damagerE = (Entity) event.getDamager();
     		Player damagerP = (Player) damagerE;
-    		if (work.alreadyPolice(work.playerToUUID(work.playerToString(damagerP))) ) /*put stuff here too) */ {
+    		if (work.alreadyPolice(damagerP.getUniqueId().toString()) ) /*put stuff here too) */ {
     			System.out.println("A player has been arrested");
     		}
     	
