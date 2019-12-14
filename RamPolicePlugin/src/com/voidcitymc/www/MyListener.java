@@ -17,7 +17,7 @@ public class MyListener implements Listener {
     		Entity damagerE = (Entity) event.getDamager();
     		Player damagerP = (Player) damagerE;
     		if (work.alreadyPolice(work.playerToUUID(work.playerToString(damagerP))) ) /*put stuff here too) */ {
-    			
+    			System.out.println("A player has been arrested");
     		}
     	
     		
