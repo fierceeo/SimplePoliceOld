@@ -20,10 +20,9 @@ public class MyListener implements Listener {
     		Player damagerP = (Player) damagerE;
     		Entity damageeE = (Entity) event.getEntity();
     		Player damageeP = (Player) damageeE;
-    		ItemStack stick = new ItemStack(Material.STICK);
     		//damager is the police
     		//damagee is the criminal
-    		if (work.alreadyPolice(damagerP.getUniqueId().toString()) && damagerP.getItemInMainHand() == stick ) /*put stuff here too) */ {
+    		if (work.alreadyPolice(damagerP.getUniqueId().toString()) && worker.PlayerItemHasName(damagerP, new ItemStack(Material.STICK), "Police")) /*put stuff here too) */ {
     			System.out.println("A player has been arrested");
     			damagerP.sendMessage("You have arrested "+ damageeP.getName());
     			damageeP.sendMessage("You have been arrested");
