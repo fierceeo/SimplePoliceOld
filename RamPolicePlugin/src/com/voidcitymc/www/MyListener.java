@@ -1,4 +1,3 @@
-/*
 package com.voidcitymc.www;
 
 import org.bukkit.event.EventHandler;
@@ -15,8 +14,9 @@ public class MyListener implements Listener {
     	worker work = new worker();
     	if (event.getEntity() instanceof Player && event.getEntity() instanceof Player) {
     		//check if the player who punched someone is a police and has the police bitan
-    		Player damager = (Player) event.getDamager();
-    		if (work.allreadyPolice(work.playerToUUID(work.playerToString(damager)) ) //put stuff here too) {
+    		Entity damagerE = (Entity) event.getDamager();
+    		Player damagerP = (Player) damagerE;
+    		if (work.allreadyPolice(work.playerToUUID(work.playerToString(damagerP))) ) /*put stuff here too) */ {
     			
     		}
     	
@@ -29,8 +29,8 @@ public class MyListener implements Listener {
 	
 	
 }
-*/
 
+/*
 package com.voidcitymc.www;
 
 import org.bukkit.event.EventHandler;
@@ -45,10 +45,10 @@ public class MyListener implements Listener {
     @EventHandler
 	public void onDamage(Entity damager, Entity damagee, EntityDamageEvent.DamageCause cause, double damage) {
     	worker work = new worker();
-    	if (damager.getEntity() instanceof Player && damagee.getEntity() instanceof Player) {
+    	if (damager instanceof Player && damagee instanceof Player) {
     		//check if the player who punched someone is a police and has the police bitan
-    		Player damagerPlayer = (Player)damager
-    		if (work.allreadyPolice(work.playerToUUID(work.playerToString(damagerPlayer)) ) //put stuff here too) {
+    		Player damagerPlayer = (Player)damager;
+    		if (work.allreadyPolice(work.playerToUUID(work.playerToString(damagerPlayer))) )
     			
     		}
     	
@@ -61,3 +61,4 @@ public class MyListener implements Listener {
 	
 	
 }
+*/
