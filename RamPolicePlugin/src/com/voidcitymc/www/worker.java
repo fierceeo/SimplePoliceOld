@@ -17,9 +17,9 @@ public String playerToString (Player player) {
 }
 
 public void addPolice (String uuid) {
-	if (allreadyPolice(uuid)) {
+	if (alreadyPolice(uuid)) {
 		return;
-	} else if (!allreadyPolice(uuid)) {
+	} else if (!alreadyPolice(uuid)) {
 		main.getInstance().getConfig().addDefault(uuid, true);
 		main.getInstance().saveConfig();
 		main.getInstance().getConfig().options().copyDefaults(true);
@@ -30,7 +30,7 @@ public void addPolice (String uuid) {
 	}
 }
 
-public boolean allreadyPolice (String uuid) {
+public boolean alreadyPolice (String uuid) {
 	if (main.getInstance().getConfig().getBoolean(uuid)) {
 		return true;
 	} else {
@@ -40,7 +40,7 @@ public boolean allreadyPolice (String uuid) {
 
 public void removePolice(String uuid) {
 	worker testPoliceVar = new worker();
-	if (testPoliceVar.allreadyPolice(uuid)) {
+	if (testPoliceVar.alreadyPolice(uuid)) {
 		main.getInstance().getConfig().addDefault(uuid, false);
 		main.getInstance().saveConfig();
 		return;

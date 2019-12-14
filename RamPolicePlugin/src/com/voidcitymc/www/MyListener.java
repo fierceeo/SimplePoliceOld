@@ -3,7 +3,7 @@ package com.voidcitymc.www;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
+//import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
@@ -16,7 +16,7 @@ public class MyListener implements Listener {
     		//check if the player who punched someone is a police and has the police bitan
     		Entity damagerE = (Entity) event.getDamager();
     		Player damagerP = (Player) damagerE;
-    		if (work.allreadyPolice(work.playerToUUID(work.playerToString(damagerP))) ) /*put stuff here too) */ {
+    		if (work.alreadyPolice(work.playerToUUID(work.playerToString(damagerP))) ) /*put stuff here too) */ {
     			
     		}
     	
@@ -48,7 +48,7 @@ public class MyListener implements Listener {
     	if (damager instanceof Player && damagee instanceof Player) {
     		//check if the player who punched someone is a police and has the police bitan
     		Player damagerPlayer = (Player)damager;
-    		if (work.allreadyPolice(work.playerToUUID(work.playerToString(damagerPlayer))) )
+    		if (work.alreadyPolice(work.playerToUUID(work.playerToString(damagerPlayer))) )
     			
     		}
     	
