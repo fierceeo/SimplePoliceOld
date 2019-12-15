@@ -20,6 +20,6 @@ permissions:
   police.list:
     description: Allows you to see the list of police
     default: false
-  police.arrest:
-    description: Allows you to arrest someone
+  police.unjail:
+    description: Allows you to unjail someone
     default: false

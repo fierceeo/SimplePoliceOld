@@ -33,6 +33,12 @@ if (args.length > 1) {
 
 
 //Add police
+if (player.hasPermission("police.unjail")) {
+	if (args[0].equalsIgnoreCase("unjail")) {
+		Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "essentials:unjail "+player.getName());
+	}
+}
+
 if (player.hasPermission("police.add")) {
 // need to check if player has perm ^
 if (args[0].equalsIgnoreCase("add")) {
