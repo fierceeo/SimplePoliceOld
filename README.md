@@ -1,6 +1,7 @@
 Thanks for checking out my police plugin.
 Information on how to use:
 
+
 **Usage**
 
 To add a police do /police add (username)
