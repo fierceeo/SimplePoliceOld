@@ -3,7 +3,6 @@ package com.voidcitymc.www;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 //import org.bukkit.event.entity.EntityDamageEvent;
@@ -23,7 +22,7 @@ public class MyListener implements Listener {
     		Player damageeP = (Player) damageeE;
     		//damager is the police
     		//damagee is the criminal
-    		if (work.alreadyPolice(damagerP.getUniqueId().toString()) && worker.PlayerItemHasName(damagerP, new ItemStack(Material.STICK), "Police")) /*put stuff here too) */ {
+    		if (work.alreadyPolice(damagerP.getUniqueId().toString()) && worker.TestForItem(damagerP, Material.BLAZE_ROD, "Police")) /*put stuff here too) */ {
     			System.out.println("A player has been arrested");
     			damagerP.sendMessage("You have arrested "+ damageeP.getName());
     			damageeP.sendMessage("You have been arrested");
@@ -39,36 +38,3 @@ public class MyListener implements Listener {
 	
 	
 }
-
-/*
-package com.voidcitymc.www;
-
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
-
-public class MyListener implements Listener {
-	
-    @EventHandler
-	public void onDamage(Entity damager, Entity damagee, EntityDamageEvent.DamageCause cause, double damage) {
-    	worker work = new worker();
-    	if (damager instanceof Player && damagee instanceof Player) {
-    		//check if the player who punched someone is a police and has the police bitan
-    		Player damagerPlayer = (Player)damager;
-    		if (work.alreadyPolice(work.playerToUUID(work.playerToString(damagerPlayer))) )
-    			
-    		}
-    	
-    		
-    		
-    		
-    		
-    	}
-	}
-	
-	
-}
-*/
