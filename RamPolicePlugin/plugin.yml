@@ -1,6 +1,6 @@
 name: SimplePolice
 author: ramdon_person
-main: com.voidcitymc.www.main
+main: com.voidcitymc.www.Main
 version: 1.0
 depend: [Essentials]
 commands:

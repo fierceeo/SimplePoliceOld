@@ -9,7 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
-public class MyListener implements Listener {
+public class PoliceListener implements Listener {
 	
     @EventHandler
 	public void onDamage(EntityDamageByEntityEvent event) {

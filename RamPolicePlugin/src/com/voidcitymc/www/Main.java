@@ -2,8 +2,8 @@ package com.voidcitymc.www;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class main extends JavaPlugin {
-private static main instance;
+public class Main extends JavaPlugin {
+private static Main instance;
 
 //enabled
 @Override
@@ -15,7 +15,7 @@ public void onEnable() {
 }
 //get the instance thingy (or "this")
 
-public static main getInstance() {
+public static Main getInstance() {
 	return instance;
 }
 

@@ -28,10 +28,10 @@ public void addPolice (String uuid) {
 	if (alreadyPolice(uuid)) {
 		return;
 	} else if (!alreadyPolice(uuid)) {
-		main.getInstance().getConfig().addDefault(uuid, true);
-		main.getInstance().saveConfig();
-		main.getInstance().getConfig().options().copyDefaults(true);
-		main.getInstance().saveConfig();
+		Main.getInstance().getConfig().addDefault(uuid, true);
+		Main.getInstance().saveConfig();
+		Main.getInstance().getConfig().options().copyDefaults(true);
+		Main.getInstance().saveConfig();
 		return;
 	} else {
 		return;
