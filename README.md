@@ -20,3 +20,9 @@ To jail a player, make sure you are a police and attack a player with a blaze ro
   police.list, Allows you to see the list of police
 
   police.unjail, Allows you to unjail someone
+
+
+**Commands**
+
+/police add (username)
+/police remove (username)
