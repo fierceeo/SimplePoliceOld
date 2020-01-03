@@ -2,6 +2,7 @@ name: PolicePlugin
 author: ramdon_person
 main: com.voidcitymc.www.main
 version: 1.0
+depend: [Essentials]
 commands:
    police:
       description: Your description
