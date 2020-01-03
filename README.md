@@ -3,6 +3,8 @@ Here is some information on how to use this.
 
 **Usage**
 
+Make sure to have essentials installed and create a jail named “jail1”
+
 To add a police do /police add (username)
 
 To jail a player, make sure you are a police and attack a player with a blaze rod
