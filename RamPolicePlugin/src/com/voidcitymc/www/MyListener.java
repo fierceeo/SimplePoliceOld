@@ -14,7 +14,7 @@ public class MyListener implements Listener {
     @EventHandler
 	public void onDamage(EntityDamageByEntityEvent event) {
     	worker work = new worker();
-    	if (event.getEntity() instanceof Player /* for testing purpases I commented this out, so I can test on npcs && event.getDamager() instanceof Player */ ) {
+    	if (event.getEntity() instanceof Player) {
     		//check if the player who punched someone is a police and has the police bitan
     		Entity damagerE = (Entity) event.getDamager();
     		Player damagerP = (Player) damagerE;
