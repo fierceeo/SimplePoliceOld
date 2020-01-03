@@ -1,20 +1,17 @@
 package com.voidcitymc.www;
 
-
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+
 
 public class worker {
 	
 
 	
 //check if a player has item in hand
-public static boolean PlayerItemHasName(Player p, ItemStack item, String DisplayName) {
-        if (item != null && p.getInventory().getItemInMainHand().getType() == item.getType() && p.getInventory().getItemInMainHand().hasItemMeta()
-                && item.getItemMeta().getDisplayName().equals(ChatColor.translateAlternateColorCodes('&',
-                        p.getInventory().getItemInMainHand().getItemMeta().getDisplayName()))) {
+public static boolean TestForItem(Player p, Material item, String DisplayName) {
+        if (item != null && p.getInventory().getItemInMainHand().getType() == item) {
             return true;
         }
         return false;
