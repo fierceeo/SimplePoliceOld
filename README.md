@@ -1,6 +1,5 @@
 Thanks for checking out my police plugin.
-Information on how to use:
-
+Here is some information on how to use this.
 
 **Usage**
 
