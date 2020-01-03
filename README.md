@@ -31,4 +31,6 @@ To jail a player, make sure you are a police and attack a player with a blaze ro
 
 **Note:**
 
+Requires Essentials to be setup and a jail named “jail1”
+
 This plugin has uuid support
