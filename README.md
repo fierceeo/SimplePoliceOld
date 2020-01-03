@@ -25,4 +25,9 @@ To jail a player, make sure you are a police and attack a player with a blaze ro
 **Commands**
 
 /police add (username)
+
 /police remove (username)
+
+
+**Note:**
+This plugin has uuid support
