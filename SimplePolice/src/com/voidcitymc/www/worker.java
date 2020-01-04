@@ -39,7 +39,7 @@ public void addPolice (String uuid) {
 }
 
 public boolean alreadyPolice (String uuid) {
-	if (main.getInstance().getConfig().getBoolean(uuid)) {
+	if (Main.getInstance().getConfig().getBoolean(uuid)) {
 		return true;
 	} else {
 		return false;
@@ -49,8 +49,8 @@ public boolean alreadyPolice (String uuid) {
 public void removePolice(String uuid) {
 	worker testPoliceVar = new worker();
 	if (testPoliceVar.alreadyPolice(uuid)) {
-		main.getInstance().getConfig().addDefault(uuid, false);
-		main.getInstance().saveConfig();
+		Main.getInstance().getConfig().addDefault(uuid, false);
+		Main.getInstance().saveConfig();
 		return;
 	} else {
 		return;
