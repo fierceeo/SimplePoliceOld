@@ -8,7 +8,7 @@ private static Main instance;
 //enabled
 @Override
 public void onEnable() {
-	getServer().getPluginManager().registerEvents(new MyListener(), this);
+	getServer().getPluginManager().registerEvents(new PoliceListener(), this);
 	instance = this;
 	this.getCommand("police").setExecutor(new Police());
 	System.out.println("ramdon_person's Police Plugin Has Been Enabled!");
