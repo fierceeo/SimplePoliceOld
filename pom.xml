@@ -1,3 +1,10 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>PUT YOUR GROUPID HERE</groupId>
+    <artifactId>PUT YOUR ARTIFACTID HERE</artifactId>
+    <version>PUT YOUR PLUGIN VERSION HERE</version>
+   
+
 <repositories>
     <!-- This adds the Spigot Maven repository to the build -->
     <repository>
@@ -16,3 +23,5 @@
     </dependency>
 
 </dependencies>
+
+</project>
