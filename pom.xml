@@ -1,8 +1,8 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>PUT YOUR GROUPID HERE</groupId>
-    <artifactId>PUT YOUR ARTIFACTID HERE</artifactId>
-    <version>PUT YOUR PLUGIN VERSION HERE</version>
+    <groupId>com.voidcitymc</groupId>
+    <artifactId>Main</artifactId>
+    <version>1.2</version>
    
 
 <repositories>
