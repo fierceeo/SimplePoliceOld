@@ -2,8 +2,11 @@ Thanks for checking out my police plugin.
 Here is some information on how to use this.
 
 **Download Links**
+
 Github: https://github.com/ramdon-person/SimplePolice/releases
+
 Spigot: https://www.spigotmc.org/resources/simple-police-1-10-1-15-1.73996/
+
 Bukkit: https://dev.bukkit.org/projects/simple-police/files
 
 **Usage**
