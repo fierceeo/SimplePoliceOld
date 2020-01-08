@@ -62,6 +62,3 @@ public void removePolice(String uuid) {
 
 
 }
-
-
-// https://www.spigotmc.org/threads/getconfig-outside-main-class.117854/?__cf_chl_jschl_tk__=243e49cdca59cc0a8fcc1edf2aaaf25be23203d5-1575926286-0-Aalx2i7iXifBWc6XR9i3zRp88ZD4TfVHYda2ZJLBKOLE2YlAdqbaipspC3mhjzy1svz_ygInJM9NKggkxB6Q4PismhSL4HB2Q1ggEvPXVTGViINkQqHQJCM9IoYVPuPvJD_JHfToN5wM1uiIZyjyaUjHZ0Ulxv5irwajC3_4u6E3KDjwoKM1pAI_jAJ6oAGZjGuR8ByTtXVwNAvc87yl9L7y59GIg1X9PAsofMIXTnPpkAp0wCi6kzhgfTJ9ANkSnI-hWTZM4dKGwefs2Iv1R2JhQUl23I-u1nfapprBuyINYlCex1MAp-AZBfvMiEFgcw
