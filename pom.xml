@@ -28,7 +28,12 @@
   
   
   <build>
-    <sourceDirectory>src</sourceDirectory>
+    <sourceDirectory>SimplePolice/src</sourceDirectory>
+    		<resources>
+			<resource>
+				<directory>SimplePolice/src/main/resources</directory>
+			</resource>
+		</resources>
     
     <plugins>
       <plugin>
