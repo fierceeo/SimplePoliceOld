@@ -8,6 +8,7 @@ private static Main instance;
 //enabled
 @Override
 public void onEnable() {
+	Metrics metrics = new Metrics(this, 6814);
 	getServer().getPluginManager().registerEvents(new PoliceListener(), this);
 	instance = this;
 	this.getCommand("police").setExecutor(new Police());
