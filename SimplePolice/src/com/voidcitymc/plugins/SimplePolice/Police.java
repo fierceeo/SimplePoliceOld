@@ -121,10 +121,14 @@ if (args.length > 0) {
 if (player.hasPermission("police.tp") || work.alreadyPolice(player.getUniqueId().toString())) {
 	if (args.length > 0) {
 	if (args[0].equalsIgnoreCase("tp")) {
-		int MaxValTp = Main.getInstance().getConfig().getInt("MaxPoliceTp");
-		player.teleport(worker.policeTp(Bukkit.getPlayer(args[1]), MaxValTp));
-		player.sendMessage("[Police] You have been teleported");
-		Bukkit.getPlayer(args[1]).sendMessage("The police are chasing you");
+		if (args.length > 1) {
+			int MaxValTp = Main.getInstance().getConfig().getInt("MaxPoliceTp");
+			player.teleport(worker.policeTp(Bukkit.getPlayer(args[1]), MaxValTp));
+			player.sendMessage("[Police] You have been teleported");
+			Bukkit.getPlayer(args[1]).sendMessage("The police are chasing you");
+		} else {
+			player.sendMessage("[Police] You need to specify a player!");
+		}
 		
 	}
 	}
