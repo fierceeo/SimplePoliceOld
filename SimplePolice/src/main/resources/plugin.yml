@@ -1,8 +1,9 @@
 name: SimplePolice
 author: ramdon_person
 main: com.voidcitymc.www.Main
-version: 1.3
+version: ${project.version}
 depend: [Essentials]
+website: https://plugins.voidcitymc.com
 commands:
    police:
       description: Your description
@@ -23,4 +24,10 @@ permissions:
     default: false
   police.unjail:
     description: Allows you to unjail someone
+    default: false
+  police.reload:
+    description: Allows you to reload the config
+    default: false
+  police.tp:
+    description: Allows you to police tp to a player
     default: false
