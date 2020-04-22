@@ -19,12 +19,11 @@ Player player = (Player) sender;
 worker work = new worker();
 
 
-//String uuidString = player.getUniqueId().toString();
-//convert string to player
+
 
 //creates string called playerFromCommand that is the selected player uuid
 String playerFromCommand = "null";
-if (args.length > 1) {
+if (args.length > 2) {
 	playerFromCommand = Bukkit.getPlayer(args[1]).getUniqueId().toString();	
 }
 
@@ -33,6 +32,7 @@ if (args.length > 1) {
 //reload config
 if (player.hasPermission("police.reload")) {
 	Main.getInstance().reloadConfig();
+	player.sendMessage("[Police] The config has been reloaded");
 }
 
 
@@ -46,11 +46,10 @@ if (player.hasPermission("police.unjail")) {
 if (player.hasPermission("police.add")) {
 // need to check if player has perm ^
 if (args[0].equalsIgnoreCase("add")) {
-	if (playerFromCommand != "null") {
-		work.addPolice(playerFromCommand);	
-		player.sendMessage("Added "+args[1]+" as a police officer!");
-		} else if (playerFromCommand == "null") {
-		player.sendMessage("You need to specify a player!");
+	if (args.length > 1) {
+		player.sendMessage("[Police] Added "+args[1]+" as a police officer!");
+		} else {
+		player.sendMessage("[Police] You need to specify a player!");
 	}
 	
 }
@@ -61,11 +60,10 @@ if (args[0].equalsIgnoreCase("add")) {
 if (player.hasPermission("police.remove")) {
 
 if (args[0].equalsIgnoreCase("remove")) {
-	if (playerFromCommand != "null") {
-		work.removePolice(playerFromCommand);	
-		player.sendMessage("Removed "+args[1]+" as a police officer!");
-		} else if (playerFromCommand == "null") {
-		player.sendMessage("You need to specify a player!");
+	if (args.length > 1) {
+		player.sendMessage("[Police] Removed "+args[1]+" as a police officer!");
+		} else {
+		player.sendMessage("[Police] You need to specify a player!");
 	}
 }
 
@@ -74,13 +72,49 @@ if (args[0].equalsIgnoreCase("remove")) {
 //help
 
 if (player.hasPermission("police.help") || work.alreadyPolice(player.getUniqueId().toString())) {
-	
-if (args[0].equalsIgnoreCase("help")) {
+if (args.length == 0) {
 	player.sendMessage("[Police]");
 	player.sendMessage("Commands:");
-	player.sendMessage("");
+	//police tp help
+	if (player.hasPermission("police.tp") || work.alreadyPolice(player.getUniqueId().toString())) {
+		player.sendMessage("/police tp (player)");
+	}
+	//police remove help
+	if (player.hasPermission("police.remove")) {
+		player.sendMessage("/police remove (player)");
+	}
+	//police add help
+	if (player.hasPermission("police.add")) {
+		player.sendMessage("/police add (player)");
+	}
+	
+	//help info
+	player.sendMessage("/police help");
+}
+
+if (args.length != 0) {
+	if (args[0] == "help") {
+		player.sendMessage("[Police]");
+		player.sendMessage("Commands:");
+		//police tp help
+		if (player.hasPermission("police.tp") || work.alreadyPolice(player.getUniqueId().toString())) {
+			player.sendMessage("/police tp (player)");
+		}
+		//police remove help
+		if (player.hasPermission("police.remove")) {
+			player.sendMessage("/police remove (player)");
+		}
+		//police add help
+		if (player.hasPermission("police.add")) {
+			player.sendMessage("/police add (player)");
+		}
+		
+		//help info
+		player.sendMessage("/police help");
+	}
 }
 }
+
 
 //police tp
 if (player.hasPermission("police.tp") || work.alreadyPolice(player.getUniqueId().toString())) {
@@ -93,7 +127,7 @@ if (player.hasPermission("police.tp") || work.alreadyPolice(player.getUniqueId()
 	}
 }
 
-
+//end help
 
 
 }
