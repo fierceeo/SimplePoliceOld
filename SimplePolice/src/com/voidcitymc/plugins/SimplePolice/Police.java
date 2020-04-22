@@ -30,20 +30,21 @@ if (args.length > 2) {
 // convert string to uuid: UUID returnUUID = UUID.fromString(uuidVarname);
 
 //reload config
-if (player.hasPermission("police.reload")) {
+if (player.hasPermission("police.reload") && args.length > 0) {
+	if (args[0].equalsIgnoreCase("reload"))
 	Main.getInstance().reloadConfig();
 	player.sendMessage("[Police] The config has been reloaded");
 }
 
 
 //Add police
-if (player.hasPermission("police.unjail")) {
+if (player.hasPermission("police.unjail") && args.length > 0) {
 	if (args[0].equalsIgnoreCase("unjail")) {
 		Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "essentials:unjail "+player.getName());
 	}
 }
 
-if (player.hasPermission("police.add")) {
+if (player.hasPermission("police.add") && args.length > 0) {
 // need to check if player has perm ^
 if (args[0].equalsIgnoreCase("add")) {
 	if (args.length > 1) {
@@ -57,7 +58,7 @@ if (args[0].equalsIgnoreCase("add")) {
 }
 
 //Remove
-if (player.hasPermission("police.remove")) {
+if (player.hasPermission("police.remove") && args.length > 1) {
 
 if (args[0].equalsIgnoreCase("remove")) {
 	if (args.length > 1) {
@@ -92,8 +93,8 @@ if (args.length == 0) {
 	player.sendMessage("/police help");
 }
 
-if (args.length != 0) {
-	if (args[0] == "help") {
+if (args.length > 0) {
+	if (args[0].equalsIgnoreCase("help")) {
 		player.sendMessage("[Police]");
 		player.sendMessage("Commands:");
 		//police tp help
