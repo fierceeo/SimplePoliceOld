@@ -19,16 +19,6 @@ Player player = (Player) sender;
 worker work = new worker();
 
 
-
-
-//creates string called playerFromCommand that is the selected player uuid
-String playerFromCommand = "null";
-if (args.length > 2) {
-	playerFromCommand = Bukkit.getPlayer(args[1]).getUniqueId().toString();	
-}
-
-// convert string to uuid: UUID returnUUID = UUID.fromString(uuidVarname);
-
 //reload config
 if (player.hasPermission("police.reload") && args.length > 0) {
 	if (args[0].equalsIgnoreCase("reload"))
@@ -48,6 +38,7 @@ if (player.hasPermission("police.add") && args.length > 0) {
 // need to check if player has perm ^
 if (args[0].equalsIgnoreCase("add")) {
 	if (args.length > 1) {
+		work.addPolice(Bukkit.getPlayer(args[1]).getUniqueId().toString());
 		player.sendMessage("[Police] Added "+args[1]+" as a police officer!");
 		} else {
 		player.sendMessage("[Police] You need to specify a player!");
@@ -62,6 +53,7 @@ if (player.hasPermission("police.remove") && args.length > 0) {
 
 if (args[0].equalsIgnoreCase("remove")) {
 	if (args.length > 1) {
+		work.removePolice(Bukkit.getPlayer(args[1]).getUniqueId().toString());
 		player.sendMessage("[Police] Removed "+args[1]+" as a police officer!");
 		} else {
 		player.sendMessage("[Police] You need to specify a player!");
