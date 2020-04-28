@@ -38,6 +38,10 @@ public void SaveDataFile() {
 //enabled
 @Override
 public void onEnable() {
+	//update checker
+	new UpdateChecker(this).checkForUpdate();
+	//metrics
+	@SuppressWarnings("unused")
 	Metrics metrics = new Metrics(this, 6814);
 	//create config
 	this.getConfig().options().copyDefaults(true);
