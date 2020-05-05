@@ -30,7 +30,7 @@ int i = 0;
 //online police list
 while (i < policeList.size()) {
 	if (Bukkit.getPlayer(UUID.fromString(policeList.get(i))) != null) {
-		playerList.add(Bukkit.getPlayer(worker.ListPolice().get(i)));
+		playerList.add(Bukkit.getPlayer(UUID.fromString(policeList.get(i))));
 	}
 	i++;
 }
