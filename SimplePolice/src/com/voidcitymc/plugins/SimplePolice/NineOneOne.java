@@ -1,14 +1,13 @@
 package com.voidcitymc.plugins.SimplePolice;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-//import java.util.UUID;
-//import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 
 
@@ -30,7 +29,7 @@ int i = 0;
 
 //online police list
 while (i < policeList.size()) {
-	if (Bukkit.getPlayer(policeList.get(i)) != null) {
+	if (Bukkit.getPlayer(UUID.fromString(policeList.get(i))) != null) {
 		playerList.add(Bukkit.getPlayer(worker.ListPolice().get(i)));
 	}
 	i++;
@@ -70,4 +69,6 @@ if (playerList.size() == 0) {
 }
 return true;
 }
+
+
 }
