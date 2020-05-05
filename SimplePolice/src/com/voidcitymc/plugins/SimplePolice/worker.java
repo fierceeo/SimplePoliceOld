@@ -1,5 +1,6 @@
 package com.voidcitymc.plugins.SimplePolice;
 
+import java.awt.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
@@ -127,18 +128,19 @@ public static Location policeTp (Player player, int MaxValTp) {
 public static ArrayList<String> ListPolice() {
 	
 	Map<String, Object> police = Main.getInstance().Data.getValues(false);
-	ArrayList<Object> policeListNotFinal = new ArrayList<Object>();
 
 	ArrayList<String> policeList = new ArrayList<String>();
 	
-	policeListNotFinal = (ArrayList<Object>) Arrays.asList(police.keySet().toArray());
+	
+	String[] policeArrayNotFinal = new String[police.keySet().toArray().length];
+	policeArrayNotFinal = (String[]) police.keySet().toArray();
 	
 	int i = 0;
 	
-	while (i <= policeListNotFinal.size()) {
-		if (police.get(policeListNotFinal.get(i)) instanceof Boolean) {
-			if ((boolean) police.get(policeListNotFinal.get(i))) {
-				policeList.add((String) policeListNotFinal.get(i));
+	while (i <= policeArrayNotFinal.length) {
+		if (police.get(policeArrayNotFinal[i]) instanceof Boolean) {
+			if ((boolean) police.get(policeArrayNotFinal[i])) {
+				policeList.add(policeArrayNotFinal[i]);
 			}
 		}
 		i++;
