@@ -37,26 +37,29 @@ while (i < policeList.size()) {
 
 //send police message
 
+i = 1;
+String message = "";
+if (args.length > 0) {
+	message = args[0];
+}
+
+while (i < args.length) {
+	message = args[i] + " " + message;
+	i++;
+}
+
+if (message.equals("")) {
+	message = "No Reason";
+}
+
 i = 0;
 
 while (i < playerList.size()) {
-	playerList.get(i).sendMessage(ChatColor.DARK_AQUA + "[911] " + ChatColor.WHITE + sender.getName() + " needs help!");
+	playerList.get(i).sendMessage(ChatColor.DARK_AQUA + "[911] " + ChatColor.WHITE + sender.getName() + " needs help! - "+message);
 	i++;
 }
 
 
-
-/////////////
-/*
-BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE 
-BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE 
-*/
-
-/*
- * When there is one player online (myself) and I run /911 it says there are no players online, need to fix this!!!
-*/
-
-/////////
 
 if (playerList.size() == 0) {
 	player.sendMessage(ChatColor.DARK_AQUA + "There are no police online, you are on your own!");
