@@ -132,8 +132,11 @@ public static ArrayList<String> ListPolice() {
 	ArrayList<String> policeList = new ArrayList<String>();
 	
 	
-	String[] policeArrayNotFinal = new String[police.keySet().toArray().length];
-	policeArrayNotFinal = (String[]) police.keySet().toArray();
+	Object[] objectPolicearray = new Object[police.keySet().toArray().length];
+	objectPolicearray = police.keySet().toArray();
+	
+	String[] policeArrayNotFinal = new String[objectPolicearray.length];
+	System.arraycopy(objectPolicearray, 0, policeArrayNotFinal, 0, objectPolicearray.length);
 	
 	int i = 0;
 	
