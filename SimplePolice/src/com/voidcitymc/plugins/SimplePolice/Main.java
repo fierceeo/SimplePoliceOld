@@ -52,6 +52,7 @@ public void onEnable() {
 	getServer().getPluginManager().registerEvents(new PoliceListener(), this);
 	instance = this;
 	this.getCommand("police").setExecutor(new Police());
+	this.getCommand("911").setExecutor(new NineOneOne());
 	System.out.println("ramdon_person's Police Plugin Has Been Enabled!");
 }
 
