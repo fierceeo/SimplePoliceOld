@@ -29,7 +29,7 @@ int i = 0;
 
 
 //online police list
-while (i <= policeList.size()) {
+while (i < policeList.size()) {
 	if (Bukkit.getPlayer(policeList.get(i)) != null) {
 		playerList.add(Bukkit.getPlayer(worker.ListPolice().get(i)));
 	}
@@ -40,7 +40,7 @@ while (i <= policeList.size()) {
 
 i = 0;
 
-while (i <= playerList.size()) {
+while (i < playerList.size()) {
 	playerList.get(i).sendMessage(ChatColor.DARK_AQUA + "[911] " + ChatColor.WHITE + sender.getName() + " needs help!");
 	i++;
 }
