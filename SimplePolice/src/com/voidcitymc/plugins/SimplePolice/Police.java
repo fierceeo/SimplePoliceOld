@@ -43,7 +43,7 @@ if (args[0].equalsIgnoreCase("add")) {
 		work.addPolice(Bukkit.getPlayer(args[1]).getUniqueId().toString());
 		player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " Added "+args[1]+" as a police officer!");
 		} else {
-		player.sendMessage(ChatColor.DARK_AQUA + "[Police] You need to specify a player!");
+		player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " You need to specify a player!");
 	}
 	
 }
