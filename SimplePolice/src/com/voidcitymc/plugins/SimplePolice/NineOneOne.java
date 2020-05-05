@@ -46,6 +46,19 @@ while (i < playerList.size()) {
 }
 
 
+
+/////////////
+/*
+BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE 
+BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE BUG HERE 
+*/
+
+/*
+ * When there is one player online (myself) and I run /911 it says there are no players online, need to fix this!!!
+*/
+
+/////////
+
 if (playerList.size() == 0) {
 	player.sendMessage(ChatColor.DARK_AQUA + "There are no police online, you are on your own!");
 } else {
