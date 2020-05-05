@@ -1,5 +1,9 @@
 package com.voidcitymc.plugins.SimplePolice;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -78,6 +82,21 @@ public static Location policeTp (Player player, int MaxValTp) {
     double drandom2 = Math.random() * MaxValTp;
     int random1 = (int) Math.round(drandom1);
     int random2 = (int) Math.round(drandom2);
+    
+    //should number be negative or positave
+    
+    //number from 0 to 1
+    int posOrNeg = (int) Math.round(Math.random());
+    if (posOrNeg == 1) {
+    	random1 = random1 - (2 * random1);
+    }
+    
+    posOrNeg = (int) Math.round(Math.random());
+    if (posOrNeg == 1) {
+    	random2 = random2 - (2 * random2);
+    }
+    
+    
 	
     int nX = pX+random1;
     int nY = pY;
@@ -94,6 +113,29 @@ public static Location policeTp (Player player, int MaxValTp) {
     return returnLoc;
     
 	
+}
+
+public static ArrayList<String> ListPolice() {
+	
+	Map<String, Object> police = Main.getInstance().Data.getValues(false);
+	java.util.List<Object> policeListNotFinal = new ArrayList<Object>();
+
+	ArrayList<String> policeList = new ArrayList<String>();
+	
+	policeListNotFinal = Arrays.asList(police.keySet().toArray());
+	
+	int i = 0;
+	
+	while (i <= policeListNotFinal.size()) {
+		if (police.get(policeListNotFinal.get(i)) instanceof Boolean) {
+			if ((boolean) police.get(policeListNotFinal.get(i))) {
+				policeList.add((String) policeListNotFinal.get(i));
+			}
+		}
+		i++;
+	}
+	
+	return policeList;
 }
 
 
