@@ -103,6 +103,15 @@ public static Location policeTp (Player player, int MaxValTp) {
     int nZ = pZ+random2;
     
     Location returnLoc = new Location(player.getWorld(), nX, nY, nZ);
+    Location returnLocYOneDown = new Location(player.getWorld(), nX, nY-1, nZ);
+    
+    while (returnLocYOneDown.getBlock().getType().equals(Material.AIR)) {
+    	nY = nY-1;
+    	returnLocYOneDown = new Location(player.getWorld(), nX, nY-1, nZ);
+    }
+    
+    returnLoc = returnLocYOneDown;
+    
     
     //keeps increasing y cord until location is safe
     while (!isLocationSafe(returnLoc)) {
