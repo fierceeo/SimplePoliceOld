@@ -141,10 +141,8 @@ public static ArrayList<String> ListPolice() {
 	int i = 0;
 	
 	while (i <= policeArrayNotFinal.length) {
-		if (police.get(policeArrayNotFinal[i]) instanceof Boolean) {
-			if ((boolean) police.get(policeArrayNotFinal[i])) {
-				policeList.add(policeArrayNotFinal[i]);
-			}
+		if ((boolean) police.get(policeArrayNotFinal[i])) {
+			policeList.add(policeArrayNotFinal[i]);
 		}
 		i++;
 	}
