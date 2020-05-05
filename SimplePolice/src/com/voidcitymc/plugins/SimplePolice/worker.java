@@ -127,11 +127,11 @@ public static Location policeTp (Player player, int MaxValTp) {
 public static ArrayList<String> ListPolice() {
 	
 	Map<String, Object> police = Main.getInstance().Data.getValues(false);
-	java.util.List<Object> policeListNotFinal = new ArrayList<Object>();
+	ArrayList<Object> policeListNotFinal = new ArrayList<Object>();
 
 	ArrayList<String> policeList = new ArrayList<String>();
 	
-	policeListNotFinal = Arrays.asList(police.keySet().toArray());
+	policeListNotFinal = (ArrayList<Object>) Arrays.asList(police.keySet().toArray());
 	
 	int i = 0;
 	
