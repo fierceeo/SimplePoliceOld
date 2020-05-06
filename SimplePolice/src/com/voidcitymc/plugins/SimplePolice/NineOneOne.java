@@ -44,7 +44,7 @@ if (args.length > 0) {
 }
 
 while (i < args.length) {
-	message = message + " " + args[i] +;
+	message = message + " " + args[i];
 	i++;
 }
 
