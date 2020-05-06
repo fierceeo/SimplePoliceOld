@@ -1,7 +1,7 @@
 name: SimplePolice
 author: ramdon_person
 main: com.voidcitymc.plugins.SimplePolice.Main
-version: 2.2
+version: 2.3
 depend: [Essentials]
 website: https://plugins.voidcitymc.com
 commands:
