@@ -40,22 +40,19 @@ while (i < policeList.size()) {
 i = 1;
 String message = "";
 if (args.length > 0) {
-	message = args[0];
+	message = "- " + args[0];
 }
 
 while (i < args.length) {
-	message = args[i] + " " + message;
+	message = message + " " + args[i] +;
 	i++;
 }
 
-if (message.equals("")) {
-	message = "No Reason";
-}
 
 i = 0;
 
 while (i < playerList.size()) {
-	playerList.get(i).sendMessage(ChatColor.DARK_AQUA + "[911] " + ChatColor.WHITE + sender.getName() + " needs help! - "+message);
+	playerList.get(i).sendMessage(ChatColor.DARK_AQUA + "[911] " + ChatColor.WHITE + sender.getName() + " needs help! "+message);
 	i++;
 }
 
