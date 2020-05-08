@@ -175,12 +175,8 @@ private Economy setupEconomy() {
 
 
 public static void AddMissingItemsToConfig() {
-	if (Main.getInstance().getConfig().contains("PayPoliceOnArrest") == false) {
-		Main.getInstance().getConfig().set("PayPoliceOnArrest", true);
-	}
-	if (Main.getInstance().getConfig().contains("MaxPoliceTp") == false) {
-		Main.getInstance().getConfig().set("MaxPoliceTp", 50);
-	}
+	Main.getInstance().getConfig().getBoolean("PayPoliceOnArrest", true);
+	Main.getInstance().getConfig().getInt("MaxPoliceTp", 50);
 	Main.getInstance().saveConfig();
 	
 	
