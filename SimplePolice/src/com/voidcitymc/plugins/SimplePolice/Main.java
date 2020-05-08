@@ -48,6 +48,8 @@ public void onEnable() {
 	saveConfig();
 	//create datafile;
 	createData();
+	//add mising items to config
+	worker.AddMissingItemsToConfig();
 	//
 	getServer().getPluginManager().registerEvents(new PoliceListener(), this);
 	instance = this;

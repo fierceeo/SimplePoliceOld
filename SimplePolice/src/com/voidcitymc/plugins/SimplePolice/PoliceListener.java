@@ -27,6 +27,7 @@ public class PoliceListener implements Listener {
     			damagerP.sendMessage("You have arrested "+ damageeP.getName());
     			damageeP.sendMessage("You have been arrested");
     			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "essentials:jail "+damageeP.getName()+" jail1");
+    			worker.PayPoliceOnArrest(damagerP);
     		}
     	
     		

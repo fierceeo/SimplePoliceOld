@@ -1,3 +1,5 @@
 #farthest a player can teleport to another player with /police tp
 #setting this value to 0 makes the command like a normal teleport.
 MaxPoliceTp: 50
+#should we pay the police officer $500 for arresting a player?
+PayPoliceOnArrest: true
