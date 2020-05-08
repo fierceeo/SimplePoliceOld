@@ -49,7 +49,7 @@ public void onEnable() {
 	//create datafile;
 	createData();
 	//add mising items to config
-	worker.AddMissingItemsToConfig();
+//	worker.AddMissingItemsToConfig();
 	//
 	getServer().getPluginManager().registerEvents(new PoliceListener(), this);
 	instance = this;
