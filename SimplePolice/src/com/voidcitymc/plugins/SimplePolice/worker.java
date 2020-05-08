@@ -1,13 +1,14 @@
 package com.voidcitymc.plugins.SimplePolice;
 
-import java.awt.List;
+import net.milkbowl.vault.economy.Economy;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.RegisteredServiceProvider;
 
 
 public class worker {
@@ -150,6 +151,40 @@ public static ArrayList<String> ListPolice() {
 	return policeList;
 }
 
+public static void PayPoliceOnArrest(Player player) {
+	if (Main.getInstance().getConfig().getBoolean("PayPoliceOnArrest")) {
+		//make sure vault is installed
+		if (Bukkit.getServer().getPluginManager().getPlugin("Vault")!= null) {
+			worker work = new worker();
+			Economy economy = work.setupEconomy();
+			economy.depositPlayer(player, 500);
+		}
+	}
+}
 
+
+private Economy setupEconomy() {
+    RegisteredServiceProvider<Economy> rsp = Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
+    if (rsp == null) {
+        
+    }
+    Economy econ = rsp.getProvider();
+    return econ;
+}
+
+
+
+public static void AddMissingItemsToConfig() {
+	if (Main.getInstance().getConfig().contains("PayPoliceOnArrest") == false) {
+		Main.getInstance().getConfig().set("PayPoliceOnArrest", true);
+	}
+	if (Main.getInstance().getConfig().contains("MaxPoliceTp") == false) {
+		Main.getInstance().getConfig().set("MaxPoliceTp", 50);
+	}
+	Main.getInstance().saveConfig();
+	
+	
+	
+}
 
 }
