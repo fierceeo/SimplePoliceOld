@@ -30,7 +30,7 @@ if (player.hasPermission("police.reload") && args.length > 0) {
 
 
 
-if ((player.hasPermission("police.unjail") && args.length > 0) || work.alreadyPolice(player.getUniqueId().toString()) ) {
+if (args.length > 0 && (player.hasPermission("police.unjail") || work.alreadyPolice(player.getUniqueId().toString())) ) {
 	if (args[0].equalsIgnoreCase("unjail")) {
 		Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "essentials:unjail "+player.getName());
 	}
