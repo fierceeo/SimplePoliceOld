@@ -3,3 +3,7 @@
 MaxPoliceTp: 50
 #should we pay the police officer $500 for arresting a player?
 PayPoliceOnArrest: true
+#should we make the player loose money on an arrest (note: this money will not go to the police, it will be trashed)
+TakeMoneyOnArrest: false
+#if the setting above is true, what percent of the money should be taken. Put values like 20 for 20% do not put a %.
+PercentOfMoneyToTake: 20
