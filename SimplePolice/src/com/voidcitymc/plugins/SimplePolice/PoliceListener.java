@@ -29,6 +29,8 @@ public class PoliceListener implements Listener {
     			worker.PayPoliceOnArrest(damagerP);
     			worker.TakeMoneyOnArrest(damageeP);
     			Main.lastArrest.put(damagerP.getName(), damageeP.getName());
+    			GUI gui = new GUI();
+    			gui.openInventory(damagerP);
     		}
     	
     		
