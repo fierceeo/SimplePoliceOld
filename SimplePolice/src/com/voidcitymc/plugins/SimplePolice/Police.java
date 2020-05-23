@@ -29,8 +29,8 @@ if (player.hasPermission("police.reload") && args.length > 0) {
 }
 
 
-//Add police
-if (player.hasPermission("police.unjail") && args.length > 0) {
+
+if ((player.hasPermission("police.unjail") && args.length > 0) || work.alreadyPolice(player.getUniqueId().toString()) ) {
 	if (args[0].equalsIgnoreCase("unjail")) {
 		Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "essentials:unjail "+player.getName());
 	}
@@ -86,6 +86,13 @@ if (args.length == 0) {
 		player.sendMessage("/police add (player)");
 	}
 	
+	
+	//police unjail
+	if (player.hasPermission("police.unjail") || work.alreadyPolice(player.getUniqueId().toString())) {
+		player.sendMessage("/police unjail (player)");
+	}
+	
+	
 	//help info
 	player.sendMessage("/police help");
 }
@@ -105,6 +112,10 @@ if (args.length > 0) {
 		//police add help
 		if (player.hasPermission("police.add")) {
 			player.sendMessage("/police add (player)");
+		}
+		
+		if (player.hasPermission("police.unjail") || work.alreadyPolice(player.getUniqueId().toString())) {
+			player.sendMessage("/police unjail (player)");
 		}
 		
 		//help info

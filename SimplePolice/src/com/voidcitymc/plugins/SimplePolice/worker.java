@@ -1,5 +1,6 @@
 package com.voidcitymc.plugins.SimplePolice;
 
+import net.md_5.bungee.api.ChatColor;
 import net.milkbowl.vault.economy.Economy;
 import java.util.ArrayList;
 import java.util.Map;
@@ -170,6 +171,30 @@ private Economy setupEconomy() {
     }
     Economy econ = rsp.getProvider();
     return econ;
+}
+
+public static void TakeMoneyOnArrest(Player player) {
+	if (Main.getInstance().getConfig().getBoolean("TakeMoneyOnArrest")) {
+		//make sure vault is installed
+		if (Bukkit.getServer().getPluginManager().getPlugin("Vault")!= null) {
+			
+			double percent = 0;
+			
+			percent = Main.getInstance().getConfig().getDouble("PercentOfMoneyToTake");
+			
+			
+			worker work = new worker();
+			
+			Economy economy = work.setupEconomy();
+			
+			double moneyLost = economy.getBalance(player)*(percent/100);
+			
+			player.sendMessage(ChatColor.DARK_AQUA+"The police have arested you and you have lost $"+moneyLost);
+			
+			economy.withdrawPlayer(player, moneyLost);
+			
+		}
+	}
 }
 
 
