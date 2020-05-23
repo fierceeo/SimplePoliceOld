@@ -9,11 +9,9 @@ import java.util.Map;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
 
@@ -216,25 +214,6 @@ protected ItemStack createGuiItem(final Material material, final String name, fi
     item.setItemMeta(meta);
 
     return item;
-}
-
-protected ItemStack createGuiHeadItem(OfflinePlayer player, final Material material, final String name, final String... lore) {
-	
-    final ItemStack head = new ItemStack(Material.PLAYER_HEAD, 1);
-    final SkullMeta meta = (SkullMeta) head.getItemMeta();
-    meta.setOwningPlayer(player);
-
-    
-
-    // Set the name of the item
-    meta.setDisplayName(name);
-
-    // Set the lore of the item
-    meta.setLore(Arrays.asList(lore));
-
-    head.setItemMeta(meta);
-    
-    return head;
 }
 
 
