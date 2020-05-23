@@ -3,12 +3,17 @@ package com.voidcitymc.plugins.SimplePolice;
 import net.md_5.bungee.api.ChatColor;
 import net.milkbowl.vault.economy.Economy;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
 
@@ -195,6 +200,41 @@ public static void TakeMoneyOnArrest(Player player) {
 			
 		}
 	}
+}
+
+
+protected ItemStack createGuiItem(final Material material, final String name, final String... lore) {
+    final ItemStack item = new ItemStack(material, 1);
+    final ItemMeta meta = item.getItemMeta();
+
+    // Set the name of the item
+    meta.setDisplayName(name);
+
+    // Set the lore of the item
+    meta.setLore(Arrays.asList(lore));
+
+    item.setItemMeta(meta);
+
+    return item;
+}
+
+protected ItemStack createGuiHeadItem(OfflinePlayer player, final Material material, final String name, final String... lore) {
+	
+    final ItemStack head = new ItemStack(Material.PLAYER_HEAD, 1);
+    final SkullMeta meta = (SkullMeta) head.getItemMeta();
+    meta.setOwningPlayer(player);
+
+    
+
+    // Set the name of the item
+    meta.setDisplayName(name);
+
+    // Set the lore of the item
+    meta.setLore(Arrays.asList(lore));
+
+    head.setItemMeta(meta);
+    
+    return head;
 }
 
 
