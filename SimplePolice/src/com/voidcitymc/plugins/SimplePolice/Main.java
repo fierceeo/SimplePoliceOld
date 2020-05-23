@@ -1,9 +1,11 @@
 package com.voidcitymc.plugins.SimplePolice;
 
 import java.io.File;
+import java.util.HashMap;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.voidcitymc.plugins.SimplePolice.Main;
@@ -13,6 +15,8 @@ private static Main instance;
 
 File DataFile;
 FileConfiguration Data;
+
+static HashMap<String, String> lastArrest = new HashMap<String, String>();
 
 public void createData() {
     DataFile = new File(getDataFolder(), "data.yml");
