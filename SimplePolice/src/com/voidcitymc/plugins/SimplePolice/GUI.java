@@ -18,7 +18,6 @@ public class GUI implements Listener {
     public void gui (InventoryClickEvent event) {
 
 		final Player player = (Player) event.getWhoClicked();
-		final Inventory inv = createGUI(player);
 		 if (event.getView() != Main.openGUI.get(player.getName())) return;
         
         event.setCancelled(true);
@@ -32,27 +31,23 @@ public class GUI implements Listener {
         int jailTime = 0;
         
         if (event.getRawSlot() == 2) {
-        	jailTime = 1;
+        	jailTime = 4;
         	event.getWhoClicked().closeInventory();
         }
         if (event.getRawSlot() == 3) {
-        	jailTime = 2;
+        	jailTime = 8;
         	event.getWhoClicked().closeInventory();
         }
         if (event.getRawSlot() == 4) {
-        	jailTime = 5;
+        	jailTime = 10;
         	event.getWhoClicked().closeInventory();
         }
         if (event.getRawSlot() == 5) {
-        	jailTime = 10;
+        	jailTime = 12;
         	event.getWhoClicked().closeInventory();
         }
         if (event.getRawSlot() == 6) {
         	jailTime = 15;
-        	event.getWhoClicked().closeInventory();
-        }
-        if (event.getRawSlot() == 7) {
-        	jailTime = 30;
         	event.getWhoClicked().closeInventory();
         }
 
@@ -82,12 +77,11 @@ public class GUI implements Listener {
             
         Inventory inv = Bukkit.createInventory(null, 9, "Jail Time");
         
-        inv.setItem(2, work.createGuiItem(Material.RED_TERRACOTTA, "§f1M", "§bClick here to jail the player for 1 minute", ""));
-        inv.setItem(3, work.createGuiItem(Material.ORANGE_TERRACOTTA, "§f2M", "§bClick here to jail the player for 1 minutes", ""));
-        inv.setItem(4, work.createGuiItem(Material.YELLOW_TERRACOTTA, "§f5M", "§bClick here to jail the player for 1 minutes", ""));
-        inv.setItem(5, work.createGuiItem(Material.LIME_TERRACOTTA, "§f10M", "§bClick here to jail the player for 1 minutes", ""));
-        inv.setItem(6, work.createGuiItem(Material.LIGHT_BLUE_TERRACOTTA, "§f15M", "§bClick here to jail the player for 1 minutes", ""));
-        inv.setItem(7, work.createGuiItem(Material.BLUE_TERRACOTTA, "§f30M", "§bClick here to jail the player for 1 minutes", ""));
+        inv.setItem(2, work.createGuiItem(Material.RED_TERRACOTTA, "§f4M", "§bClick here to jail the player for 4 minutes", ""));
+        inv.setItem(3, work.createGuiItem(Material.ORANGE_TERRACOTTA, "§f8M", "§bClick here to jail the player for 8 minutes", ""));
+        inv.setItem(4, work.createGuiItem(Material.YELLOW_TERRACOTTA, "§f10M", "§bClick here to jail the player for 10 minutes", ""));
+        inv.setItem(5, work.createGuiItem(Material.LIME_TERRACOTTA, "§f12M", "§bClick here to jail the player for 12 minutes", ""));
+        inv.setItem(6, work.createGuiItem(Material.LIGHT_BLUE_TERRACOTTA, "§f15M", "§bClick here to jail the player for 15 minutes", ""));
         
         return inv;
     }
