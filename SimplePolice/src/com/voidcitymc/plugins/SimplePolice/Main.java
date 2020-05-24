@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.inventory.InventoryView;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.voidcitymc.plugins.SimplePolice.Main;
@@ -16,6 +17,7 @@ File DataFile;
 FileConfiguration Data;
 
 static HashMap<String, String> lastArrest = new HashMap<String, String>();
+static HashMap<String, InventoryView> openGUI = new HashMap<String, InventoryView>();
 
 public void createData() {
     DataFile = new File(getDataFolder(), "data.yml");

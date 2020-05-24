@@ -1,7 +1,5 @@
 package com.voidcitymc.plugins.SimplePolice;
 
-import java.util.Arrays;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -10,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 
 import net.md_5.bungee.api.ChatColor;
@@ -20,7 +19,7 @@ public class GUI implements Listener {
 
 		final Player player = (Player) event.getWhoClicked();
 		final Inventory inv = createGUI(player);
-		 if (!Arrays.equals(event.getInventory().getContents(), inv.getContents())) return;
+		 if (event.getView() != Main.openGUI.get(player.getName())) return;
         
         event.setCancelled(true);
 
@@ -66,13 +65,14 @@ public class GUI implements Listener {
 }
 	
     public void preventShiftgui (InventoryMoveItemEvent event) {
-        if (!Arrays.equals(event.getSource().getContents(), createGUI((Player)event.getSource().getHolder()).getContents())) return;
+        if ( ((Player)event.getSource().getHolder()).getOpenInventory() !=  Main.openGUI.get(((Player)event.getSource().getHolder()).getName()) ) return;
         event.setCancelled(true);
     }
 
     
     public void openInventory(final Player player) {
-        player.openInventory(createGUI(player));
+    	InventoryView view = player.openInventory(createGUI(player));
+    	Main.openGUI.put(player.getName(), view);
     }
     
     
