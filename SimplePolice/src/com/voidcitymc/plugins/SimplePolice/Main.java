@@ -56,6 +56,7 @@ public void onEnable() {
 	//add mising items to config
 //	worker.AddMissingItemsToConfig();
 	//
+	getServer().getPluginManager().registerEvents(new GUI(), this);
 	getServer().getPluginManager().registerEvents(new PoliceListener(), this);
 	instance = this;
 	this.getCommand("police").setExecutor(new Police());
