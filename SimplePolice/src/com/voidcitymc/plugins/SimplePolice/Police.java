@@ -66,7 +66,7 @@ if (player.hasPermission("police.remove") && args.length > 0) {
 				work.removePolice(Bukkit.getPlayer(args[1]).getUniqueId().toString());
 				player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " Removed "+args[1]+" as a police officer!");	
 			} else {
-				player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " Could not remove " +args[1]+ " because they are not a police officer!")
+				player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " Could not remove " +args[1]+ " because they are not a police officer!");
 			}
 		} else {
 			player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " You need to specify a player!");
