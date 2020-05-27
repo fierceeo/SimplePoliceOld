@@ -23,9 +23,10 @@ worker work = new worker();
 
 //reload config
 if (player.hasPermission("police.reload") && args.length > 0) {
-	if (args[0].equalsIgnoreCase("reload"))
-	Main.getInstance().reloadConfig();
-	player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " The config has been reloaded");
+	if (args[0].equalsIgnoreCase("reload")) {
+	        Main.getInstance().reloadConfig();
+	        player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " The config has been reloaded");
+	}
 }
 
 
