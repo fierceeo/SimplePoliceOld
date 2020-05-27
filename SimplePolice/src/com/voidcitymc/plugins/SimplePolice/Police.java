@@ -61,7 +61,7 @@ if (args[0].equalsIgnoreCase("add")) {
 if (player.hasPermission("police.remove") && args.length > 0) {
 
 	if (args[0].equalsIgnoreCase("remove")) {
-		if (args.length > 1) {if (!work.alreadyPolice(player.getUniqueId().toString())) {
+		if (args.length > 1) if (!work.alreadyPolice(player.getUniqueId().toString())) {
 			if (work.alreadyPolice(player.getUniqueId().toString())) {
 				work.removePolice(Bukkit.getPlayer(args[1]).getUniqueId().toString());
 				player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " Removed "+args[1]+" as a police officer!");	
@@ -71,8 +71,7 @@ if (player.hasPermission("police.remove") && args.length > 0) {
 		} else {
 			player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " You need to specify a player!");
 		}
-}
-
+	}
 }
 
 //help
