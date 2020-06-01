@@ -42,11 +42,11 @@ if (player.hasPermission("police.add") && args.length > 0) {
 if (args[0].equalsIgnoreCase("add")) {
 	if (args.length > 1) {
 		
-		if (!work.alreadyPolice(player.getUniqueId().toString())) {
+		if (!work.alreadyPolice(Bukkit.getPlayer(args[1]).getUniqueId().toString())) {
 		        work.addPolice(Bukkit.getPlayer(args[1]).getUniqueId().toString());
 		        player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " Added "+args[1]+" as a police officer!");
 		} else {
-			player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + "Could not add " + args[1]+" because they are already a police officer!");
+			player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " Could not add " + args[1]+" because they are already a police officer!");
 		}
 			
 	} else {
@@ -59,10 +59,9 @@ if (args[0].equalsIgnoreCase("add")) {
 
 //Remove
 if (player.hasPermission("police.remove") && args.length > 0) {
-
 	if (args[0].equalsIgnoreCase("remove")) {
-		if (args.length > 1) if (!work.alreadyPolice(player.getUniqueId().toString())) {
-			if (work.alreadyPolice(player.getUniqueId().toString())) {
+		if (args.length < 2) {
+			if (work.alreadyPolice(Bukkit.getPlayer(args[1]).getUniqueId().toString())) {
 				work.removePolice(Bukkit.getPlayer(args[1]).getUniqueId().toString());
 				player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " Removed "+args[1]+" as a police officer!");	
 			} else {
