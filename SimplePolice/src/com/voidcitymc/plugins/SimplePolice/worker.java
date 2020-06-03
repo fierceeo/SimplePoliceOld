@@ -162,6 +162,7 @@ public static void PayPoliceOnArrest(Player player) {
 			worker work = new worker();
 			Economy economy = work.setupEconomy();
 			economy.depositPlayer(player, 500);
+			player.sendMessage(ChatColor.Dark_Aqua+"You have arrested a player and earned $500!");
 		}
 	}
 }
