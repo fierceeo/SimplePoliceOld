@@ -15,7 +15,6 @@ private static Main instance;
 File DataFile;
 FileConfiguration Data;
 
-static HashMap<String, String> lastArrest = new HashMap<String, String>();
 static HashMap<String, Boolean> isArrestedForTp = new HashMap<String, Boolean>();
 
 public void createData() {
@@ -57,7 +56,6 @@ public void onEnable() {
 	//
 	getServer().getPluginManager().registerEvents(new GUI(), this);
 	getServer().getPluginManager().registerEvents(new PoliceListener(), this);
-	getServer().getPluginManager().registerEvents(new PlayerTeleport(), this);
 	instance = this;
 	this.getCommand("police").setExecutor(new Police());
 	this.getCommand("911").setExecutor(new NineOneOne());
