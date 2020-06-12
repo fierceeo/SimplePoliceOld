@@ -17,8 +17,8 @@ public class GUI implements Listener {
 	@EventHandler
     public void gui (InventoryClickEvent event) {
 
-		final Player player = (Player) event.getWhoClicked();
-		 if (event.getView() != Main.openGUI.get(player.getName())) return;
+	final Player player = (Player) event.getWhoClicked();
+	if (!player.getOpenInventory().getTitle().equalsIgnoreCase("Jail Time")) return;
         
         event.setCancelled(true);
 
@@ -66,8 +66,12 @@ public class GUI implements Listener {
 
     
     public void openInventory(final Player player) {
-    	InventoryView view = player.openInventory(createGUI(player));
-    	Main.openGUI.put(player.getName(), view);
+	Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+		public void run() {
+			player.openInventory(createGUI(player));
+		}
+        }, 1L);
+	    
     }
     
     
