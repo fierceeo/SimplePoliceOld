@@ -7,3 +7,9 @@ PayPoliceOnArrest: true
 TakeMoneyOnArrest: false
 #if the setting above is true, what percent of the money should be taken. Put values like 20 for 20% do not put a %.
 PercentOfMoneyToTake: 20
+#if you have worldguard installed and want to enable "safe areas" or areas where police can't arrest players
+SafeArea: false
+#if the above value is true, then the regions that you want listed as "safe areas"
+SafeAreas:
+ - ExampleSafeArea1
+ - ExampleSafeArea2
