@@ -60,7 +60,7 @@ public class GUI implements Listener {
 }
 	
     public void preventShiftgui (InventoryMoveItemEvent event) {
-        if ( ((Player)event.getSource().getHolder()).getOpenInventory() !=  Main.openGUI.get(((Player)event.getSource().getHolder()).getName()) ) return;
+        if (!((Player)event.getSource().getHolder()).getOpenInventory().getTitle().equalsIgnoreCase("Jail Time")) return;
         event.setCancelled(true);
     }
 
