@@ -24,14 +24,12 @@ public class PoliceListener implements Listener {
     			//damagee is the criminal
 			if (!work.inSafeArea(damageeP)) {
     				if (work.alreadyPolice(damagerP.getUniqueId().toString()) && worker.TestForItem(damagerP, Material.BLAZE_ROD, "Police")) /*put stuff here too) */ {
-    					Main.isArrestedForTp.put(damageeP.getName(), true);
     					System.out.println("A player has been arrested");
     					damageeP.sendMessage("You have been arrested");
     					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "essentials:jail "+damageeP.getName()+" jail1");
     					worker.PayPoliceOnArrest(damagerP);
     					worker.TakeMoneyOnArrest(damageeP);
     					Main.lastArrest.put(damagerP.getName(), damageeP.getName());
-    					Main.isArrestedForTp.put(damageeP.getName(), false);
     					GUI gui = new GUI();
     					gui.openInventory(damagerP);
     				}
