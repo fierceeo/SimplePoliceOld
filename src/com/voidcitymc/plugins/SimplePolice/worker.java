@@ -233,7 +233,7 @@ public boolean inSafeArea (Player police) {
 			worker Worker = new worker();
 			
 			for (ProtectedRegion region : set) {
-				if (Main.getInstance().getConfig().getSafeAreas().contains(region.getId())) {
+				if (Main.getInstance().getConfig().getList("SafeAreas").contains(region.getId())) {
 					return true;
 				}
 			}
