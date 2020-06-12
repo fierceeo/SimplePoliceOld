@@ -66,7 +66,7 @@ public class GUI implements Listener {
 
     
     public void openInventory(final Player player) {
-	Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+	Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 		public void run() {
 			player.openInventory(createGUI(player));
 		}
