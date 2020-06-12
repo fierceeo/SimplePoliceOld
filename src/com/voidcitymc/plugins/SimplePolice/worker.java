@@ -217,7 +217,35 @@ protected ItemStack createGuiItem(final Material material, final String name, fi
     return item;
 }
 
+public boolean inSafeArea (Player police) {
+	if (Main.getInstance().getConfig().getBoolean("SafeArea")) {
+		//make sure worldguard is installed
+		if (Bukkit.getServer().getPluginManager().getPlugin("WorldGuard")!= null) {
+			
+			
+				//get region "block"
+			RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
+			//create block
+			RegionQuery query = container.createQuery();
+			//gets the list of all the region(s) the player is standing in
+			ApplicableRegionSet set = query.getApplicableRegions(BukkitAdapter.adapt(p.getLocation()));
+			//create Worker
+			worker Worker = new worker();
+			
+			for (ProtectedRegion region : set) {
+				if (Main.getInstance().getConfig().getSafeAreas().contains(region.getId()) {
+					return true;
+				}
+			}
 
+			return false;
+				    
+			
+			
+			
+		}
+	}
+}
 /*
 public static void AddMissingItemsToConfig() {
 	Main.getInstance().getConfig().getBoolean("PayPoliceOnArrest", true);
