@@ -244,7 +244,10 @@ public boolean inSafeArea (Player police) {
 			
 			
 		}
+		return false;
+		System.out.println("You have the safe area setting in simple police toggled, but you do not have world guard installed!");
 	}
+	return false;
 }
 /*
 public static void AddMissingItemsToConfig() {
