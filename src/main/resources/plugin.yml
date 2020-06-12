@@ -3,7 +3,7 @@ author: ramdon_person
 main: com.voidcitymc.plugins.SimplePolice.Main
 version: 3.0
 depend: [Essentials]
-softdepend: [Vault]
+softdepend: [Vault, WorldGuard, WorldEdit]
 website: https://plugins.voidcitymc.com
 commands:
    police:
