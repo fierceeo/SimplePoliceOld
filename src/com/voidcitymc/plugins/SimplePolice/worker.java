@@ -235,7 +235,7 @@ public boolean inSafeArea (Player police) {
 			//create block
 			RegionQuery query = container.createQuery();
 			//gets the list of all the region(s) the player is standing in
-			ApplicableRegionSet set = query.getApplicableRegions(BukkitAdapter.adapt(p.getLocation()));
+			ApplicableRegionSet set = query.getApplicableRegions(BukkitAdapter.adapt(police.getLocation()));
 			//create Worker
 			worker Worker = new worker();
 			
