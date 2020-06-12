@@ -15,7 +15,7 @@ private static Main instance;
 File DataFile;
 FileConfiguration Data;
 
-static HashMap<String, Boolean> isArrestedForTp = new HashMap<String, Boolean>();
+static HashMap<String, String> lastArrest = new HashMap<String, String>();
 
 public void createData() {
     DataFile = new File(getDataFolder(), "data.yml");
