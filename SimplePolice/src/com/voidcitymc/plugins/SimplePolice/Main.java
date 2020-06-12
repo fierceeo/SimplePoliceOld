@@ -17,7 +17,6 @@ File DataFile;
 FileConfiguration Data;
 
 static HashMap<String, String> lastArrest = new HashMap<String, String>();
-static HashMap<String, InventoryView> openGUI = new HashMap<String, InventoryView>();
 
 public void createData() {
     DataFile = new File(getDataFolder(), "data.yml");
