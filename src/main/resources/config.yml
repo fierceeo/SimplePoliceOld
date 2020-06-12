@@ -12,5 +12,5 @@ SafeArea: false
 #if the above value is true, then the regions that you want listed as "safe areas" due note that at the moment, you can't use the __global__ region
 #Make sure to use lower case!
 SafeAreas:
- - ExampleSafeArea1
- - ExampleSafeArea2
+ - examplesafearea1
+ - examplesafearea2
