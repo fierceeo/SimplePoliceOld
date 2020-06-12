@@ -10,8 +10,7 @@ import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
-
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.ChatColor;
 
 public class GUI implements Listener {
 	@EventHandler
