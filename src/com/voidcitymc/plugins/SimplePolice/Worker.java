@@ -23,9 +23,9 @@ import com.sk89q.worldguard.protection.regions.RegionContainer;
 import com.sk89q.worldguard.protection.regions.RegionQuery;
 
 
-class Worker {
+public class Worker {
 	
-	ArrayList<String> onlinePoliceList() {
+	public ArrayList<String> onlinePoliceList() {
 		ArrayList<String> policeList = this.listPolice();
 		ArrayList<String> onlinePolice = new ArrayList<String>();
 		int i = 0;
@@ -44,7 +44,7 @@ class Worker {
 	}
 		
 	//check if a player has item in hand
-boolean testForItem(Player p, Material item, String DisplayName) {
+public boolean testForItem(Player p, Material item, String DisplayName) {
         if (item != null && p.getInventory().getItemInMainHand().getType() == item) {
             return true;
         }
@@ -52,7 +52,7 @@ boolean testForItem(Player p, Material item, String DisplayName) {
     }
 
 
-void addPolice (String uuid) {
+public void addPolice (String uuid) {
 	if (alreadyPolice(uuid)) {
 		return;
 	} else if (!alreadyPolice(uuid)) {
@@ -64,7 +64,7 @@ void addPolice (String uuid) {
 	}
 }
 
-boolean alreadyPolice (String uuid) {
+public boolean alreadyPolice (String uuid) {
 	if (SPPlugin.getInstance().Data.getBoolean(uuid)) {
 		return true;
 	} else {
@@ -72,7 +72,7 @@ boolean alreadyPolice (String uuid) {
 	}
 }
 
-void removePolice(String uuid) {
+public void removePolice(String uuid) {
 	if (this.alreadyPolice(uuid)) {
 		SPPlugin.getInstance().Data.set(uuid, false);
 		SPPlugin.getInstance().SaveDataFile();;
@@ -82,7 +82,7 @@ void removePolice(String uuid) {
 	}
 }
 
-boolean isLocationSafe (Location loc1) {
+public boolean isLocationSafe (Location loc1) {
 	//check if the location is safe to teleport to (air)
 	if (loc1.getBlock().getType().equals(Material.AIR)) {
 		//we know that the inital location is safe, so we need to check one block up
@@ -99,7 +99,7 @@ boolean isLocationSafe (Location loc1) {
 	return false;
 }
 
-Location policeTp (Player player, int MaxValTp) {
+public Location policeTp (Player player, int MaxValTp) {
 	Location LocP = player.getLocation();
 	//players x,y,z
 	int pX = LocP.getBlockX();
@@ -153,7 +153,7 @@ Location policeTp (Player player, int MaxValTp) {
 	
 }
 
-ArrayList<String> listPolice() {
+public ArrayList<String> listPolice() {
 	
 	Map<String, Object> police = SPPlugin.getInstance().Data.getValues(false);
 
@@ -178,7 +178,7 @@ ArrayList<String> listPolice() {
 	return policeList;
 }
 
-void payPoliceOnArrest(Player player) {
+public void payPoliceOnArrest(Player player) {
 	if (SPPlugin.getInstance().getConfig().getBoolean("PayPoliceOnArrest")) {
 		//make sure vault is installed
 		if (Bukkit.getServer().getPluginManager().getPlugin("Vault")!= null) {
@@ -199,7 +199,7 @@ private Economy setupEconomy() {
     return econ;
 }
 
-void takeMoneyOnArrest(Player player) {
+public void takeMoneyOnArrest(Player player) {
 	if (SPPlugin.getInstance().getConfig().getBoolean("TakeMoneyOnArrest")) {
 		//make sure vault is installed
 		if (Bukkit.getServer().getPluginManager().getPlugin("Vault")!= null) {
@@ -238,7 +238,7 @@ protected ItemStack createGuiItem(final Material material, final String name, fi
     return item;
 }
 
-boolean inSafeArea (Player police) {
+public boolean inSafeArea (Player police) {
 	if (SPPlugin.getInstance().getConfig().getBoolean("SafeArea")) {
 		//make sure worldguard is installed
 		if (Bukkit.getServer().getPluginManager().getPlugin("WorldGuard")!= null) {
@@ -270,7 +270,7 @@ boolean inSafeArea (Player police) {
 	return false;
 }
 /*
-void AddMissingItemsToConfig() {
+public void AddMissingItemsToConfig() {
 	Main.getInstance().getConfig().getBoolean("PayPoliceOnArrest", true);
 	Main.getInstance().getConfig().getInt("MaxPoliceTp", 50);
 	Main.getInstance().saveConfig();
