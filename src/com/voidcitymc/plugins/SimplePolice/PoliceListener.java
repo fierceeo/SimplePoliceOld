@@ -29,7 +29,7 @@ public class PoliceListener implements Listener {
     					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "essentials:jail "+damageeP.getName()+" jail1 4m");
     					work.payPoliceOnArrest(damagerP);
     					work.takeMoneyOnArrest(damageeP);
-    					Main.lastArrest.put(damagerP.getName(), damageeP.getName());
+    					SPPlugin.lastArrest.put(damagerP.getName(), damageeP.getName());
     					GUI gui = new GUI();
     					gui.openInventory(damagerP);
     				}

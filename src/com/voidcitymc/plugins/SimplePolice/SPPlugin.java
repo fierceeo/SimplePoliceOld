@@ -7,10 +7,10 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.voidcitymc.plugins.SimplePolice.Main;
+import com.voidcitymc.plugins.SimplePolice.SPPlugin;
 
-public class Main extends JavaPlugin {
-private static Main instance;
+public class SPPlugin extends JavaPlugin {
+private static SPPlugin instance;
 
 File DataFile;
 FileConfiguration Data;
@@ -26,7 +26,7 @@ public void createData() {
     Data = YamlConfiguration.loadConfiguration(DataFile);
 }
 
-public static Main getInstance() {
+public static SPPlugin getInstance() {
 	return instance;
 }
 
