@@ -56,8 +56,8 @@ public void addPolice (String uuid) {
 	if (alreadyPolice(uuid)) {
 		return;
 	} else if (!alreadyPolice(uuid)) {
-		Main.getInstance().Data.set(uuid, true);
-		Main.getInstance().SaveDataFile();
+		SPPlugin.getInstance().Data.set(uuid, true);
+		SPPlugin.getInstance().SaveDataFile();
 		return;
 	} else {
 		return;
@@ -65,7 +65,7 @@ public void addPolice (String uuid) {
 }
 
 public boolean alreadyPolice (String uuid) {
-	if (Main.getInstance().Data.getBoolean(uuid)) {
+	if (SPPlugin.getInstance().Data.getBoolean(uuid)) {
 		return true;
 	} else {
 		return false;
@@ -74,8 +74,8 @@ public boolean alreadyPolice (String uuid) {
 
 public void removePolice(String uuid) {
 	if (this.alreadyPolice(uuid)) {
-		Main.getInstance().Data.set(uuid, false);
-		Main.getInstance().SaveDataFile();;
+		SPPlugin.getInstance().Data.set(uuid, false);
+		SPPlugin.getInstance().SaveDataFile();;
 		return;
 	} else {
 		return;
@@ -155,7 +155,7 @@ public Location policeTp (Player player, int MaxValTp) {
 
 public ArrayList<String> listPolice() {
 	
-	Map<String, Object> police = Main.getInstance().Data.getValues(false);
+	Map<String, Object> police = SPPlugin.getInstance().Data.getValues(false);
 
 	ArrayList<String> policeList = new ArrayList<String>();
 	
@@ -179,7 +179,7 @@ public ArrayList<String> listPolice() {
 }
 
 public void payPoliceOnArrest(Player player) {
-	if (Main.getInstance().getConfig().getBoolean("PayPoliceOnArrest")) {
+	if (SPPlugin.getInstance().getConfig().getBoolean("PayPoliceOnArrest")) {
 		//make sure vault is installed
 		if (Bukkit.getServer().getPluginManager().getPlugin("Vault")!= null) {
 			Economy economy = this.setupEconomy();
@@ -200,13 +200,13 @@ private Economy setupEconomy() {
 }
 
 public void takeMoneyOnArrest(Player player) {
-	if (Main.getInstance().getConfig().getBoolean("TakeMoneyOnArrest")) {
+	if (SPPlugin.getInstance().getConfig().getBoolean("TakeMoneyOnArrest")) {
 		//make sure vault is installed
 		if (Bukkit.getServer().getPluginManager().getPlugin("Vault")!= null) {
 			
 			double percent = 0;
 			
-			percent = Main.getInstance().getConfig().getDouble("PercentOfMoneyToTake");
+			percent = SPPlugin.getInstance().getConfig().getDouble("PercentOfMoneyToTake");
 			
 		
 			
@@ -239,7 +239,7 @@ protected ItemStack createGuiItem(final Material material, final String name, fi
 }
 
 public boolean inSafeArea (Player police) {
-	if (Main.getInstance().getConfig().getBoolean("SafeArea")) {
+	if (SPPlugin.getInstance().getConfig().getBoolean("SafeArea")) {
 		//make sure worldguard is installed
 		if (Bukkit.getServer().getPluginManager().getPlugin("WorldGuard")!= null) {
 			
@@ -253,7 +253,7 @@ public boolean inSafeArea (Player police) {
 			//create Worker
 			
 			for (ProtectedRegion region : set) {
-				if (Main.getInstance().getConfig().getList("SafeAreas").contains(region.getId())) {
+				if (SPPlugin.getInstance().getConfig().getList("SafeAreas").contains(region.getId())) {
 					return true;
 				}
 			}

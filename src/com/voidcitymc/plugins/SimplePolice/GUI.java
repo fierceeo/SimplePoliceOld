@@ -50,7 +50,7 @@ public class GUI implements Listener {
         	event.getWhoClicked().closeInventory();
         }
 
-        String jailedPlayer = Main.lastArrest.get(player.getName());
+        String jailedPlayer = SPPlugin.lastArrest.get(player.getName());
         player.sendMessage(ChatColor.DARK_AQUA+"[Police]"+ChatColor.WHITE+" You jailed "+jailedPlayer+" for "+jailTime+" minutes");
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "essentials:jail "+jailedPlayer+" jail1 "+jailTime+"m");
         //need to find jailed player
@@ -65,7 +65,7 @@ public class GUI implements Listener {
 
     
     public void openInventory(final Player player) {
-	Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
+	Bukkit.getScheduler().scheduleSyncDelayedTask(SPPlugin.getInstance(), new Runnable() {
 		public void run() {
 			player.openInventory(createGUI(player));
 		}

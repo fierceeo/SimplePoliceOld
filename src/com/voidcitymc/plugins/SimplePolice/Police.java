@@ -24,7 +24,7 @@ Worker work = new Worker();
 //reload config
 if (player.hasPermission("police.reload") && args.length > 0) {
 	if (args[0].equalsIgnoreCase("reload")) {
-	        Main.getInstance().reloadConfig();
+	        SPPlugin.getInstance().reloadConfig();
 	        player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " The config has been reloaded");
 	}
 }
@@ -139,7 +139,7 @@ if (player.hasPermission("police.tp") || work.alreadyPolice(player.getUniqueId()
 	if (args.length > 0) {
 	if (args[0].equalsIgnoreCase("tp")) {
 		if (args.length > 1) {
-			int MaxValTp = Main.getInstance().getConfig().getInt("MaxPoliceTp");
+			int MaxValTp = SPPlugin.getInstance().getConfig().getInt("MaxPoliceTp");
 			player.teleport(work.policeTp(Bukkit.getPlayer(args[1]), MaxValTp));
 			player.sendMessage(ChatColor.DARK_AQUA+"[Police]" + ChatColor.WHITE + " You have been teleported");
 			Bukkit.getPlayer(args[1]).sendMessage(ChatColor.DARK_AQUA+"The police are comming!");
