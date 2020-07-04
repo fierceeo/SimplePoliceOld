@@ -7,41 +7,41 @@ import org.bukkit.entity.Player;
 
 public class SimplePoliceAPI {
 	
-	Worker work = new Worker();
+	static Worker work = new Worker();
 	
-public ArrayList<String> onlinePoliceList() {
+public static ArrayList<String> onlinePoliceList() {
 	return work.onlinePoliceList();
 }
 	
-public void addPolice (String uuid) {
+public static void addPolice (String uuid) {
 	work.addPolice(uuid);
 }
 
-public boolean isPolice (String uuid) {
+public static boolean isPolice (String uuid) {
 	return work.alreadyPolice(uuid);
 }
 
-public void removePolice(String uuid) {
+public static void removePolice(String uuid) {
 	work.removePolice(uuid);
 }
 
-public boolean isLocationSafe (Location location) {
+public static boolean isLocationSafe (Location location) {
 	return work.isLocationSafe(location);
 }
 
-public Location policeTp (Player player, int farthestTpDistance) {
+public static Location policeTp (Player player, int farthestTpDistance) {
 	return work.policeTp(player, farthestTpDistance);
 }
 
-public Location policeTp (Player player) {
+public static Location policeTp (Player player) {
 	return work.policeTp(player, SPPlugin.getInstance().getConfig().getInt("MaxPoliceTp"));
 }
 
-public ArrayList<String> listPolice() {
+public static ArrayList<String> listPolice() {
 	return work.listPolice();
 }
 
-public boolean inSafeArea (Player player) {
+public static boolean inSafeArea (Player player) {
 	return work.inSafeArea(player);
 }
 
