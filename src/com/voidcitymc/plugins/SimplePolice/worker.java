@@ -4,6 +4,7 @@ import net.milkbowl.vault.economy.Economy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -24,7 +25,21 @@ import com.sk89q.worldguard.protection.regions.RegionQuery;
 
 public class worker {
 	
+public static void onlinePoliceList() {
+	ArrayList<String> policeList = this.ListPolice();
+	int i = 0;
 
+
+	//online police list
+	while (i < policeList.size()) {
+		if (Bukkit.getPlayer(UUID.fromString(policeList.get(i))) != null) {
+			Bukkit.getPlayer(UUID.fromString(policeList.get(i))).sendMessage(ChatColor.DARK_AQUA + "[911] " + ChatColor.WHITE + "A robbery has been started!");
+			//cycle through online police
+
+		}
+		i++;
+	}
+}
 	
 //check if a player has item in hand
 public static boolean TestForItem(Player p, Material item, String DisplayName) {
