@@ -183,7 +183,7 @@ public void payPoliceOnArrest(Player player) {
 		//make sure vault is installed
 		if (Bukkit.getServer().getPluginManager().getPlugin("Vault")!= null) {
 			Economy economy = this.setupEconomy();
-			economy.depositPlayer(player, 500);
+			economy.depositPlayer(player, SPPlugin.getInstance().getConfig().getDouble("MoneyToGiveToPoliceOnArrest"));
 			player.sendMessage(ChatColor.DARK_AQUA+"You have arrested a player and earned $500!");
 		}
 	}
