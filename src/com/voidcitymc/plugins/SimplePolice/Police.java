@@ -18,7 +18,7 @@ public class Police implements CommandExecutor {
 public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 if (sender instanceof Player) {
 Player player = (Player) sender;
-worker work = new worker();
+Worker work = new Worker();
 
 
 //reload config
@@ -140,7 +140,7 @@ if (player.hasPermission("police.tp") || work.alreadyPolice(player.getUniqueId()
 	if (args[0].equalsIgnoreCase("tp")) {
 		if (args.length > 1) {
 			int MaxValTp = Main.getInstance().getConfig().getInt("MaxPoliceTp");
-			player.teleport(worker.policeTp(Bukkit.getPlayer(args[1]), MaxValTp));
+			player.teleport(work.policeTp(Bukkit.getPlayer(args[1]), MaxValTp));
 			player.sendMessage(ChatColor.DARK_AQUA+"[Police]" + ChatColor.WHITE + " You have been teleported");
 			Bukkit.getPlayer(args[1]).sendMessage(ChatColor.DARK_AQUA+"The police are comming!");
 		} else {

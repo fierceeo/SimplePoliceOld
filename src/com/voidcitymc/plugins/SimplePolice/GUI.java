@@ -76,7 +76,7 @@ public class GUI implements Listener {
     
     public Inventory createGUI(Player player) {
         
-    	worker work = new worker();
+    	Worker work = new Worker();
             
         Inventory inv = Bukkit.createInventory(null, 9, "Jail Time");
         
