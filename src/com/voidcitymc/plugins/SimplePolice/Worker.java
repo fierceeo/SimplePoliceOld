@@ -23,26 +23,28 @@ import com.sk89q.worldguard.protection.regions.RegionContainer;
 import com.sk89q.worldguard.protection.regions.RegionQuery;
 
 
-public class worker {
+public class Worker {
 	
-public static void onlinePoliceList() {
-	ArrayList<String> policeList = this.ListPolice();
+public ArrayList<String> onlinePoliceList() {
+	ArrayList<String> policeList = this.listPolice();
+	ArrayList<String> onlinePolice = new ArrayList<String>();
 	int i = 0;
 
 
 	//online police list
 	while (i < policeList.size()) {
 		if (Bukkit.getPlayer(UUID.fromString(policeList.get(i))) != null) {
-			Bukkit.getPlayer(UUID.fromString(policeList.get(i))).sendMessage(ChatColor.DARK_AQUA + "[911] " + ChatColor.WHITE + "A robbery has been started!");
+			onlinePolice.add(policeList.get(i));
 			//cycle through online police
 
 		}
 		i++;
 	}
+	return onlinePolice;
 }
 	
 //check if a player has item in hand
-public static boolean TestForItem(Player p, Material item, String DisplayName) {
+public boolean testForItem(Player p, Material item, String DisplayName) {
         if (item != null && p.getInventory().getItemInMainHand().getType() == item) {
             return true;
         }
@@ -71,8 +73,7 @@ public boolean alreadyPolice (String uuid) {
 }
 
 public void removePolice(String uuid) {
-	worker testPoliceVar = new worker();
-	if (testPoliceVar.alreadyPolice(uuid)) {
+	if (this.alreadyPolice(uuid)) {
 		Main.getInstance().Data.set(uuid, false);
 		Main.getInstance().SaveDataFile();;
 		return;
@@ -81,7 +82,7 @@ public void removePolice(String uuid) {
 	}
 }
 
-public static boolean isLocationSafe (Location loc1) {
+public boolean isLocationSafe (Location loc1) {
 	//check if the location is safe to teleport to (air)
 	if (loc1.getBlock().getType().equals(Material.AIR)) {
 		//we know that the inital location is safe, so we need to check one block up
@@ -98,7 +99,7 @@ public static boolean isLocationSafe (Location loc1) {
 	return false;
 }
 
-public static Location policeTp (Player player, int MaxValTp) {
+public Location policeTp (Player player, int MaxValTp) {
 	Location LocP = player.getLocation();
 	//players x,y,z
 	int pX = LocP.getBlockX();
@@ -152,7 +153,7 @@ public static Location policeTp (Player player, int MaxValTp) {
 	
 }
 
-public static ArrayList<String> ListPolice() {
+public ArrayList<String> listPolice() {
 	
 	Map<String, Object> police = Main.getInstance().Data.getValues(false);
 
@@ -177,12 +178,11 @@ public static ArrayList<String> ListPolice() {
 	return policeList;
 }
 
-public static void PayPoliceOnArrest(Player player) {
+public void payPoliceOnArrest(Player player) {
 	if (Main.getInstance().getConfig().getBoolean("PayPoliceOnArrest")) {
 		//make sure vault is installed
 		if (Bukkit.getServer().getPluginManager().getPlugin("Vault")!= null) {
-			worker work = new worker();
-			Economy economy = work.setupEconomy();
+			Economy economy = this.setupEconomy();
 			economy.depositPlayer(player, 500);
 			player.sendMessage(ChatColor.DARK_AQUA+"You have arrested a player and earned $500!");
 		}
@@ -199,7 +199,7 @@ private Economy setupEconomy() {
     return econ;
 }
 
-public static void TakeMoneyOnArrest(Player player) {
+public void takeMoneyOnArrest(Player player) {
 	if (Main.getInstance().getConfig().getBoolean("TakeMoneyOnArrest")) {
 		//make sure vault is installed
 		if (Bukkit.getServer().getPluginManager().getPlugin("Vault")!= null) {
@@ -208,10 +208,9 @@ public static void TakeMoneyOnArrest(Player player) {
 			
 			percent = Main.getInstance().getConfig().getDouble("PercentOfMoneyToTake");
 			
+		
 			
-			worker work = new worker();
-			
-			Economy economy = work.setupEconomy();
+			Economy economy = this.setupEconomy();
 			
 			double moneyLost = economy.getBalance(player)*(percent/100);
 			
@@ -252,7 +251,6 @@ public boolean inSafeArea (Player police) {
 			//gets the list of all the region(s) the player is standing in
 			ApplicableRegionSet set = query.getApplicableRegions(BukkitAdapter.adapt(police.getLocation()));
 			//create Worker
-			worker Worker = new worker();
 			
 			for (ProtectedRegion region : set) {
 				if (Main.getInstance().getConfig().getList("SafeAreas").contains(region.getId())) {
@@ -272,7 +270,7 @@ public boolean inSafeArea (Player police) {
 	return false;
 }
 /*
-public static void AddMissingItemsToConfig() {
+public void AddMissingItemsToConfig() {
 	Main.getInstance().getConfig().getBoolean("PayPoliceOnArrest", true);
 	Main.getInstance().getConfig().getInt("MaxPoliceTp", 50);
 	Main.getInstance().saveConfig();

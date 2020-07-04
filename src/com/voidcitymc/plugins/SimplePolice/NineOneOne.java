@@ -19,11 +19,11 @@ public class NineOneOne implements CommandExecutor {
 public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 if (sender instanceof Player) {
 Player player = (Player) sender;
-
+Worker work = new Worker();
 
 ArrayList<Player> playerList = new ArrayList<Player>();
 
-ArrayList<String> policeList = worker.ListPolice();
+ArrayList<String> policeList = work.listPolice();
 int i = 0;
 
 
