@@ -1,52 +1,80 @@
 package com.voidcitymc.api.SimplePolice;
 
 import java.util.ArrayList;
-
 import org.bukkit.Location;
-import org.bukkit.entity.Player;
+import org.bukkit.Player;
 
-import com.voidcitymc.plugins.SimplePolice.SPPlugin;
-import com.voidcitymc.plugins.SimplePolice.Worker;
-
-public class SimplePoliceAPI {
+public interface SimplePoliceAPI {
 	
-	static Worker work = new Worker();
 	
-public static ArrayList<String> onlinePoliceList() {
-	return work.onlinePoliceList();
-}
+ArrayList<String> onlinePoliceList();
+	/**
+	 * List of all the online police
+	 * 
+	 * @return ArrayList<String> An ArrayList of all the online police user names.
+	 */
+
 	
-public static void addPolice (String uuid) {
-	work.addPolice(uuid);
-}
+void addPolice (String uuid);
+	/**
+	 * Adds a police
+	 * 
+	 * @pram uuid The uuid (in string format) of the player to add
+	 */
 
-public static boolean isPolice (String uuid) {
-	return work.alreadyPolice(uuid);
-}
 
-public static void removePolice(String uuid) {
-	work.removePolice(uuid);
-}
+boolean isPolice (String uuid);
+	/**
+	 * Checks if a player is a police
+	 * 
+	 * @pram uuid The uuid (in string format) of the player to check
+	 * 
+	 * @return boolean Returns if the player is a police
+	 */
 
-public static boolean isLocationSafe (Location location) {
-	return work.isLocationSafe(location);
-}
 
-public static Location policeTp (Player player, int farthestTpDistance) {
-	return work.policeTp(player, farthestTpDistance);
-}
+void removePolice(String uuid);
+    /*
+     * Remove a police from the list
+     * 
+     * @pram uuid The uuid (in string format) of the player to remove
+     */
 
-public static Location policeTp (Player player) {
-	return work.policeTp(player, SPPlugin.getInstance().getConfig().getInt("MaxPoliceTp"));
-}
+Location policeTp (Player player, int farthestTpDistance);
+     /*
+      * Police teleport
+      * 
+      * @pram player The player to teleport
+      * @pram farthestTpDistance The farthest distance to teleport a player from another player
+      * 
+      * @return Location The random location given to teleport to
+      */
 
-public static ArrayList<String> listPolice() {
-	return work.listPolice();
-}
+Location policeTp (Player player);
+     /*
+      * Police teleport a player
+      * 
+      * @pram player The player to teleport
+      * 
+      * @return Location The random location given to teleport to
+      */
 
-public static boolean inSafeArea (Player player) {
-	return work.inSafeArea(player);
-}
+ArrayList<String> listPolice();
+     /*
+      * List of all the police (in string uuid format)
+      * 
+      * @return ArrayList<String> List of all the police (in string uuid format)
+      */
+
+
+boolean inSafeArea (Player player);
+     /*
+      * Check if a player is in a safe area
+      * 
+      * @pram player Player to check
+      * 
+      * @return boolean if the player is in a safe area
+      */
 
 
 }
