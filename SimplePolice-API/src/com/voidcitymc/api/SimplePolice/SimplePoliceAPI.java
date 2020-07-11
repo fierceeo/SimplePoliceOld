@@ -19,7 +19,7 @@ void addPolice (String uuid);
 	/**
 	 * Adds a police
 	 * 
-	 * @pram uuid The uuid (in string format) of the player to add
+	 * @param uuid The uuid (in string format) of the player to add
 	 */
 
 
@@ -27,7 +27,7 @@ boolean isPolice (String uuid);
 	/**
 	 * Checks if a player is a police
 	 * 
-	 * @pram uuid The uuid (in string format) of the player to check
+	 * @param uuid The uuid (in string format) of the player to check
 	 * 
 	 * @return boolean Returns if the player is a police
 	 */
@@ -37,15 +37,15 @@ void removePolice(String uuid);
     /*
      * Remove a police from the list
      * 
-     * @pram uuid The uuid (in string format) of the player to remove
+     * @param uuid The uuid (in string format) of the player to remove
      */
 
 Location policeTp (Player player, int farthestTpDistance);
      /*
       * Police teleport
       * 
-      * @pram player The player to teleport
-      * @pram farthestTpDistance The farthest distance to teleport a player from another player
+      * @param player The player to teleport
+      * @param farthestTpDistance The farthest distance to teleport a player from another player
       * 
       * @return Location The random location given to teleport to
       */
@@ -54,7 +54,7 @@ Location policeTp (Player player);
      /*
       * Police teleport a player
       * 
-      * @pram player The player to teleport
+      * @param player The player to teleport
       * 
       * @return Location The random location given to teleport to
       */
@@ -71,7 +71,7 @@ boolean inSafeArea (Player player);
      /*
       * Check if a player is in a safe area
       * 
-      * @pram player Player to check
+      * @param player Player to check
       * 
       * @return boolean if the player is in a safe area
       */
