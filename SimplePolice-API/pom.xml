@@ -41,4 +41,16 @@
         </plugins>
     </build>
 
+
+
+
+
+
+<distributionManagement>
+    <repository>
+        <id>internal</id>
+        <url>file://${project.build.directory}/SimplePolice-API/mvn-repo</url>
+    </repository>
+</distributionManagement>
+
 </project>
