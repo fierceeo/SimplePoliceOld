@@ -61,6 +61,13 @@ Maven Repo:
 	<version>3.1</version>
     </dependency>
 
+A list of all the methods in the api can be found here (unfortunately I wasn’t able to compile a java doc with this interface):
+https://github.com/ramdon-person/SimplePolice/blob/master/SimplePolice-API/src/com/voidcitymc/api/SimplePolice/SimplePoliceAPI.java
+
+Getting the api:
+SimplePoliceAPI api = (SimplePoliceAPI) Bukkit.getPluginManager().getPlugin("Simple Police”);
+
+Note: your plugin will have to depend (or soft depend) on SimplePolice to use the api
 **Note:**
 
 Requires Essentials to be setup and a jail named “jail1”
