@@ -1,0 +1,18 @@
+#farthest a player can teleport to another player with /police tp
+#setting this value to 0 makes the command like a normal teleport.
+MaxPoliceTp: 50
+#should we pay the police officer for arresting a player?
+PayPoliceOnArrest: true
+#if we are going to pay the police officer, how much should we pay them?
+MoneyToGiveToPoliceOnArrest: 500
+#should we make the player loose money on an arrest (note: this money will not go to the police, it will be trashed)
+TakeMoneyOnArrest: false
+#if the setting above is true, what percent of the money should be taken. Put values like 20 for 20% do not put a %.
+PercentOfMoneyToTake: 20
+#if you have worldguard installed and want to enable "safe areas" or areas where police can't arrest players
+SafeArea: false
+#if the above value is true, then the regions that you want listed as "safe areas" due note that at the moment, you can't use the __global__ region
+#Make sure to use lower case!
+SafeAreas:
+ - examplesafearea1
+ - examplesafearea2
