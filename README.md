@@ -65,7 +65,10 @@ A list of all the methods in the api can be found here (unfortunately I wasn’t
 https://github.com/ramdon-person/SimplePolice/blob/master/SimplePolice-API/src/com/voidcitymc/api/SimplePolice/SimplePoliceAPI.java
 
 Getting the api:
+
 SimplePoliceAPI api = (SimplePoliceAPI) Bukkit.getPluginManager().getPlugin("Simple Police”);
+
+The you can do stuff like api.listPolice();
 
 Note: your plugin will have to depend (or soft depend) on SimplePolice to use the api
 **Note:**
