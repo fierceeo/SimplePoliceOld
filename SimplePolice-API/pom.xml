@@ -70,6 +70,12 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>com.voidcity.SimplePolice</groupId>
+			<artifactId>SimplePolice</artifactId>
+			<version>3.1</version>
+		</dependency>
+		
 	</dependencies>
 
 
