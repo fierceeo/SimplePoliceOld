@@ -2,7 +2,7 @@ package com.voidcitymc.api.SimplePolice;
 
 import java.util.ArrayList;
 import org.bukkit.Location;
-import org.bukkit.Player;
+import org.bukkit.entity.Player;
 
 public interface SimplePoliceAPI {
 	
