@@ -74,7 +74,7 @@
 		<dependency>
 			<groupId>com.voidcity.SimplePolice-API</groupId>
 			<artifactId>SimplePolice-API</artifactId>
-			<version>${project.version)</version>
+			<version>3.1</version>
 		</dependency>
 
 	</dependencies>
