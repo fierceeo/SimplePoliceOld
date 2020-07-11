@@ -1,75 +1,54 @@
 package com.voidcitymc.plugins.SimplePolice;
 
-import java.io.File;
-import java.util.HashMap;
+import java.util.ArrayList;
 
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
 
-import com.voidcitymc.plugins.SimplePolice.SPPlugin;
+import com.voidcitymc.api.SimplePolice.SimplePoliceAPI;
 
-public class SPPlugin extends JavaPlugin {
-private static SPPlugin instance;
+public class SimplePoliceApi implements SimplePoliceAPI {
 
-File DataFile;
-FileConfiguration Data;
-
-static HashMap<String, String> lastArrest = new HashMap<String, String>();
-
-public void createData() {
-    DataFile = new File(getDataFolder(), "data.yml");
-    if (!DataFile.exists()) {
-        DataFile.getParentFile().mkdirs();
-        saveResource("data.yml", false);
-     }
-    Data = YamlConfiguration.loadConfiguration(DataFile);
-}
-
-public static SPPlugin getInstance() {
-	return instance;
-}
-
-public void SaveDataFile() {
-	try {
-		Data.save(DataFile);
-	} catch (Exception e) {
-		e.printStackTrace();
+	
+	Worker work = new Worker();
+	@Override
+	public ArrayList<String> onlinePoliceList() {
+		return work.onlinePoliceList();
 	}
-}
 
-//enabled
-@Override
-public void onEnable() {
-	//update checker
-	new UpdateChecker(this).checkForUpdate();
-	//metrics
-	@SuppressWarnings("unused")
-	Metrics metrics = new Metrics(this, 6814);
-	//create config
-	this.getConfig().options().copyDefaults(true);
-	saveConfig();
-	//create datafile;
-	createData();
-	//add mising items to config
-//	worker.AddMissingItemsToConfig();
-	//
-	getServer().getPluginManager().registerEvents(new GUI(), this);
-	getServer().getPluginManager().registerEvents(new PoliceListener(), this);
-	instance = this;
-	this.getCommand("police").setExecutor(new Police());
-	this.getCommand("911").setExecutor(new NineOneOne());
-	System.out.println("ramdon_person's Police Plugin Has Been Enabled!");
-}
+	@Override
+	public void addPolice(String uuid) {
+		work.addPolice(uuid);
+	}
 
+	@Override
+	public boolean isPolice(String uuid) {
+		return work.alreadyPolice(uuid);
+	}
 
-//disabled
-@Override
-public void onDisable() {
-	System.out.println("Thanks for using ramdon_person's police plugin!");
-	System.out.println("-- Saving Data --");
-	this.saveConfig();
-	this.SaveDataFile();
-	System.out.println("-- All data saved! --");
-}
+	@Override
+	public void removePolice(String uuid) {
+		work.removePolice(uuid);
+		
+	}
+
+	@Override
+	public Location policeTp(Player player, int farthestTpDistance) {
+		return work.policeTp(player, farthestTpDistance);
+	}
+
+	@Override
+	public Location policeTp(Player player) {
+		return work.policeTp(player, SPPlugin.getInstance().getConfig().getInt("MaxPoliceTp"));
+	}
+
+	@Override
+	public ArrayList<String> listPolice() {
+		return work.listPolice();
+	}
+
+	@Override
+	public boolean inSafeArea(Player player) {
+		return work.inSafeArea(player);
+	}
 }
