@@ -1,9 +1,12 @@
-package com.voidcitymc.plugins.SimplePolice;
+package com.voidcitymc.api.SimplePolice;
 
 import java.util.ArrayList;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+
+import com.voidcitymc.plugins.SimplePolice.SPPlugin;
+import com.voidcitymc.plugins.SimplePolice.Worker;
 
 public class SimplePoliceAPI {
 	
