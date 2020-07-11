@@ -30,6 +30,11 @@ public static SPPlugin getInstance() {
 	return instance;
 }
 
+public SimplePoliceApi getApi() {
+	SimplePoliceApi api = new SimplePoliceApi();
+	return api;
+}
+
 public void SaveDataFile() {
 	try {
 		Data.save(DataFile);
