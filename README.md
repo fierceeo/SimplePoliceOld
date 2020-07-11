@@ -71,6 +71,7 @@ SimplePoliceAPI api = (SimplePoliceAPI) Bukkit.getPluginManager().getPlugin("Sim
 The you can do stuff like api.listPolice();
 
 Note: your plugin will have to depend (or soft depend) on SimplePolice to use the api
+
 **Note:**
 
 Requires Essentials to be setup and a jail named “jail1”
