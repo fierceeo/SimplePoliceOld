@@ -3,7 +3,7 @@
   
   <parent>
      <artifactId>SimplePolice-Project</artifactId>
-     <groupId>SimplePolice-Project</groupId>
+     <groupId>com.voidcity.SimplePolice-Project</groupId>
      <version>3.1</version>
   </parent>
   
