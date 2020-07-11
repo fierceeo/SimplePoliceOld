@@ -1,15 +1,19 @@
 package com.voidcitymc.plugins.SimplePolice;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.voidcitymc.api.SimplePolice.SimplePoliceAPI;
 import com.voidcitymc.plugins.SimplePolice.SPPlugin;
 
-public class SPPlugin extends JavaPlugin {
+public class SPPlugin extends JavaPlugin implements SimplePoliceAPI {
 private static SPPlugin instance;
 
 File DataFile;
@@ -30,10 +34,6 @@ public static SPPlugin getInstance() {
 	return instance;
 }
 
-public SimplePoliceApi getApi() {
-	SimplePoliceApi api = new SimplePoliceApi();
-	return api;
-}
 
 public void SaveDataFile() {
 	try {
@@ -77,4 +77,61 @@ public void onDisable() {
 	this.SaveDataFile();
 	System.out.println("-- All data saved! --");
 }
+
+
+
+
+
+
+
+
+
+//api
+
+
+
+
+Worker work = new Worker();
+@Override
+public ArrayList<String> onlinePoliceList() {
+	return work.onlinePoliceList();
+}
+
+@Override
+public void addPolice(String uuid) {
+	work.addPolice(uuid);
+}
+
+@Override
+public boolean isPolice(String uuid) {
+	return work.alreadyPolice(uuid);
+}
+
+@Override
+public void removePolice(String uuid) {
+	work.removePolice(uuid);
+	
+}
+
+@Override
+public Location policeTp(Player player, int farthestTpDistance) {
+	return work.policeTp(player, farthestTpDistance);
+}
+
+@Override
+public Location policeTp(Player player) {
+	return work.policeTp(player, SPPlugin.getInstance().getConfig().getInt("MaxPoliceTp"));
+}
+
+@Override
+public ArrayList<String> listPolice() {
+	return work.listPolice();
+}
+
+@Override
+public boolean inSafeArea(Player player) {
+	return work.inSafeArea(player);
+}
+
+
 }
