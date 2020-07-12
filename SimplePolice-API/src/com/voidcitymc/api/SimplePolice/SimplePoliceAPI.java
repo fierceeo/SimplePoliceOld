@@ -6,11 +6,11 @@ import org.bukkit.entity.Player;
 
 public interface SimplePoliceAPI {
 	
-	/**
-	 * List of all the online police
-	 * 
-	 * @return ArrayList<String> An ArrayList of all the online police user names.
-	 */
+/**
+ * List of all the online police
+ * 
+ * @return ArrayList<String> An ArrayList of all the online police user names.
+ */
 ArrayList<String> onlinePoliceList();
 
 
@@ -31,14 +31,14 @@ void addPolice (String uuid);
  */
 
 boolean isPolice (String uuid);
-/*
+/**
  * Remove a police from the list
  * 
  * @param uuid The uuid (in string format) of the player to remove
  */
 void removePolice(String uuid);
 
-/*
+/**
  * Police teleport
  * 
  * @param player The player to teleport
@@ -48,7 +48,7 @@ void removePolice(String uuid);
  */
 Location policeTp (Player player, int farthestTpDistance);
 
-/*
+/**
  * Police teleport a player
  * 
  * @param player The player to teleport
@@ -57,7 +57,7 @@ Location policeTp (Player player, int farthestTpDistance);
  */
 Location policeTp (Player player);
 
-/*
+/**
  * List of all the police (in string uuid format)
  * 
  * @return ArrayList<String> List of all the police (in string uuid format)
@@ -65,7 +65,7 @@ Location policeTp (Player player);
 ArrayList<String> listPolice();
 
 
-/*
+/**
  * Check if a player is in a safe area
  * 
  * @param player Player to check
