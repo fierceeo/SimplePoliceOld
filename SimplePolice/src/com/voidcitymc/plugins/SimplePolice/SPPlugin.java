@@ -20,6 +20,9 @@ private static SPPlugin instance;
 File DataFile;
 FileConfiguration Data;
 
+File ControbandFile;
+FileConfiguration Controband;
+
 static HashMap<String, String> lastArrest = new HashMap<String, String>();
 
 public void createData() {
@@ -29,6 +32,15 @@ public void createData() {
         saveResource("data.yml", false);
      }
     Data = YamlConfiguration.loadConfiguration(DataFile);
+}
+
+public void createControbandFile() {
+    ControbandFile = new File(getDataFolder(), "controband.yml");
+    if (!ControbandFile.exists()) {
+        ControbandFile.getParentFile().mkdirs();
+        saveResource("controband.yml", false);
+     }
+    Controband = YamlConfiguration.loadConfiguration(ControbandFile);
 }
 
 public static SPPlugin getInstance() {
@@ -55,13 +67,15 @@ public void onEnable() {
 	//create config
 	this.getConfig().options().copyDefaults(true);
 	saveConfig();
-	//create datafile;
+	//create datafile and controband file
 	createData();
+	createControbandFile();
 	//add mising items to config
 //	worker.AddMissingItemsToConfig();
 	//
 	getServer().getPluginManager().registerEvents(new GUI(), this);
 	getServer().getPluginManager().registerEvents(new PoliceListener(), this);
+	getServer().getPluginManager().registerEvents(new Frisk(), this);
 	instance = this;
 	this.getCommand("police").setExecutor(new Police());
 	this.getCommand("911").setExecutor(new NineOneOne());
