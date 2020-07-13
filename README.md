@@ -61,8 +61,8 @@ Maven Repo:
 	<version>3.1</version>
     </dependency>
 
-A list of all the methods in the api can be found here (unfortunately I wasn’t able to compile a java doc with this interface):
-https://github.com/ramdon-person/SimplePolice/blob/master/SimplePolice-API/src/com/voidcitymc/api/SimplePolice/SimplePoliceAPI.java
+Java docs:
+https://ramdon-person.github.io/doc/com/voidcitymc/api/SimplePolice/SimplePoliceAPI.html
 
 Getting the api:
 
