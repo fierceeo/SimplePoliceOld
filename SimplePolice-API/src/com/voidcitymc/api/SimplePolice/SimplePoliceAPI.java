@@ -2,6 +2,7 @@ package com.voidcitymc.api.SimplePolice;
 
 import java.util.ArrayList;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 public interface SimplePoliceAPI {
@@ -74,6 +75,12 @@ ArrayList<String> listPolice();
  */
 boolean inSafeArea (Player player);
 
+/**
+ * Returns the material of the baton (set in the config)
+ * 
+ * @return Material material of baton
+ */
+Material getBatonMaterial();
 
 
 }

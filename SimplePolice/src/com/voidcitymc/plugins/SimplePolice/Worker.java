@@ -269,14 +269,15 @@ public boolean inSafeArea (Player police) {
 	}
 	return false;
 }
-/*
-public void AddMissingItemsToConfig() {
-	Main.getInstance().getConfig().getBoolean("PayPoliceOnArrest", true);
-	Main.getInstance().getConfig().getInt("MaxPoliceTp", 50);
-	Main.getInstance().saveConfig();
-	
-	
-	
-}*/
+
+public Material getBatonMaterial() {
+	String mat = SPPlugin.getInstance().Data.getString("BatonMaterialType");
+	if (Material.getMaterial(mat) != null) {
+		return Material.getMaterial(mat);
+	} else {
+		System.out.print("Error with the baton material");
+		return Material.BLAZE_ROD;
+	}
+}
 
 }
