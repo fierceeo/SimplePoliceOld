@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -131,6 +132,12 @@ public ArrayList<String> listPolice() {
 @Override
 public boolean inSafeArea(Player player) {
 	return work.inSafeArea(player);
+}
+
+@Override
+public Material getBatonMaterial() {
+	// TODO Auto-generated method stub
+	return work.getBatonMaterial();
 }
 
 
