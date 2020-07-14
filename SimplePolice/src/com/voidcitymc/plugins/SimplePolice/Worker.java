@@ -304,6 +304,7 @@ public void addToFriskList(ItemStack item) {
 	}
 	
 	SPPlugin.getInstance().Controband.set("Items", items);
+	SPPlugin.getInstance().SaveControbandFile();
 }
 
 public void removeFromFriskList(ItemStack item) {
@@ -318,6 +319,7 @@ public void removeFromFriskList(ItemStack item) {
 	}
 	
 	SPPlugin.getInstance().Controband.set("Items", items);
+	SPPlugin.getInstance().SaveControbandFile();
 }
 
 public List<ItemStack> getFriskList() {
