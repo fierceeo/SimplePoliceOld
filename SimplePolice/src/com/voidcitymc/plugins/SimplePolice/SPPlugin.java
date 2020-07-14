@@ -37,10 +37,10 @@ public void createData() {
 }
 
 public void createControbandFile() {
-    ControbandFile = new File(getDataFolder(), "controband.yml");
+    ControbandFile = new File(getDataFolder(), "contraband.yml");
     if (!ControbandFile.exists()) {
         ControbandFile.getParentFile().mkdirs();
-        saveResource("controband.yml", false);
+        saveResource("contraband.yml", false);
      }
     Controband = YamlConfiguration.loadConfiguration(ControbandFile);
 }
