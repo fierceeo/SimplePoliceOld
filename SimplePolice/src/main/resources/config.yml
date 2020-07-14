@@ -18,3 +18,9 @@ SafeAreas:
  - examplesafearea2
  #material to use for the arresting baton (make sure the material is in caps) ex: BLAZE_ROD
 BatonMaterialType: BLAZE_ROD
+#enable frisking or not
+Frisking: true
+#if frisking is enabled, what percent should their be per inventory slot of finding controband (ex plugin finds controband but because its set to 20% for findind, then theres a 20% chance that, that item will be flagged by the police
+PrecentOfFindingControband: 20
+#material to use for thefrisking stick (make sure the material is in caps) ex: BLAZE_ROD
+FriskStickMaterialType: BLAZE_ROD
