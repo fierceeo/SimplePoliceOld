@@ -50,10 +50,10 @@ Screen Shot 2020-06-24 at 6.37.24 PM.png
 
 Maven Repo:
 
-		<repository>
-		    <id>jitpack.io</id>
-		    <url>https://jitpack.io</url>
-		</repository>
+	<repository>
+	    <id>jitpack.io</id>
+	    <url>https://jitpack.io</url>
+	</repository>
 
  	<dependency>
 	    <groupId>com.github.ramdon-person.SimplePolice</groupId>
