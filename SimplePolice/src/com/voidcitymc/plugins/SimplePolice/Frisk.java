@@ -1,7 +1,6 @@
 package com.voidcitymc.plugins.SimplePolice;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.bukkit.entity.Player;
@@ -41,9 +40,9 @@ public class Frisk implements Listener {
             		ItemStack[] contents = invToScan.getContents();
             		int i = 0;
             		
-            		List<ItemStack> controband = work.getFriskList();
+   
             		
-            		while (i < controband.size()) {
+            		while (i < contents.length) {
             			contents[i].setAmount(1);
             			i++;
             		}
@@ -54,9 +53,9 @@ public class Frisk implements Listener {
             		//Double priceToPay = 0.0;
             		
             		while (i < contents.length) {
-            			if (controband.contains(contents[i])) {
+            			if (work.isItemControband(contents[i])) {
             				if (SPPlugin.getInstance().Controband.getInt("PrecentOfFindingControband")-Math.random()*100 >= 0) {
-                				textToReturn.add(ChatColor.DARK_AQUA+""+invToScan.getContents()[i].getAmount()+"x "+invToScan.getContents()[i].getType().toString());
+                				textToReturn.add(ChatColor.DARK_AQUA+""+invToScan.getContents()[i].getAmount()+"x "+invToScan.getContents()[i].getItemMeta().getDisplayName());
                 		        guilty = true;
                 		        event.getPlayer().getInventory().addItem(invToScan.getContents()[i]);
                 		        suspectedPlayer.getInventory().setItem(i,null);
@@ -75,7 +74,7 @@ public class Frisk implements Listener {
             			suspectedPlayer.sendMessage(ChatColor.DARK_AQUA+"The police have scanned your inventory and have found no illigeal items");
             		}
             		
-            		event.getPlayer().sendMessage(ChatColor.DARK_AQUA+"Controband items found in player:");
+            		event.getPlayer().sendMessage(ChatColor.DARK_AQUA+"Contraband items found in player:");
                     if (textToReturn.size() < 1) {
                     	textToReturn.add(ChatColor.DARK_AQUA+"Nothing");
                     }
