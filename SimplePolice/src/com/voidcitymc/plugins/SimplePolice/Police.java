@@ -175,7 +175,7 @@ if (player.hasPermission("police.tp") || work.alreadyPolice(player.getUniqueId()
 			int MaxValTp = SPPlugin.getInstance().getConfig().getInt("MaxPoliceTp");
 			player.teleport(work.policeTp(Bukkit.getPlayer(args[1]), MaxValTp));
 			player.sendMessage(ChatColor.DARK_AQUA+"[Police]" + ChatColor.WHITE + " You have been teleported");
-			Bukkit.getPlayer(args[1]).sendMessage(ChatColor.DARK_AQUA+"The police are comming!");
+			Bukkit.getPlayer(args[1]).sendMessage(ChatColor.DARK_AQUA+"The police are coming!");
 		} else {
 			player.sendMessage(ChatColor.DARK_AQUA+"[Police]" + ChatColor.WHITE + " You need to specify a player!");
 		}

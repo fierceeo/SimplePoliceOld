@@ -24,3 +24,7 @@ Frisking: true
 PrecentOfFindingControband: 20
 #material to use for thefrisking stick (make sure the material is in caps) ex: BLAZE_ROD
 FriskStickMaterialType: BLAZE_ROD
+#should /911 show players cords?
+ShowCords911: false
+#frisk cooldown in seconds
+FriskCooldown: 600

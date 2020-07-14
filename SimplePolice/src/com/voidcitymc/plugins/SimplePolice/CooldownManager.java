@@ -8,7 +8,7 @@ public class CooldownManager {
 
 	    private final Map<String, Long> cooldowns = new HashMap<>();
 
-	    public static final int DEFAULT_COOLDOWN = 600; //10 minutes
+	    public static final int DEFAULT_COOLDOWN = SPPlugin.getInstance().getConfig().getInt("FriskCooldown"); //10 minutes default
 
 	    public void setCooldown(UUID police, UUID player, long time){
 	        if(time < 1) {
