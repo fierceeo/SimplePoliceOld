@@ -58,6 +58,15 @@ public void SaveDataFile() {
 	}
 }
 
+
+public void SaveControbandFile() {
+	try {
+		Controband.save(ControbandFile);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+}
+
 //enabled
 @Override
 public void onEnable() {
