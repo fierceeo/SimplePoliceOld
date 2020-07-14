@@ -1,9 +1,13 @@
 package com.voidcitymc.api.SimplePolice;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
 
 public interface SimplePoliceAPI {
 	
@@ -81,6 +85,42 @@ boolean inSafeArea (Player player);
  * @return Material material of baton
  */
 Material getBatonMaterial();
+
+
+/**
+ * Returns the material of the frisk stick (set in the config)
+ * 
+ * @return Material material of frisk stick
+ */
+public Material getFriskStickMaterial();
+
+/**
+ * Add an item to the controband items list
+ * 
+ * @param item The item to add
+ */
+public void addToFriskList(ItemStack item);
+
+/**
+ * Remove an item to the controband items list
+ * 
+ * @param item The item to remove
+ */
+public void removeFromFriskList(ItemStack item);
+
+/**
+ * Return a list of all the controband items
+ * 
+ * @return List<ItemStack> A list of all the controband items
+ */
+public List<ItemStack> getFriskList();
+
+/**
+ * Return if frisking is enabled
+ * 
+ * @return boolean If frisking is enabled
+ */
+public boolean friskingEnabled();
 
 
 }
