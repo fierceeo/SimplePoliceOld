@@ -53,6 +53,10 @@ i = 0;
 
 while (i < playerList.size()) {
 	playerList.get(i).sendMessage(ChatColor.DARK_AQUA + "[911] " + ChatColor.WHITE + sender.getName() + " needs help! "+message);
+	if (SPPlugin.getInstance().getConfig().getBoolean("ShowCords911")) {
+		playerList.get(i).sendMessage(ChatColor.DARK_AQUA+player.getName()+"is located at "+player.getLocation().getBlockX()+" "+player.getLocation().getBlockY()+" "+player.getLocation().getBlockZ());
+	}
+	
 	i++;
 }
 
