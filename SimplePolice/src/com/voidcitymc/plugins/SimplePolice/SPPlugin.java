@@ -3,12 +3,14 @@ package com.voidcitymc.plugins.SimplePolice;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.voidcitymc.api.SimplePolice.SimplePoliceAPI;
@@ -150,8 +152,34 @@ public boolean inSafeArea(Player player) {
 
 @Override
 public Material getBatonMaterial() {
-	// TODO Auto-generated method stub
 	return work.getBatonMaterial();
+}
+
+@Override
+public Material getFriskStickMaterial() {
+	return work.getFriskStickMaterial();
+}
+
+@Override
+public void addToFriskList(ItemStack item) {
+	work.addToFriskList(item);
+	
+}
+
+@Override
+public void removeFromFriskList(ItemStack item) {
+	work.removeFromFriskList(item);
+	
+}
+
+@Override
+public List<ItemStack> getFriskList() {
+	return work.getFriskList();
+}
+
+@Override
+public boolean friskingEnabled() {
+	return work.friskingEnabled();
 }
 
 
