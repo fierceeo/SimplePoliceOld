@@ -4,7 +4,7 @@ author: ramdon_person
 main: com.voidcitymc.plugins.SimplePolice.SPPlugin
 version: 3.0
 depend: [Essentials]
-softdepend: [Vault, WorldGuard, WorldEdit]
+softdepend: [Vault, QualityArmory, WorldGuard, WorldEdit]
 website: https://plugins.voidcitymc.com
 commands:
    police:

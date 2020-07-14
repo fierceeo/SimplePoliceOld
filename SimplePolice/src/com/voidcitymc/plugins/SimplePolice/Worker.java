@@ -24,6 +24,9 @@ import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
 import com.sk89q.worldguard.protection.regions.RegionQuery;
 
+import me.zombie_striker.qg.api.QualityArmory;
+import me.zombie_striker.qg.guns.Gun;
+
 
 public class Worker {
 	
@@ -299,10 +302,21 @@ public void addToFriskList(ItemStack item) {
 		items = new ArrayList<ItemStack>();
 	}
 	
-	item.setAmount(1);
+	ItemStack itemToTest = item.clone();
 	
-	if (!items.contains(item)) {
-		items.add(item);
+	
+	//if gun then remove all bullets to 0
+	if (Bukkit.getServer().getPluginManager().getPlugin("QualityArmory")!= null && QualityArmory.isGun(itemToTest)) {
+		ItemMeta meta = itemToTest.getItemMeta();
+		meta.setLore(Gun.getGunLore(QualityArmory.getGun(itemToTest), itemToTest, 0));
+		itemToTest.setItemMeta(meta);
+	}
+	
+	itemToTest.setAmount(1);
+	
+	
+	if (!items.contains(itemToTest)) {
+		items.add(itemToTest);
 	}
 	
 	SPPlugin.getInstance().Controband.set("Items", items);
@@ -316,11 +330,23 @@ public void removeFromFriskList(ItemStack item) {
 		items = new ArrayList<ItemStack>();
 	}
 	
-	item.setAmount(1);
+	ItemStack itemToTest = item.clone();
 	
-	if (items.contains(item)) {
-		items.remove(item);
+	
+	//if gun then remove all bullets to 0
+	if (Bukkit.getServer().getPluginManager().getPlugin("QualityArmory")!= null && QualityArmory.isGun(itemToTest)) {
+		ItemMeta meta = itemToTest.getItemMeta();
+		meta.setLore(Gun.getGunLore(QualityArmory.getGun(itemToTest), itemToTest, 0));
+		itemToTest.setItemMeta(meta);
 	}
+	
+	itemToTest.setAmount(1);
+	
+	
+	if (items.contains(itemToTest)) {
+		items.remove(itemToTest);
+	}
+	
 	
 	SPPlugin.getInstance().Controband.set("Items", items);
 	SPPlugin.getInstance().SaveControbandFile();
@@ -337,8 +363,33 @@ public List<ItemStack> getFriskList() {
 	
 }
 
+public boolean isItemControband(ItemStack item) {
+	List<ItemStack> controband = this.getFriskList(); 
+	ItemStack itemToTest = item.clone();
+	
+	
+	if (Bukkit.getServer().getPluginManager().getPlugin("QualityArmory")!= null && QualityArmory.isGun(itemToTest)) {
+		ItemMeta meta = itemToTest.getItemMeta();
+		meta.setLore(Gun.getGunLore(QualityArmory.getGun(itemToTest), itemToTest, 0));
+		itemToTest.setItemMeta(meta);
+	}
+		
+	if (controband.contains(itemToTest)) {
+		return true;
+	} else if (Bukkit.getServer().getPluginManager().getPlugin("QualityArmory")!= null && QualityArmory.isGun(itemToTest) && SPPlugin.getInstance().getConfig().getBoolean("MarkAllGunsAsContraband")) {
+		return true;
+	} else {
+		return false;
+	}
+		
+	
+}
+
 public boolean friskingEnabled() {
 	return SPPlugin.getInstance().getConfig().getBoolean("Frisking");
 	
 }
+
+
+
 }
