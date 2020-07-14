@@ -25,7 +25,7 @@ Worker work = new Worker();
 //add controband item
 if (player.hasPermission("police.admin") && args.length > 0) {
 	if (args[0].equalsIgnoreCase("admin")) {
-		if (args.length > 2) {
+		if (args.length > 1) {
 			if (args[1].equalsIgnoreCase("reload")) {
 				SPPlugin.getInstance().reloadConfig();
 			    player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " The config has been reloaded");
