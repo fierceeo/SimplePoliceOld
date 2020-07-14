@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 
 
 public class Police implements CommandExecutor {
@@ -21,12 +22,38 @@ Player player = (Player) sender;
 Worker work = new Worker();
 
 
-//reload config
-if (player.hasPermission("police.reload") && args.length > 0) {
-	if (args[0].equalsIgnoreCase("reload")) {
-	        SPPlugin.getInstance().reloadConfig();
-	        player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " The config has been reloaded");
-	}
+//add controband item
+if (player.hasPermission("police.admin") && args.length > 0) {
+	if (args[0].equalsIgnoreCase("admin")) {
+		if (args.length > 2) {
+			if (args[1].equalsIgnoreCase("reload")) {
+				SPPlugin.getInstance().reloadConfig();
+			    player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " The config has been reloaded");
+			} else if (args[1].equalsIgnoreCase("add")) {
+				if (player.getInventory().getItemInMainHand() != null && !player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
+					work.addToFriskList(player.getInventory().getItemInMainHand());
+					player.sendMessage(ChatColor.DARK_AQUA+"Added item");
+				} else {
+					player.sendMessage(ChatColor.DARK_AQUA+"Please make sure you have an item in your hand");
+				}
+				
+			} else if (args[1].equalsIgnoreCase("remove")) {
+				if (player.getInventory().getItemInMainHand() != null && !player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
+					work.removeFromFriskList(player.getInventory().getItemInMainHand());
+					player.sendMessage(ChatColor.DARK_AQUA+"Removed item");
+				} else {
+					player.sendMessage(ChatColor.DARK_AQUA+"Please make sure you have an item in your hand");
+				}
+			}
+			
+			} else {
+				player.sendMessage(ChatColor.DARK_AQUA+"[Police]");
+				player.sendMessage("Admin Commands:");
+				player.sendMessage("/police admin reload - reloads config");
+				player.sendMessage("/police admin add - adds item in hand to frisk list");
+				player.sendMessage("/police admin remove - removed item in hand from frisk list");
+			}
+		}
 }
 
 
@@ -100,6 +127,9 @@ if (args.length == 0) {
 	if (player.hasPermission("police.unjail") || work.alreadyPolice(player.getUniqueId().toString())) {
 		player.sendMessage("/police unjail (player)");
 	}
+	if (player.hasPermission("police.admin")) {
+		player.sendMessage("/police admin");
+	}
 	
 	
 	//help info
@@ -125,6 +155,9 @@ if (args.length > 0) {
 		
 		if (player.hasPermission("police.unjail") || work.alreadyPolice(player.getUniqueId().toString())) {
 			player.sendMessage("/police unjail (player)");
+		}
+		if (player.hasPermission("police.admin")) {
+			player.sendMessage("/police admin");
 		}
 		
 		//help info

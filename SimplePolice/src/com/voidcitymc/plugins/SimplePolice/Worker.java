@@ -299,6 +299,8 @@ public void addToFriskList(ItemStack item) {
 		items = new ArrayList<ItemStack>();
 	}
 	
+	item.setAmount(1);
+	
 	if (!items.contains(item)) {
 		items.add(item);
 	}
@@ -313,6 +315,8 @@ public void removeFromFriskList(ItemStack item) {
 	if (items == null) {
 		items = new ArrayList<ItemStack>();
 	}
+	
+	item.setAmount(1);
 	
 	if (items.contains(item)) {
 		items.remove(item);

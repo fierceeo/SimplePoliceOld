@@ -3,7 +3,6 @@ package com.voidcitymc.plugins.SimplePolice;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -29,10 +28,8 @@ public class Frisk implements Listener {
         		
         		List<ItemStack> controband = work.getFriskList();
         		
-        		ArrayList<Material> controbandMats = new ArrayList<Material>();
-        		
         		while (i < controband.size()) {
-        			controbandMats.add(controband.get(i).getType());
+        			contents[i].setAmount(1);
         			i++;
         		}
         		i = 0;
@@ -43,11 +40,11 @@ public class Frisk implements Listener {
         		//Double priceToPay = 0.0;
         		
         		while (i < contents.length) {
-        			if (controbandMats.contains(contents[i].getType())) {
+        			if (controband.contains(contents[i])) {
         				if (SPPlugin.getInstance().Controband.getInt("PrecentOfFindingControband")-Math.random()*100 >= 0) {
-            				textToReturn.add(ChatColor.DARK_AQUA+""+contents[i].getAmount()+"x "+contents[i].getType().toString());
+            				textToReturn.add(ChatColor.DARK_AQUA+""+invToScan.getContents()[i].getAmount()+"x "+invToScan.getContents()[i].getType().toString());
             		        //guilty = true;
-            		        event.getPlayer().getInventory().addItem(contents[i]);
+            		        event.getPlayer().getInventory().addItem(invToScan.getContents()[i]);
             		        suspectedPlayer.getInventory().setItem(i,null);
 
 
