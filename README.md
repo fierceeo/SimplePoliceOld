@@ -62,7 +62,7 @@ Maven Repo:
 	</dependency>
 
 Java docs:
-https://ramdon-person.github.io/doc/com/voidcitymc/api/SimplePolice/SimplePoliceAPI.html
+https://plugins.voidcitymc.com/SimplePolice/doc/
 
 Getting the api:
 
