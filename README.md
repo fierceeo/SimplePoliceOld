@@ -50,16 +50,16 @@ Screen Shot 2020-06-24 at 6.37.24 PM.png
 
 Maven Repo:
 
-    <repository>
-        <id>SimplePolice-API</id>
-        <url>https://raw.githubusercontent.com/ramdon-person/SimplePolice/master/SimplePolice-API/target/mvn-repo/</url>
-    </repository>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
 
-    <dependency>
-        <groupId>com.voidcity.SimplePolice-API</groupId>
-	<artifactId>SimplePolice-API</artifactId>
-	<version>3.1</version>
-    </dependency>
+ 	<dependency>
+	    <groupId>com.github.ramdon-person.SimplePolice</groupId>
+	    <artifactId>SimplePolice-API</artifactId>
+	    <version>3.1</version>
+	</dependency>
 
 Java docs:
 https://ramdon-person.github.io/doc/com/voidcitymc/api/SimplePolice/SimplePoliceAPI.html
