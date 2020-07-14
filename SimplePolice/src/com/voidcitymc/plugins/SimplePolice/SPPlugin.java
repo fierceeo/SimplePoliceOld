@@ -3,12 +3,14 @@ package com.voidcitymc.plugins.SimplePolice;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.voidcitymc.api.SimplePolice.SimplePoliceAPI;
@@ -19,6 +21,9 @@ private static SPPlugin instance;
 
 File DataFile;
 FileConfiguration Data;
+
+File ControbandFile;
+FileConfiguration Controband;
 
 static HashMap<String, String> lastArrest = new HashMap<String, String>();
 
@@ -31,6 +36,15 @@ public void createData() {
     Data = YamlConfiguration.loadConfiguration(DataFile);
 }
 
+public void createControbandFile() {
+    ControbandFile = new File(getDataFolder(), "controband.yml");
+    if (!ControbandFile.exists()) {
+        ControbandFile.getParentFile().mkdirs();
+        saveResource("controband.yml", false);
+     }
+    Controband = YamlConfiguration.loadConfiguration(ControbandFile);
+}
+
 public static SPPlugin getInstance() {
 	return instance;
 }
@@ -39,6 +53,15 @@ public static SPPlugin getInstance() {
 public void SaveDataFile() {
 	try {
 		Data.save(DataFile);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+}
+
+
+public void SaveControbandFile() {
+	try {
+		Controband.save(ControbandFile);
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
@@ -55,13 +78,15 @@ public void onEnable() {
 	//create config
 	this.getConfig().options().copyDefaults(true);
 	saveConfig();
-	//create datafile;
+	//create datafile and controband file
 	createData();
+	createControbandFile();
 	//add mising items to config
 //	worker.AddMissingItemsToConfig();
 	//
 	getServer().getPluginManager().registerEvents(new GUI(), this);
 	getServer().getPluginManager().registerEvents(new PoliceListener(), this);
+	getServer().getPluginManager().registerEvents(new Frisk(), this);
 	instance = this;
 	this.getCommand("police").setExecutor(new Police());
 	this.getCommand("911").setExecutor(new NineOneOne());
@@ -136,8 +161,34 @@ public boolean inSafeArea(Player player) {
 
 @Override
 public Material getBatonMaterial() {
-	// TODO Auto-generated method stub
 	return work.getBatonMaterial();
+}
+
+@Override
+public Material getFriskStickMaterial() {
+	return work.getFriskStickMaterial();
+}
+
+@Override
+public void addToFriskList(ItemStack item) {
+	work.addToFriskList(item);
+	
+}
+
+@Override
+public void removeFromFriskList(ItemStack item) {
+	work.removeFromFriskList(item);
+	
+}
+
+@Override
+public List<ItemStack> getFriskList() {
+	return work.getFriskList();
+}
+
+@Override
+public boolean friskingEnabled() {
+	return work.friskingEnabled();
 }
 
 

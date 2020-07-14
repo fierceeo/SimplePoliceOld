@@ -1,6 +1,8 @@
 package com.voidcitymc.plugins.SimplePolice;
 
 import net.milkbowl.vault.economy.Economy;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
@@ -280,4 +282,63 @@ public Material getBatonMaterial() {
 	}
 }
 
+public Material getFriskStickMaterial() {
+	String mat = SPPlugin.getInstance().Data.getString("FriskStickMaterialType");
+	if (Material.getMaterial(mat) != null) {
+		return Material.getMaterial(mat);
+	} else {
+		System.out.print("Error with the frisk stick material");
+		return Material.BLAZE_ROD;
+	}
+}
+
+public void addToFriskList(ItemStack item) {
+	@SuppressWarnings("unchecked")
+	List<ItemStack> items = (List<ItemStack>)SPPlugin.getInstance().Controband.getList("Items");
+	if (items == null) {
+		items = new ArrayList<ItemStack>();
+	}
+	
+	item.setAmount(1);
+	
+	if (!items.contains(item)) {
+		items.add(item);
+	}
+	
+	SPPlugin.getInstance().Controband.set("Items", items);
+	SPPlugin.getInstance().SaveControbandFile();
+}
+
+public void removeFromFriskList(ItemStack item) {
+	@SuppressWarnings("unchecked")
+	List<ItemStack> items = (List<ItemStack>)SPPlugin.getInstance().Controband.getList("Items");
+	if (items == null) {
+		items = new ArrayList<ItemStack>();
+	}
+	
+	item.setAmount(1);
+	
+	if (items.contains(item)) {
+		items.remove(item);
+	}
+	
+	SPPlugin.getInstance().Controband.set("Items", items);
+	SPPlugin.getInstance().SaveControbandFile();
+}
+
+public List<ItemStack> getFriskList() {
+	@SuppressWarnings("unchecked")
+	List<ItemStack> items = (List<ItemStack>)SPPlugin.getInstance().Controband.getList("Items");
+	if (items == null) {
+		items = new ArrayList<ItemStack>();
+	}
+	
+	return items;
+	
+}
+
+public boolean friskingEnabled() {
+	return SPPlugin.getInstance().getConfig().getBoolean("Frisking");
+	
+}
 }
