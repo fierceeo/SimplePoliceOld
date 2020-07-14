@@ -36,10 +36,10 @@
 			<url>http://maven.enginehub.org/repo/</url>
 		</repository>
 		
-	    <repository>
-            <id>codemc-repo</id>
-            <url>https://repo.codemc.org/repository/maven-public/</url>
-        </repository>
+	       <repository>
+                        <id>codemc-repo</id>
+                        <url>https://repo.codemc.org/repository/maven-public/</url>
+               </repository>
 
 	</repositories>
 
@@ -75,10 +75,11 @@
 		</dependency>
 		
 		<dependency>
-            <groupId>me.zombie_striker</groupId>
-            <artifactId>QualityArmory</artifactId>
-            <version>1.1.169</version>
-        </dependency>
+			<groupId>me.zombie_striker</groupId>
+			<artifactId>QualityArmory</artifactId>
+			<version>1.1.169</version>
+			<scope>provided</scope>
+		</dependency>
 
 	</dependencies>
 	
