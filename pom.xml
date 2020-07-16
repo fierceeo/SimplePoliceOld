@@ -5,7 +5,7 @@
 
 	<artifactId>SimplePolice-Project</artifactId>
 	<groupId>com.voidcity.SimplePolice-Project</groupId>
-	<version>3.1</version>
+	<version>3.2</version>
 	<packaging>pom</packaging>
 
 	<modules>
@@ -77,7 +77,7 @@
 		<dependency>
 			<groupId>me.zombie_striker</groupId>
 			<artifactId>QualityArmory</artifactId>
-			<version>1.1.169</version>
+			<version>1.1.171</version>
 			<scope>provided</scope>
 		</dependency>
 
