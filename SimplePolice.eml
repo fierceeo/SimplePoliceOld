@@ -76,7 +76,7 @@
 	<lib name="Maven: com.sk89q.worldguard.worldguard-libs:core:7.0.3" scope="PROVIDED"/>
 	<lib name="Maven: org.flywaydb:flyway-core:3.0" scope="PROVIDED"/>
 	<lib name="Maven: com.sk89q:commandbook:2.3" scope="PROVIDED"/>
-	<lib name="Maven: me.zombie_striker:QualityArmory:1.1.169" scope="PROVIDED"/>
+	<lib name="Maven: me.zombie_striker:QualityArmory:1.1.171" scope="PROVIDED"/>
 	<levels>
 		<level name="Maven: org.spigotmc:spigot-api:1.16.1-R0.1-SNAPSHOT" value="project"/>
 		<level name="Maven: commons-lang:commons-lang:2.6" value="project"/>
@@ -150,6 +150,6 @@
 		<level name="Maven: com.sk89q.worldguard.worldguard-libs:core:7.0.3" value="project"/>
 		<level name="Maven: org.flywaydb:flyway-core:3.0" value="project"/>
 		<level name="Maven: com.sk89q:commandbook:2.3" value="project"/>
-		<level name="Maven: me.zombie_striker:QualityArmory:1.1.169" value="project"/>
+		<level name="Maven: me.zombie_striker:QualityArmory:1.1.171" value="project"/>
 	</levels>
 </component>
