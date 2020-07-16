@@ -72,6 +72,7 @@ public class SPPlugin extends JavaPlugin implements SimplePoliceAPI {
         //create config
         this.getConfig().options().copyDefaults(true);
         saveConfig();
+        work.updateConfig();
         //create datafile and controband file
         createData();
         createControbandFile();

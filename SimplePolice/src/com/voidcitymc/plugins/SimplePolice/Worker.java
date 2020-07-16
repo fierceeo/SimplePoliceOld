@@ -13,6 +13,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -43,10 +44,7 @@ public class Worker {
 
     //check if a player has item in hand
     public boolean testForItem(Player p, Material item, String DisplayName) {
-        if (item != null && p.getInventory().getItemInMainHand().getType() == item) {
-            return true;
-        }
-        return false;
+        return item != null && p.getInventory().getItemInMainHand().getType() == item;
     }
 
 
@@ -63,18 +61,13 @@ public class Worker {
     }
 
     public boolean alreadyPolice(String uuid) {
-        if (SPPlugin.getInstance().Data.getBoolean(uuid)) {
-            return true;
-        } else {
-            return false;
-        }
+        return SPPlugin.getInstance().Data.getBoolean(uuid);
     }
 
     public void removePolice(String uuid) {
         if (this.alreadyPolice(uuid)) {
             SPPlugin.getInstance().Data.set(uuid, false);
             SPPlugin.getInstance().SaveDataFile();
-            ;
             return;
         } else {
             return;
@@ -87,12 +80,9 @@ public class Worker {
             //we know that the inital location is safe, so we need to check one block up
             //location one block up
             Location loc2 = new Location(loc1.getWorld(), loc1.getX(), loc1.getY() + 1, loc1.getZ());
-            if (loc2.getBlock().getType().equals(Material.AIR)) {
-                //2nd block is safe too
-                return true;
-            }
+            //2nd block is safe too
+            return loc2.getBlock().getType().equals(Material.AIR);
             //loc2 didn't check out
-            return false;
         }
         //because that method didn't pass, we know that the location isn't safe
         return false;
@@ -333,9 +323,7 @@ public class Worker {
         itemToTest.setAmount(1);
 
 
-        if (items.contains(itemToTest)) {
-            items.remove(itemToTest);
-        }
+        items.remove(itemToTest);
 
 
         SPPlugin.getInstance().Controband.set("Items", items);
@@ -358,7 +346,7 @@ public class Worker {
         ItemStack itemToTest = item.clone();
 
 
-        if (Bukkit.getServer().getPluginManager().getPlugin("QualityArmory") != null && QualityArmory.isGun(itemToTest)) {
+        if ((Bukkit.getServer().getPluginManager().getPlugin("QualityArmory") != null) && QualityArmory.isGun(itemToTest)) {
             ItemMeta meta = itemToTest.getItemMeta();
             meta.setLore(Gun.getGunLore(QualityArmory.getGun(itemToTest), itemToTest, 0));
             itemToTest.setItemMeta(meta);
@@ -366,17 +354,68 @@ public class Worker {
 
         if (contraband.contains(itemToTest)) {
             return true;
-        } else if (Bukkit.getServer().getPluginManager().getPlugin("QualityArmory") != null && QualityArmory.isGun(itemToTest) && SPPlugin.getInstance().getConfig().getBoolean("MarkAllGunsAsContraband")) {
-            return true;
-        } else {
-            return false;
-        }
+        } else
+            return (Bukkit.getServer().getPluginManager().getPlugin("QualityArmory") != null) && QualityArmory.isGun(itemToTest) && SPPlugin.getInstance().getConfig().getBoolean("MarkAllGunsAsContraband");
 
 
     }
 
     public boolean friskingEnabled() {
         return SPPlugin.getInstance().getConfig().getBoolean("Frisking");
+
+    }
+
+    public void updateConfig() {
+        FileConfiguration config = SPPlugin.getInstance().getConfig();
+        if (!config.isSet("MaxPoliceTp")) {
+            config.set("MaxPoliceTp", 50);
+        }
+        if (!config.isSet("PayPoliceOnArrest")) {
+            config.set("PayPoliceOnArrest", true);
+        }
+        if (!config.isSet("MoneyToGiveToPoliceOnArrest")) {
+            config.set("MoneyToGiveToPoliceOnArrest", 500);
+        }
+        if (!config.isSet("TakeMoneyOnArrest")) {
+            config.set("TakeMoneyOnArrest", false);
+        }
+        if (!config.isSet("PercentOfMoneyToTake")) {
+            config.set("PercentOfMoneyToTake", 20);
+        }
+        if (!config.isSet("SafeArea")) {
+            config.set("SafeArea", false);
+        }
+        if (!config.isSet("SafeAreas")) {
+            ArrayList<String> safeAreas = new ArrayList<String>();
+            safeAreas.add("examplesafearea1");
+            safeAreas.add("examplesafearea2");
+            config.set("SafeAreas", safeAreas);
+        }
+        if (!config.isSet("BatonMaterialType")) {
+            config.set("BatonMaterialType", "BLAZE_ROD");
+        }
+        if (!config.isSet("PrecentOfFindingControband")) {
+            config.set("PrecentOfFindingControband", 20);
+        }
+        if (!config.isSet("FriskStickMaterialType")) {
+            config.set("FriskStickMaterialType", "BLAZE_ROD");
+        }
+        if (!config.isSet("MarkAllGunsAsContraband")) {
+            config.set("MarkAllGunsAsContraband", false);
+        }
+        if (!config.isSet("ShowCords911")) {
+            config.set("ShowCords911", false);
+        }
+        if (!config.isSet("FriskCooldown")) {
+            config.set("FriskCooldown", 600);
+        }
+
+        /*
+        if (!config.isSet("MaxPoliceTp")) {
+            config.set("MaxPoliceTp", 50);
+        }
+        */
+
 
     }
 
