@@ -83,7 +83,6 @@ This plugin has uuid support
 I will be adding support for multiple jails soon!
 
 **Latest Dev Build:**
-
 <img src="https://ci.codemc.io/job/ramdon-person/job/SimplePolice/badge/icon"
      alt="Badge"
      style="float: left; margin-right: 10px;" />
