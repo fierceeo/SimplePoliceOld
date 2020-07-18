@@ -82,6 +82,18 @@ This plugin has uuid support
 
 I will be adding support for multiple jails soon!
 
-Support:
+**Latest Dev Build:**
+https://ci.codemc.io/job/ramdon-person/job/SimplePolice/badge/icon
+
+Plugin:
+
+https://ci.codemc.io/job/ramdon-person/job/SimplePolice/lastSuccessfulBuild/artifact/SimplePolice/target/SimplePolice-3.2.jar
+
+Api:
+
+https://ci.codemc.io/job/ramdon-person/job/SimplePolice/lastSuccessfulBuild/artifact/SimplePolice-API/target/SimplePolice-API-3.2.jar
+
+
+**Support:**
 
 If you need support feel free to join my discord server: https://discord.gg/4NTmm8Q
