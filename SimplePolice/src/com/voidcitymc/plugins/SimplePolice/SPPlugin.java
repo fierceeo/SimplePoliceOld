@@ -83,8 +83,8 @@ public class SPPlugin extends JavaPlugin implements SimplePoliceAPI {
         getServer().getPluginManager().registerEvents(new GUI(), this);
         getServer().getPluginManager().registerEvents(new PoliceListener(), this);
         getServer().getPluginManager().registerEvents(new Frisk(), this);
-        this.getCommand("police").setExecutor(new Police());
-        this.getCommand("911").setExecutor(new NineOneOne());
+        getServer().getPluginManager().registerEvents(new Police(), this);
+        getServer().getPluginManager().registerEvents(new NineOneOne(), this);
         System.out.println("ramdon_person's Police Plugin Has Been Enabled!");
     }
 
