@@ -64,6 +64,7 @@ public class SPPlugin extends JavaPlugin implements SimplePoliceAPI {
     //enabled
     @Override
     public void onEnable() {
+        instance = this;
         //update checker
         new UpdateChecker(this).checkForUpdate();
         //metrics
@@ -82,7 +83,6 @@ public class SPPlugin extends JavaPlugin implements SimplePoliceAPI {
         getServer().getPluginManager().registerEvents(new GUI(), this);
         getServer().getPluginManager().registerEvents(new PoliceListener(), this);
         getServer().getPluginManager().registerEvents(new Frisk(), this);
-        instance = this;
         this.getCommand("police").setExecutor(new Police());
         this.getCommand("911").setExecutor(new NineOneOne());
         System.out.println("ramdon_person's Police Plugin Has Been Enabled!");
