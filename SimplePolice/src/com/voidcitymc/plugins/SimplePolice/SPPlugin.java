@@ -21,10 +21,21 @@ public class SPPlugin extends JavaPlugin implements SimplePoliceAPI {
     FileConfiguration Data;
     File ControbandFile;
     FileConfiguration Controband;
+    File MessageFile;
+    FileConfiguration Message;
     Worker work = new Worker();
 
     public static SPPlugin getInstance() {
         return instance;
+    }
+
+    public void createMessage() {
+        MessageFile = new File(getDataFolder(), "messages.yml");
+        if (!MessageFile.exists()) {
+            MessageFile.getParentFile().mkdirs();
+            saveResource("messages.yml", false);
+        }
+        Message = YamlConfiguration.loadConfiguration(MessageFile);
     }
 
     public void createData() {
@@ -43,6 +54,14 @@ public class SPPlugin extends JavaPlugin implements SimplePoliceAPI {
             saveResource("contraband.yml", false);
         }
         Controband = YamlConfiguration.loadConfiguration(ControbandFile);
+    }
+
+    public void SaveMessageFile() {
+        try {
+            Message.save(MessageFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void SaveDataFile() {
@@ -77,6 +96,7 @@ public class SPPlugin extends JavaPlugin implements SimplePoliceAPI {
         //create datafile and controband file
         createData();
         createControbandFile();
+        createMessage();
         //add mising items to config
 //	worker.AddMissingItemsToConfig();
         //
