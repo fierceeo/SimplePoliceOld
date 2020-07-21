@@ -6,6 +6,13 @@ version: 3.2
 depend: [Essentials]
 softdepend: [Vault, QualityArmory, WorldGuard, WorldEdit]
 website: https://plugins.voidcitymc.com
+commands:
+  police:
+    description: Your description
+    usage: /police
+  911:
+    description: Call the cops!
+    usage: /911
 permissions:
   police.add:
     description: Allows you to add a police

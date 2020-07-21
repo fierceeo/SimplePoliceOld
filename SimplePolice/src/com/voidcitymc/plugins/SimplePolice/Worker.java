@@ -409,6 +409,13 @@ public class Worker {
         if (!config.isSet("FriskCooldown")) {
             config.set("FriskCooldown", 600);
         }
+        if (!config.isSet("CmdFor911")) {
+            config.set("CmdFor911n", "911");
+        }
+        if (!config.isSet("CmdForPolice")) {
+            config.set("CmdForPolice", "police");
+        }
+
 
         /*
         if (!config.isSet("MaxPoliceTp")) {
