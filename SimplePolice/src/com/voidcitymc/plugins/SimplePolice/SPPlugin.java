@@ -11,6 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -103,10 +104,10 @@ public class SPPlugin extends JavaPlugin implements SimplePoliceAPI {
         getServer().getPluginManager().registerEvents(new GUI(), this);
         getServer().getPluginManager().registerEvents(new PoliceListener(), this);
         getServer().getPluginManager().registerEvents(new Frisk(), this);
-        getServer().getPluginManager().registerEvents(new Police(), this);
-        getServer().getPluginManager().registerEvents(new NineOneOne(), this);
         this.getCommand("police").setExecutor(new Police());
         this.getCommand("911").setExecutor(new NineOneOne());
+        this.getCommand("police").setAliases(Collections.singletonList(SPPlugin.getInstance().getConfig().getString("CmdForPolice")));
+        this.getCommand("911").setAliases(Collections.singletonList(SPPlugin.getInstance().getConfig().getString("CmdFor911")));
         System.out.println("ramdon_person's Police Plugin Has Been Enabled!");
     }
 
