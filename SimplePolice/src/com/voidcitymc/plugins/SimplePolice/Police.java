@@ -9,6 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
+import java.util.Collections;
+
 public class Police implements Listener, CommandExecutor {
 
     @Override
@@ -26,9 +28,18 @@ public class Police implements Listener, CommandExecutor {
                     if (args.length > 1) {
                         if (args[1].equalsIgnoreCase("reload")) {
                             SPPlugin.getInstance().reloadConfig();
+
+                            if (!SPPlugin.getInstance().getCommand("police").getAliases().contains(SPPlugin.getInstance().getConfig().getString("CmdForPolice"))) {
+                                SPPlugin.getInstance().getCommand("police").setAliases(Collections.singletonList(SPPlugin.getInstance().getConfig().getString("CmdForPolice")));
+                            }
+                            if (!SPPlugin.getInstance().getCommand("police").getAliases().contains(SPPlugin.getInstance().getConfig().getString("CmdFor911"))) {
+                                SPPlugin.getInstance().getCommand("911").setAliases(Collections.singletonList(SPPlugin.getInstance().getConfig().getString("CmdFor911")));
+                            }
+
                             player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " The config has been reloaded");
                         } else if (args[1].equalsIgnoreCase("add")) {
-                            if (player.getInventory().getItemInMainHand() != null && !player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
+                            player.getInventory().getItemInMainHand();
+                            if (!player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
                                 work.addToFriskList(player.getInventory().getItemInMainHand());
                                 player.sendMessage(ChatColor.DARK_AQUA + "Added item");
                             } else {
@@ -36,7 +47,8 @@ public class Police implements Listener, CommandExecutor {
                             }
 
                         } else if (args[1].equalsIgnoreCase("remove")) {
-                            if (player.getInventory().getItemInMainHand() != null && !player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
+                            player.getInventory().getItemInMainHand();
+                            if (!player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
                                 work.removeFromFriskList(player.getInventory().getItemInMainHand());
                                 player.sendMessage(ChatColor.DARK_AQUA + "Removed item");
                             } else {
