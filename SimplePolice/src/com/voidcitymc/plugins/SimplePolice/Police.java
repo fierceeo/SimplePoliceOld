@@ -38,7 +38,6 @@ public class Police implements Listener, CommandExecutor {
 
                             player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " The config has been reloaded");
                         } else if (args[1].equalsIgnoreCase("add")) {
-                            player.getInventory().getItemInMainHand();
                             if (!player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
                                 work.addToFriskList(player.getInventory().getItemInMainHand());
                                 player.sendMessage(ChatColor.DARK_AQUA + "Added item");
@@ -47,7 +46,6 @@ public class Police implements Listener, CommandExecutor {
                             }
 
                         } else if (args[1].equalsIgnoreCase("remove")) {
-                            player.getInventory().getItemInMainHand();
                             if (!player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
                                 work.removeFromFriskList(player.getInventory().getItemInMainHand());
                                 player.sendMessage(ChatColor.DARK_AQUA + "Removed item");
