@@ -8,7 +8,7 @@ softdepend: [Vault, QualityArmory, WorldGuard, WorldEdit]
 website: https://plugins.voidcitymc.com
 commands:
   police:
-    description: Your description
+    description: The main command of Simple Police
     usage: /police
   911:
     description: Call the cops!
