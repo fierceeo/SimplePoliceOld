@@ -17,7 +17,7 @@ PoliceAdminHelpTitle: "&3[Police]"
 PoliceAdminHelp1: "Admin Commands:"
 PoliceAdminHelp2: "/police admin reload - reloads config"
 PoliceAdminHelp3: "/police admin add - adds item in hand to frisk list"
-PoliceAdminHelp4: "/police admin remove - removed item in hand from frisk list"
+PoliceAdminHelp4: "/police admin remove - removes the item in your hand from frisk list"
 
 PoliceOfficerAdd: "&3[Police] &fAdded $1 as a police officer!"
 PoliceOfficerAddFail: "&3[Police] &fCould not add $1 because they are already a police officer!"
