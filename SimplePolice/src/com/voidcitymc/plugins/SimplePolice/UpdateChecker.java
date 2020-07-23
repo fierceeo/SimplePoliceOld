@@ -26,8 +26,8 @@ public class UpdateChecker {
 
     //Constants. Customize to your liking.
     private static final int ID = 73996; //The ID of your resource. Can be found in the resource URL.
-    private static final String ERR_MSG = "&c[Police] Update checker failed!";
-    private static final String UPDATE_MSG = "&f[Police] A new version of SimplePolice is available at:&b https://www.spigotmc.org/resources/" + ID + "/updates";
+    private static final String ERR_MSG = Messages.getMessage("UpdateCheckerFail");
+    private static final String UPDATE_MSG = Messages.getMessage("UpdateCheckerNewUpdate", "&b https://www.spigotmc.org/resources/" + ID + "/updates");
     //PermissionDefault.FALSE == OPs need the permission to be notified.
     //PermissionDefault.TRUE == all OPs are notified regardless of having the permission.
     private static final Permission UPDATE_PERM = new Permission("police.update", PermissionDefault.OP);

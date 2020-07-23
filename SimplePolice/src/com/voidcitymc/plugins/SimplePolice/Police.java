@@ -1,7 +1,6 @@
 package com.voidcitymc.plugins.SimplePolice;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -36,30 +35,30 @@ public class Police implements Listener, CommandExecutor {
                                 SPPlugin.getInstance().getCommand("911").setAliases(Collections.singletonList(SPPlugin.getInstance().getConfig().getString("CmdFor911")));
                             }
 
-                            player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " The config has been reloaded");
+                            player.sendMessage(Messages.getMessage("AdminConfigReload"));
                         } else if (args[1].equalsIgnoreCase("add")) {
                             if (!player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
                                 work.addToFriskList(player.getInventory().getItemInMainHand());
-                                player.sendMessage(ChatColor.DARK_AQUA + "Added item");
+                                player.sendMessage(Messages.getMessage("AdminAddItem"));
                             } else {
-                                player.sendMessage(ChatColor.DARK_AQUA + "Please make sure you have an item in your hand");
+                                player.sendMessage(Messages.getMessage("AdminAddItemFail"));
                             }
 
                         } else if (args[1].equalsIgnoreCase("remove")) {
                             if (!player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
                                 work.removeFromFriskList(player.getInventory().getItemInMainHand());
-                                player.sendMessage(ChatColor.DARK_AQUA + "Removed item");
+                                player.sendMessage(Messages.getMessage("AdminRemoveItem"));
                             } else {
-                                player.sendMessage(ChatColor.DARK_AQUA + "Please make sure you have an item in your hand");
+                                player.sendMessage(Messages.getMessage("AdminRemoveItemFail"));
                             }
                         }
 
                     } else {
-                        player.sendMessage(ChatColor.DARK_AQUA + "[Police]");
-                        player.sendMessage("Admin Commands:");
-                        player.sendMessage("/police admin reload - reloads config");
-                        player.sendMessage("/police admin add - adds item in hand to frisk list");
-                        player.sendMessage("/police admin remove - removed item in hand from frisk list");
+                        player.sendMessage(Messages.getMessage("PoliceAdminHelpTitle"));
+                        player.sendMessage(Messages.getMessage("PoliceAdminHelp1"));
+                        player.sendMessage(Messages.getMessage("PoliceAdminHelp2"));
+                        player.sendMessage(Messages.getMessage("PoliceAdminHelp3"));
+                        player.sendMessage(Messages.getMessage("PoliceAdminHelp4"));
                     }
                 }
             }
@@ -79,13 +78,13 @@ public class Police implements Listener, CommandExecutor {
 
                         if (!work.alreadyPolice(Bukkit.getPlayer(args[1]).getUniqueId().toString())) {
                             work.addPolice(Bukkit.getPlayer(args[1]).getUniqueId().toString());
-                            player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " Added " + args[1] + " as a police officer!");
+                            player.sendMessage(Messages.getMessage("PoliceOfficerAdd", args[1]));
                         } else {
-                            player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " Could not add " + args[1] + " because they are already a police officer!");
+                            player.sendMessage(Messages.getMessage("PoliceOfficerAddFail", args[1]));
                         }
 
                     } else {
-                        player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " You need to specify a player!");
+                        player.sendMessage(Messages.getMessage("PoliceOfficerAddNoPlayer"));
                     }
 
                 }
@@ -98,12 +97,12 @@ public class Police implements Listener, CommandExecutor {
                     if (args.length > 1) {
                         if (work.alreadyPolice(Bukkit.getPlayer(args[1]).getUniqueId().toString())) {
                             work.removePolice(Bukkit.getPlayer(args[1]).getUniqueId().toString());
-                            player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " Removed " + args[1] + " as a police officer!");
+                            player.sendMessage(Messages.getMessage("PoliceOfficerRemove"));
                         } else {
-                            player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " Could not remove " + args[1] + " because they are not a police officer!");
+                            player.sendMessage(Messages.getMessage("PoliceOfficerRemoveFail", args[1]));
                         }
                     } else {
-                        player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " You need to specify a player!");
+                        player.sendMessage(Messages.getMessage("PoliceOfficerRemoveNoPlayer"));
                     }
                 }
             }
@@ -113,61 +112,61 @@ public class Police implements Listener, CommandExecutor {
 
             if (player.hasPermission("police.help") || work.alreadyPolice(player.getUniqueId().toString())) {
                 if (args.length == 0) {
-                    player.sendMessage(ChatColor.DARK_AQUA + "[Police]");
-                    player.sendMessage("Commands:");
+                    player.sendMessage(Messages.getMessage("PoliceHelpTitle"));
+                    player.sendMessage(Messages.getMessage("PoliceHelpCommands"));
                     //police tp help
                     if (player.hasPermission("police.tp") || work.alreadyPolice(player.getUniqueId().toString())) {
-                        player.sendMessage("/police tp (player)");
+                        player.sendMessage(Messages.getMessage("PoliceHelpPoliceTp"));
                     }
                     //police remove help
                     if (player.hasPermission("police.remove")) {
-                        player.sendMessage("/police remove (player)");
+                        player.sendMessage(Messages.getMessage("PoliceHelpPoliceRemove"));
                     }
                     //police add help
                     if (player.hasPermission("police.add")) {
-                        player.sendMessage("/police add (player)");
+                        player.sendMessage(Messages.getMessage("PoliceHelpPoliceAdd"));
                     }
 
 
                     //police unjail
                     if (player.hasPermission("police.unjail") || work.alreadyPolice(player.getUniqueId().toString())) {
-                        player.sendMessage("/police unjail (player)");
+                        player.sendMessage(Messages.getMessage("PoliceHelpPoliceUnjail"));
                     }
                     if (player.hasPermission("police.admin")) {
-                        player.sendMessage("/police admin");
+                        player.sendMessage(Messages.getMessage("PoliceHelpPoliceAdmin"));
                     }
 
 
                     //help info
-                    player.sendMessage("/police help");
+                    player.sendMessage(Messages.getMessage("PoliceHelpPoliceHelp"));
                 }
 
                 if (args.length > 0) {
                     if (args[0].equalsIgnoreCase("help")) {
-                        player.sendMessage(ChatColor.DARK_AQUA + "[Police]");
-                        player.sendMessage("Commands:");
+                        player.sendMessage(Messages.getMessage("PoliceHelpTitle"));
+                        player.sendMessage(Messages.getMessage("PoliceHelpCommands"));
                         //police tp help
                         if (player.hasPermission("police.tp") || work.alreadyPolice(player.getUniqueId().toString())) {
-                            player.sendMessage("/police tp (player)");
+                            player.sendMessage(Messages.getMessage("PoliceHelpPoliceTp"));
                         }
                         //police remove help
                         if (player.hasPermission("police.remove")) {
-                            player.sendMessage("/police remove (player)");
+                            player.sendMessage(Messages.getMessage("PoliceHelpPoliceRemove"));
                         }
                         //police add help
                         if (player.hasPermission("police.add")) {
-                            player.sendMessage("/police add (player)");
+                            player.sendMessage(Messages.getMessage("PoliceHelpPoliceAdd"));
                         }
 
                         if (player.hasPermission("police.unjail") || work.alreadyPolice(player.getUniqueId().toString())) {
-                            player.sendMessage("/police unjail (player)");
+                            player.sendMessage(Messages.getMessage("PoliceHelpPoliceUnjail"));
                         }
                         if (player.hasPermission("police.admin")) {
-                            player.sendMessage("/police admin");
+                            player.sendMessage(Messages.getMessage("PoliceHelpPoliceAdmin"));
                         }
 
                         //help info
-                        player.sendMessage("/police help");
+                        player.sendMessage(Messages.getMessage("PoliceHelpPoliceHelp"));
                     }
                 }
             }
@@ -180,10 +179,10 @@ public class Police implements Listener, CommandExecutor {
                         if (args.length > 1) {
                             int MaxValTp = SPPlugin.getInstance().getConfig().getInt("MaxPoliceTp");
                             player.teleport(work.policeTp(Bukkit.getPlayer(args[1]), MaxValTp));
-                            player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " You have been teleported");
-                            Bukkit.getPlayer(args[1]).sendMessage(ChatColor.DARK_AQUA + "The police are coming!");
+                            player.sendMessage(Messages.getMessage("PoliceTp"));
+                            Bukkit.getPlayer(args[1]).sendMessage(Messages.getMessage("PoliceTpComingMessage"));
                         } else {
-                            player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " You need to specify a player!");
+                            player.sendMessage(Messages.getMessage("PoliceSpecifyPlayer"));
                         }
 
                     }
@@ -191,7 +190,7 @@ public class Police implements Listener, CommandExecutor {
             }
             return true;
         } else {
-            sender.sendMessage("Only players can use this command");
+            sender.sendMessage(Messages.getMessage("OnlyPlayersCanUseCMD"));
             return true;
         }
     }

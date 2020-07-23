@@ -10,7 +10,6 @@ import me.zombie_striker.qg.api.QualityArmory;
 import me.zombie_striker.qg.guns.Gun;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -172,7 +171,7 @@ public class Worker {
             if (Bukkit.getServer().getPluginManager().getPlugin("Vault") != null) {
                 Economy economy = this.setupEconomy();
                 economy.depositPlayer(player, SPPlugin.getInstance().getConfig().getDouble("MoneyToGiveToPoliceOnArrest"));
-                player.sendMessage(ChatColor.DARK_AQUA + "You have arrested a player and earned $500!");
+                player.sendMessage(Messages.getMessage("MoneyEarnOnArrest", "$" + SPPlugin.getInstance().getConfig().getDouble("MoneyToGiveToPoliceOnArrest")));
             }
         }
     }
@@ -201,7 +200,7 @@ public class Worker {
 
                 double moneyLost = economy.getBalance(player) * (percent / 100);
 
-                player.sendMessage(ChatColor.DARK_AQUA + "The police have arested you and you have lost $" + moneyLost);
+                player.sendMessage(Messages.getMessage("MoneyLostOnArrest", "$" + moneyLost));
 
                 economy.withdrawPlayer(player, moneyLost);
 

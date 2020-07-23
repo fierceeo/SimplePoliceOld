@@ -28,8 +28,8 @@ public class Frisk implements Listener {
                     cooldownManager.setCooldown(event.getPlayer().getUniqueId(), suspectedPlayer.getUniqueId(), System.currentTimeMillis());
 
 
-                    suspectedPlayer.sendMessage(ChatColor.DARK_AQUA + "You are being frisked");
-                    event.getPlayer().sendMessage(ChatColor.DARK_AQUA + "You are now frisking " + suspectedPlayer.getName());
+                    suspectedPlayer.sendMessage(Messages.getMessage("FriskMSG"));
+                    event.getPlayer().sendMessage(Messages.getMessage("FriskPolice", suspectedPlayer.getName()));
                     PlayerInventory invToScan = suspectedPlayer.getInventory();
 
                     ItemStack[] contents = invToScan.getContents();
@@ -62,21 +62,21 @@ public class Frisk implements Listener {
                     }
 
                     if (guilty) {
-                        suspectedPlayer.sendMessage(ChatColor.DARK_AQUA + "The police have found illigeal items in your inventory and have taken them, here are the items you have lost:");
+                        suspectedPlayer.sendMessage(Messages.getMessage("FriskGuilty"));
                         suspectedPlayer.sendMessage((String[]) textToReturn.toArray());
                     } else {
-                        suspectedPlayer.sendMessage(ChatColor.DARK_AQUA + "The police have scanned your inventory and have found no illigeal items");
+                        suspectedPlayer.sendMessage(Messages.getMessage("FriskNotGuilty"));
                     }
 
-                    event.getPlayer().sendMessage(ChatColor.DARK_AQUA + "Contraband items found in player:");
+                    event.getPlayer().sendMessage(Messages.getMessage("FriskPoliceAfterMsg"));
                     if (textToReturn.size() < 1) {
-                        textToReturn.add(ChatColor.DARK_AQUA + "Nothing");
+                        textToReturn.add(Messages.getMessage("FriskNoItems"));
                     }
 
                     event.getPlayer().sendMessage((String[]) textToReturn.toArray());
 
                 } else {
-                    event.getPlayer().sendMessage(ChatColor.RED.toString() + "You can frisk this player again in " + (CooldownManager.DEFAULT_COOLDOWN - TimeUnit.MILLISECONDS.toSeconds(timeLeft)) + " seconds");
+                    event.getPlayer().sendMessage(Messages.getMessage("FriskTimeLeft", String.valueOf(CooldownManager.DEFAULT_COOLDOWN - TimeUnit.MILLISECONDS.toSeconds(timeLeft))));
                 }
 
             }

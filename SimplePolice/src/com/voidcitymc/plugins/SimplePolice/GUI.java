@@ -1,7 +1,6 @@
 package com.voidcitymc.plugins.SimplePolice;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -50,13 +49,15 @@ public class GUI implements Listener {
         }
 
         String jailedPlayer = SPPlugin.lastArrest.get(player.getName());
-        player.sendMessage(ChatColor.DARK_AQUA + "[Police]" + ChatColor.WHITE + " You jailed " + jailedPlayer + " for " + jailTime + " minutes");
+        player.sendMessage(Messages.getMessage("JailTimePoliceMSG", jailedPlayer, String.valueOf(jailTime)));
+        Bukkit.getPlayerExact(jailedPlayer).sendMessage(Messages.getMessage("JailTimeMSG", String.valueOf(jailTime)));
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "essentials:jail " + jailedPlayer + " jail1 " + jailTime + "m");
         //need to find jailed player
 
 
     }
 
+    @EventHandler
     public void preventShiftgui(InventoryMoveItemEvent event) {
         if (!((Player) event.getSource().getHolder()).getOpenInventory().getTitle().equalsIgnoreCase("Jail Time"))
             return;

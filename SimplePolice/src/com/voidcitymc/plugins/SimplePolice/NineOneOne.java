@@ -1,7 +1,6 @@
 package com.voidcitymc.plugins.SimplePolice;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -52,9 +51,9 @@ public class NineOneOne implements CommandExecutor {
             i = 0;
 
             while (i < playerList.size()) {
-                playerList.get(i).sendMessage(ChatColor.DARK_AQUA + "[911] " + ChatColor.WHITE + player.getName() + " needs help! " + message);
+                    playerList.get(i).sendMessage(Messages.getMessage("NineOneOneMsgPolice", player.getName(), message));
                 if (SPPlugin.getInstance().getConfig().getBoolean("ShowCords911")) {
-                    playerList.get(i).sendMessage(ChatColor.DARK_AQUA + player.getName() + "is located at " + player.getLocation().getBlockX() + " " + player.getLocation().getBlockY() + " " + player.getLocation().getBlockZ());
+                    playerList.get(i).sendMessage(Messages.getMessage("NineOneOneCordsMessage", player.getName(), String.valueOf(player.getLocation().getBlockX()), String.valueOf(player.getLocation().getBlockY()), String.valueOf(player.getLocation().getBlockZ())));
                 }
 
                 i++;
@@ -62,14 +61,14 @@ public class NineOneOne implements CommandExecutor {
 
 
             if (playerList.size() == 0) {
-                player.sendMessage(ChatColor.DARK_AQUA + "There are no police online, you are on your own!");
+                player.sendMessage(Messages.getMessage("NineOneOneNoPolice"));
             } else {
-                player.sendMessage(ChatColor.DARK_AQUA + "The police have gotten your message and will come asap!");
+                player.sendMessage(Messages.getMessage("NineOneOnePoliceOnline"));
             }
 
             return true;
         } else {
-            sender.sendMessage("Only players can run commands");
+            sender.sendMessage(Messages.getMessage("NineOneOneOnlyPlayersCanRunCMD"));
             return true;
         }
     }

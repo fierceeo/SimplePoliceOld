@@ -1,7 +1,6 @@
 package com.voidcitymc.plugins.SimplePolice;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -15,17 +14,16 @@ public class PoliceListener implements Listener {
     public void onDamage(EntityDamageByEntityEvent event) {
         Worker work = new Worker();
         if (event.getEntity() instanceof Player && event.getDamager() instanceof Player) {
-            //check if the player who punched someone is a police and has the police bitan
-            Entity damagerE = (Entity) event.getDamager();
+            //check if the player who punched someone is a police and has the police bataan
+            Entity damagerE = event.getDamager();
             Player damagerP = (Player) damagerE;
-            Entity damageeE = (Entity) event.getEntity();
+            Entity damageeE = event.getEntity();
             Player damageeP = (Player) damageeE;
             //damager is the police
             //damagee is the criminal
             if (!work.inSafeArea(damageeP)) {
                 if (work.alreadyPolice(damagerP.getUniqueId().toString()) && work.testForItem(damagerP, Material.BLAZE_ROD, "Police")) /*put stuff here too) */ {
-                    System.out.println("A player has been arrested");
-                    damageeP.sendMessage("You have been arrested");
+                    damageeP.sendMessage(Messages.getMessage("ArrestMsg"));
                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "essentials:jail " + damageeP.getName() + " jail1 4m");
                     work.payPoliceOnArrest(damagerP);
                     work.takeMoneyOnArrest(damageeP);
@@ -34,7 +32,7 @@ public class PoliceListener implements Listener {
                     gui.openInventory(damagerP);
                 }
             } else {
-                damagerP.sendMessage(ChatColor.DARK_AQUA + "You can't arrest that player, because they are in a safe area");
+                damagerP.sendMessage(Messages.getMessage("ArrestSafeArea"));
             }
 
 
