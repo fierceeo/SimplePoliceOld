@@ -27,6 +27,7 @@ public class Police implements Listener, CommandExecutor {
                     if (args.length > 1) {
                         if (args[1].equalsIgnoreCase("reload")) {
                             SPPlugin.getInstance().reloadConfig();
+                            SPPlugin.getInstance().createMessage();
 
                             if (!SPPlugin.getInstance().getCommand("police").getAliases().contains(SPPlugin.getInstance().getConfig().getString("CmdForPolice"))) {
                                 SPPlugin.getInstance().getCommand("police").setAliases(Collections.singletonList(SPPlugin.getInstance().getConfig().getString("CmdForPolice")));
