@@ -85,21 +85,20 @@ public class SPPlugin extends JavaPlugin implements SimplePoliceAPI {
     @Override
     public void onEnable() {
         instance = this;
-        //update checker
-        new UpdateChecker(this).checkForUpdate();
-        //metrics
-        @SuppressWarnings("unused")
-        Metrics metrics = new Metrics(this, 6814);
         //create config
         this.getConfig().options().copyDefaults(true);
         saveConfig();
+        //add missing items to config
         work.updateConfig();
         //create datafile and controband file
         createData();
         createControbandFile();
         createMessage();
-        //add mising items to config
-//	worker.AddMissingItemsToConfig();
+        //update checker
+        new UpdateChecker(this).checkForUpdate();
+        //metrics
+        @SuppressWarnings("unused")
+        Metrics metrics = new Metrics(this, 6814);
         //
         getServer().getPluginManager().registerEvents(new GUI(), this);
         getServer().getPluginManager().registerEvents(new PoliceListener(), this);
