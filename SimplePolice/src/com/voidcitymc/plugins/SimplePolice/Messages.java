@@ -10,7 +10,7 @@ public class Messages {
         if (variable.length != 0) {
             int i = 0;
             while (i < variable.length) {
-                textToReturn = textToReturn.replace("$v" + (i + 1), variable[i]);
+                textToReturn = textToReturn.replace("$" + (i + 1), variable[i]);
                 i++;
             }
             return ChatColor.translateAlternateColorCodes('&', textToReturn);
