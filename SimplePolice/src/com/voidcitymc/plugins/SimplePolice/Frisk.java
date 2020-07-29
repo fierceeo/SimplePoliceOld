@@ -37,7 +37,9 @@ public class Frisk implements Listener {
 
 
                     while (i < contents.length) {
-                        contents[i].setAmount(1);
+                        if (contents[i] != null) {
+                            contents[i].setAmount(1);
+                        }
                         i++;
                     }
                     i = 0;
