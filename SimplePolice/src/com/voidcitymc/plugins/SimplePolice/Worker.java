@@ -342,20 +342,24 @@ public class Worker {
 
     public boolean isItemContraband(ItemStack item) {
         List<ItemStack> contraband = this.getFriskList();
-        ItemStack itemToTest = item.clone();
+        if (item != null) {
+            
+            ItemStack itemToTest = item.clone();
 
+            if ((Bukkit.getServer().getPluginManager().getPlugin("QualityArmory") != null) && QualityArmory.isGun(itemToTest)) {
+                ItemMeta meta = itemToTest.getItemMeta();
+                meta.setLore(Gun.getGunLore(QualityArmory.getGun(itemToTest), itemToTest, 0));
+                itemToTest.setItemMeta(meta);
+            }
 
-        if ((Bukkit.getServer().getPluginManager().getPlugin("QualityArmory") != null) && QualityArmory.isGun(itemToTest)) {
-            ItemMeta meta = itemToTest.getItemMeta();
-            meta.setLore(Gun.getGunLore(QualityArmory.getGun(itemToTest), itemToTest, 0));
-            itemToTest.setItemMeta(meta);
+            if (contraband.contains(itemToTest)) {
+                return true;
+            } else
+                return (Bukkit.getServer().getPluginManager().getPlugin("QualityArmory") != null) && QualityArmory.isGun(itemToTest) && SPPlugin.getInstance().getConfig().getBoolean("MarkAllGunsAsContraband");
+ 
         }
 
-        if (contraband.contains(itemToTest)) {
-            return true;
-        } else
-            return (Bukkit.getServer().getPluginManager().getPlugin("QualityArmory") != null) && QualityArmory.isGun(itemToTest) && SPPlugin.getInstance().getConfig().getBoolean("MarkAllGunsAsContraband");
-
+        return false;
 
     }
 
