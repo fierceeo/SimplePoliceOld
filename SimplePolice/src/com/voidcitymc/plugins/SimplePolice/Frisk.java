@@ -65,7 +65,7 @@ public class Frisk implements Listener {
 
                     if (guilty) {
                         suspectedPlayer.sendMessage(Messages.getMessage("FriskGuilty"));
-                        suspectedPlayer.sendMessage(textToReturn.toArray());
+                        suspectedPlayer.sendMessage((String[]) textToReturn.toArray());
                     } else {
                         suspectedPlayer.sendMessage(Messages.getMessage("FriskNotGuilty"));
                     }
@@ -75,7 +75,7 @@ public class Frisk implements Listener {
                         textToReturn.add(Messages.getMessage("FriskNoItems"));
                     }
 
-                    event.getPlayer().sendMessage(textToReturn.toArray());
+                    event.getPlayer().sendMessage((String[]) textToReturn.toArray());
 
                 } else {
                     event.getPlayer().sendMessage(Messages.getMessage("FriskTimeLeft", String.valueOf(CooldownManager.DEFAULT_COOLDOWN - TimeUnit.MILLISECONDS.toSeconds(timeLeft))));
