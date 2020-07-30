@@ -9,6 +9,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class Frisk implements Listener {
@@ -35,23 +36,14 @@ public class Frisk implements Listener {
                     ItemStack[] contents = invToScan.getContents().clone();
                     int i = 0;
 
-
-                    while (i < contents.length) {
-                        if (contents[i] != null) {
-                            contents[i].setAmount(1);
-                        }
-                        i++;
-                    }
-                    i = 0;
-
-                    ArrayList<String> textToReturn = new ArrayList<String>();
-                    Boolean guilty = false;
+                    ArrayList<String> textToReturn = new ArrayList<>();
+                    boolean guilty = false;
                     //Double priceToPay = 0.0;
 
                     while (i < contents.length) {
                         if (work.isItemContraband(contents[i])) {
-                            if (SPPlugin.getInstance().Controband.getInt("PrecentOfFindingControband") - (Math.random() * 100) >= 0) {
-                                textToReturn.add(ChatColor.DARK_AQUA + "" + invToScan.getContents()[i].getAmount() + "x " + invToScan.getContents()[i].getItemMeta().getDisplayName());
+                            if (SPPlugin.getInstance().getConfig().getInt("PercentOfFindingContraband") - (Math.random() * 100) >= 0) {
+                                textToReturn.add(ChatColor.DARK_AQUA + "" + Objects.requireNonNull(invToScan.getItem(i)).getAmount() + "x " + Objects.requireNonNull(Objects.requireNonNull(invToScan.getItem(i)).getItemMeta()).getDisplayName());
                                 guilty = true;
                                 event.getPlayer().getInventory().addItem(invToScan.getContents()[i]);
                                 suspectedPlayer.getInventory().setItem(i, null);
@@ -65,7 +57,7 @@ public class Frisk implements Listener {
 
                     if (guilty) {
                         suspectedPlayer.sendMessage(Messages.getMessage("FriskGuilty"));
-                        suspectedPlayer.sendMessage(textToReturn.toArray(new String[textToReturn.size()]));
+                        suspectedPlayer.sendMessage(textToReturn.toArray(new String[0]));
                     } else {
                         suspectedPlayer.sendMessage(Messages.getMessage("FriskNotGuilty"));
                     }
@@ -75,7 +67,7 @@ public class Frisk implements Listener {
                         textToReturn.add(Messages.getMessage("FriskNoItems"));
                     }
 
-                    event.getPlayer().sendMessage(textToReturn.toArray(new String[textToReturn.size()]));
+                    event.getPlayer().sendMessage(textToReturn.toArray(new String[0]));
 
                 } else {
                     event.getPlayer().sendMessage(Messages.getMessage("FriskTimeLeft", String.valueOf(CooldownManager.DEFAULT_COOLDOWN - TimeUnit.MILLISECONDS.toSeconds(timeLeft))));

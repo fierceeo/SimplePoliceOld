@@ -25,7 +25,7 @@ public class Worker {
 
     public ArrayList<String> onlinePoliceList() {
         ArrayList<String> policeList = this.listPolice();
-        ArrayList<String> onlinePolice = new ArrayList<String>();
+        ArrayList<String> onlinePolice = new ArrayList<>();
         int i = 0;
 
 
@@ -48,14 +48,9 @@ public class Worker {
 
 
     public void addPolice(String uuid) {
-        if (alreadyPolice(uuid)) {
-            return;
-        } else if (!alreadyPolice(uuid)) {
+        if (!alreadyPolice(uuid)) {
             SPPlugin.getInstance().Data.set(uuid, true);
             SPPlugin.getInstance().SaveDataFile();
-            return;
-        } else {
-            return;
         }
     }
 
@@ -67,9 +62,6 @@ public class Worker {
         if (this.alreadyPolice(uuid)) {
             SPPlugin.getInstance().Data.set(uuid, false);
             SPPlugin.getInstance().SaveDataFile();
-            return;
-        } else {
-            return;
         }
     }
 
@@ -118,7 +110,6 @@ public class Worker {
         int nY = pY;
         int nZ = pZ + random2;
 
-        Location returnLoc = new Location(player.getWorld(), nX, nY, nZ);
         Location returnLocYOneDown = new Location(player.getWorld(), nX, nY - 1, nZ);
 
         while (returnLocYOneDown.getBlock().getType().equals(Material.AIR)) {
@@ -126,7 +117,7 @@ public class Worker {
             returnLocYOneDown = new Location(player.getWorld(), nX, nY - 1, nZ);
         }
 
-        returnLoc = returnLocYOneDown;
+        Location returnLoc = returnLocYOneDown;
 
 
         //keeps increasing y cord until location is safe
@@ -144,14 +135,11 @@ public class Worker {
 
         Map<String, Object> police = SPPlugin.getInstance().Data.getValues(false);
 
-        ArrayList<String> policeList = new ArrayList<String>();
+        ArrayList<String> policeList = new ArrayList<>();
 
+        Object[] objectPoliceArray = police.keySet().toArray();
 
-        Object[] objectPolicearray = new Object[police.keySet().toArray().length];
-        objectPolicearray = police.keySet().toArray();
-
-        String[] policeArrayNotFinal = new String[objectPolicearray.length];
-        System.arraycopy(objectPolicearray, 0, policeArrayNotFinal, 0, objectPolicearray.length);
+        String[] policeArrayNotFinal = (String[]) objectPoliceArray;
 
         int i = 0;
 
@@ -170,7 +158,9 @@ public class Worker {
             //make sure vault is installed
             if (Bukkit.getServer().getPluginManager().getPlugin("Vault") != null) {
                 Economy economy = this.setupEconomy();
-                economy.depositPlayer(player, SPPlugin.getInstance().getConfig().getDouble("MoneyToGiveToPoliceOnArrest"));
+                if (economy != null) {
+                    economy.depositPlayer(player, SPPlugin.getInstance().getConfig().getDouble("MoneyToGiveToPoliceOnArrest"));
+                }
                 player.sendMessage(Messages.getMessage("MoneyEarnOnArrest", "$" + SPPlugin.getInstance().getConfig().getDouble("MoneyToGiveToPoliceOnArrest")));
             }
         }
@@ -179,11 +169,10 @@ public class Worker {
 
     private Economy setupEconomy() {
         RegisteredServiceProvider<Economy> rsp = Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
-        if (rsp == null) {
-
+        if (rsp != null) {
+            return rsp.getProvider();
         }
-        Economy econ = rsp.getProvider();
-        return econ;
+        return null;
     }
 
     public void takeMoneyOnArrest(Player player) {
@@ -191,18 +180,17 @@ public class Worker {
             //make sure vault is installed
             if (Bukkit.getServer().getPluginManager().getPlugin("Vault") != null) {
 
-                double percent = 0;
-
-                percent = SPPlugin.getInstance().getConfig().getDouble("PercentOfMoneyToTake");
+                double percent = SPPlugin.getInstance().getConfig().getDouble("PercentOfMoneyToTake");
 
 
                 Economy economy = this.setupEconomy();
 
-                double moneyLost = economy.getBalance(player) * (percent / 100);
+                if (economy != null) {
+                    double moneyLost = economy.getBalance(player) * (percent / 100);
+                    player.sendMessage(Messages.getMessage("MoneyLostOnArrest", "$" + moneyLost));
+                    economy.withdrawPlayer(player, moneyLost);
+                }
 
-                player.sendMessage(Messages.getMessage("MoneyLostOnArrest", "$" + moneyLost));
-
-                economy.withdrawPlayer(player, moneyLost);
 
             }
         }
@@ -213,14 +201,15 @@ public class Worker {
         final ItemStack item = new ItemStack(material, 1);
         final ItemMeta meta = item.getItemMeta();
 
-        // Set the name of the item
-        meta.setDisplayName(name);
+        if (meta != null) {
+            // Set the name of the item
+            meta.setDisplayName(name);
 
-        // Set the lore of the item
-        meta.setLore(Arrays.asList(lore));
+            // Set the lore of the item
+            meta.setLore(Arrays.asList(lore));
 
-        item.setItemMeta(meta);
-
+            item.setItemMeta(meta);
+        }
         return item;
     }
 
@@ -239,7 +228,7 @@ public class Worker {
                 //create Worker
 
                 for (ProtectedRegion region : set) {
-                    if (SPPlugin.getInstance().getConfig().getList("SafeAreas").contains(region.getId())) {
+                    if (Objects.requireNonNull(SPPlugin.getInstance().getConfig().getList("SafeAreas")).contains(region.getId())) {
                         return true;
                     }
                 }
@@ -256,7 +245,7 @@ public class Worker {
 
     public Material getBatonMaterial() {
         String mat = SPPlugin.getInstance().Data.getString("BatonMaterialType");
-        if (Material.getMaterial(mat) != null) {
+        if (mat != null && Material.getMaterial(mat) != null) {
             return Material.getMaterial(mat);
         } else {
             System.out.print("Error with the baton material");
@@ -266,7 +255,7 @@ public class Worker {
 
     public Material getFriskStickMaterial() {
         String mat = SPPlugin.getInstance().Data.getString("FriskStickMaterialType");
-        if (Material.getMaterial(mat) != null) {
+        if (mat != null && Material.getMaterial(mat) != null) {
             return Material.getMaterial(mat);
         } else {
             System.out.print("Error with the frisk stick material");
@@ -278,7 +267,7 @@ public class Worker {
         @SuppressWarnings("unchecked")
         List<ItemStack> items = (List<ItemStack>) SPPlugin.getInstance().Controband.getList("Items");
         if (items == null) {
-            items = new ArrayList<ItemStack>();
+            items = new ArrayList<>();
         }
 
         ItemStack itemToTest = item.clone();
@@ -287,8 +276,10 @@ public class Worker {
         //if gun then remove all bullets to 0
         if (Bukkit.getServer().getPluginManager().getPlugin("QualityArmory") != null && QualityArmory.isGun(itemToTest)) {
             ItemMeta meta = itemToTest.getItemMeta();
-            meta.setLore(Gun.getGunLore(QualityArmory.getGun(itemToTest), itemToTest, 0));
-            itemToTest.setItemMeta(meta);
+            if (meta != null) {
+                meta.setLore(Gun.getGunLore(QualityArmory.getGun(itemToTest), itemToTest, 0));
+                itemToTest.setItemMeta(meta);
+            }
         }
 
         itemToTest.setAmount(1);
@@ -306,7 +297,7 @@ public class Worker {
         @SuppressWarnings("unchecked")
         List<ItemStack> items = (List<ItemStack>) SPPlugin.getInstance().Controband.getList("Items");
         if (items == null) {
-            items = new ArrayList<ItemStack>();
+            items = new ArrayList<>();
         }
 
         ItemStack itemToTest = item.clone();
@@ -315,8 +306,10 @@ public class Worker {
         //if gun then remove all bullets to 0
         if (Bukkit.getServer().getPluginManager().getPlugin("QualityArmory") != null && QualityArmory.isGun(itemToTest)) {
             ItemMeta meta = itemToTest.getItemMeta();
-            meta.setLore(Gun.getGunLore(QualityArmory.getGun(itemToTest), itemToTest, 0));
-            itemToTest.setItemMeta(meta);
+            if (meta != null) {
+                meta.setLore(Gun.getGunLore(QualityArmory.getGun(itemToTest), itemToTest, 0));
+                itemToTest.setItemMeta(meta);
+            }
         }
 
         itemToTest.setAmount(1);
@@ -333,7 +326,7 @@ public class Worker {
         @SuppressWarnings("unchecked")
         List<ItemStack> items = (List<ItemStack>) SPPlugin.getInstance().Controband.getList("Items");
         if (items == null) {
-            items = new ArrayList<ItemStack>();
+            items = new ArrayList<>();
         }
 
         return items;
@@ -341,21 +334,28 @@ public class Worker {
     }
 
     public boolean isItemContraband(ItemStack item) {
-        List<ItemStack> contraband = this.getFriskList();
+        ItemStack[] contraband = this.getFriskList().toArray(new ItemStack[0]);
         if (item != null) {
             
             ItemStack itemToTest = item.clone();
 
             if ((Bukkit.getServer().getPluginManager().getPlugin("QualityArmory") != null) && QualityArmory.isGun(itemToTest)) {
                 ItemMeta meta = itemToTest.getItemMeta();
-                meta.setLore(Gun.getGunLore(QualityArmory.getGun(itemToTest), itemToTest, 0));
-                itemToTest.setItemMeta(meta);
+                if (meta != null) {
+                    meta.setLore(Gun.getGunLore(QualityArmory.getGun(itemToTest), itemToTest, 0));
+                    itemToTest.setItemMeta(meta);
+                }
             }
 
-            if (contraband.contains(itemToTest)) {
-                return true;
-            } else
-                return (Bukkit.getServer().getPluginManager().getPlugin("QualityArmory") != null) && QualityArmory.isGun(itemToTest) && SPPlugin.getInstance().getConfig().getBoolean("MarkAllGunsAsContraband");
+            int i = 0;
+
+            while (i < contraband.length) {
+                if (contraband[i].isSimilar(item)) {
+                    return true;
+                }
+                i++;
+            }
+            return (Bukkit.getServer().getPluginManager().getPlugin("QualityArmory") != null) && QualityArmory.isGun(itemToTest) && SPPlugin.getInstance().getConfig().getBoolean("MarkAllGunsAsContraband");
  
         }
 
@@ -389,7 +389,7 @@ public class Worker {
             config.set("SafeArea", false);
         }
         if (!config.isSet("SafeAreas")) {
-            ArrayList<String> safeAreas = new ArrayList<String>();
+            ArrayList<String> safeAreas = new ArrayList<>();
             safeAreas.add("examplesafearea1");
             safeAreas.add("examplesafearea2");
             config.set("SafeAreas", safeAreas);
@@ -397,8 +397,8 @@ public class Worker {
         if (!config.isSet("BatonMaterialType")) {
             config.set("BatonMaterialType", "BLAZE_ROD");
         }
-        if (!config.isSet("PrecentOfFindingControband")) {
-            config.set("PrecentOfFindingControband", 20);
+        if (!config.isSet("PercentOfFindingContraband")) {
+            config.set("PercentOfFindingContraband", 20);
         }
         if (!config.isSet("FriskStickMaterialType")) {
             config.set("FriskStickMaterialType", "BLAZE_ROD");
