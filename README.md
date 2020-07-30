@@ -58,7 +58,7 @@ Maven Repo:
  	<dependency>
 	    <groupId>com.github.ramdon-person.SimplePolice</groupId>
 	    <artifactId>SimplePolice-API</artifactId>
-	    <version>3.1</version>
+	    <version>3.2</version>
 	</dependency>
 
 Java docs:
@@ -66,7 +66,7 @@ https://plugins.voidcitymc.com/SimplePolice/doc/
 
 Getting the api:
 
-SimplePoliceAPI api = (SimplePoliceAPI) Bukkit.getPluginManager().getPlugin("Simple Police”);
+SimplePoliceAPI api = ((SimplePolice) Bukkit.getPluginManager().getPlugin("Simple Police")).getApi();
 
 The you can do stuff like api.listPolice();
 
@@ -89,11 +89,11 @@ I will be adding support for multiple jails soon!
 
 Plugin:
 
-https://ci.codemc.io/job/ramdon-person/job/SimplePolice/lastSuccessfulBuild/artifact/SimplePolice/target/SimplePolice-3.2.jar
+https://ci.codemc.io/job/ramdon-person/job/SimplePolice/lastSuccessfulBuild/artifact/SimplePolice/target/SimplePolice-3.3.jar
 
 Api:
 
-https://ci.codemc.io/job/ramdon-person/job/SimplePolice/lastSuccessfulBuild/artifact/SimplePolice-API/target/SimplePolice-API-3.2.jar
+https://ci.codemc.io/job/ramdon-person/job/SimplePolice/lastSuccessfulBuild/artifact/SimplePolice-API/target/SimplePolice-API-3.3.jar
 
 
 **Support:**
