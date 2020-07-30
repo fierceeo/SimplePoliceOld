@@ -32,7 +32,7 @@ public class Frisk implements Listener {
                     event.getPlayer().sendMessage(Messages.getMessage("FriskPolice", suspectedPlayer.getName()));
                     PlayerInventory invToScan = suspectedPlayer.getInventory();
 
-                    ItemStack[] contents = invToScan.getContents();
+                    ItemStack[] contents = invToScan.getContents().clone();
                     int i = 0;
 
 
