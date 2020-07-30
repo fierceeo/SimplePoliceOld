@@ -7,6 +7,7 @@ ArrestSafeArea: "&3No puedes arrestar a ese jugador porque está en un área seg
 AdminConfigReload: "&3[Policía] &fLa configuración ha sido recargada"
 AdminAddItem: "&3Artículo añadido"
 AdminAddItemFail: "&3Asegúrese de tener un artículo en la mano"
+AdminAddItemFailContraband: "&3El elemento que está intentando agregar ya se agregó."
 AdminRemoveItem: "&3Artículo eliminado"
 AdminRemoveItemFail: "&3Asegúrese de tener un artículo en la mano"
 PoliceAdminHelpTitle: "&3[Policía]"

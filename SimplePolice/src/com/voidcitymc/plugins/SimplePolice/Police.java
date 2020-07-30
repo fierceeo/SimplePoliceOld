@@ -38,12 +38,17 @@ public class Police implements Listener, CommandExecutor {
 
                             player.sendMessage(Messages.getMessage("AdminConfigReload"));
                         } else if (args[1].equalsIgnoreCase("add")) {
-                            if (!player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
-                                work.addToFriskList(player.getInventory().getItemInMainHand());
-                                player.sendMessage(Messages.getMessage("AdminAddItem"));
+                            if (!work.isItemContraband(player.getInventory().getItemInMainHand())) {
+                                if (!player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
+                                    work.addToFriskList(player.getInventory().getItemInMainHand());
+                                    player.sendMessage(Messages.getMessage("AdminAddItem"));
+                                } else {
+                                    player.sendMessage(Messages.getMessage("AdminAddItemFail"));
+                                }
                             } else {
-                                player.sendMessage(Messages.getMessage("AdminAddItemFail"));
+                                player.sendMessage(Messages.getMessage("AdminAddItemFailContraband"));
                             }
+
 
                         } else if (args[1].equalsIgnoreCase("remove")) {
                             if (!player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {

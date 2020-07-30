@@ -10,6 +10,7 @@ ArrestSafeArea: "&3You can't arrest that player, because they are in a safe area
 AdminConfigReload: "&3[Police] &fThe config has been reloaded"
 AdminAddItem: "&3Added item"
 AdminAddItemFail: "&3Please make sure you have an item in your hand"
+AdminAddItemFailContraband: "&3The item you are trying to add has already been added"
 AdminRemoveItem: "&3Removed item"
 AdminRemoveItemFail: "&3Please make sure you have an item in your hand"
 
