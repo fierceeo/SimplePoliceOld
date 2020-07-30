@@ -336,7 +336,7 @@ public class Worker {
     public boolean isItemContraband(ItemStack item) {
         ItemStack[] contraband = this.getFriskList().toArray(new ItemStack[0]);
         if (item != null) {
-            
+
             ItemStack itemToTest = item.clone();
 
             boolean qaInstalled = (Bukkit.getServer().getPluginManager().getPlugin("QualityArmory") != null);
@@ -365,7 +365,7 @@ public class Worker {
                 i++;
             }
 
- 
+
         }
 
         return false;

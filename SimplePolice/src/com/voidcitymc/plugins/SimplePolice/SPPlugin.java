@@ -1,21 +1,15 @@
 package com.voidcitymc.plugins.SimplePolice;
 
-import com.voidcitymc.api.SimplePolice.SimplePoliceAPI;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import com.voidcitymc.api.SimplePolice.SimplePolice;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 
-public class SPPlugin extends JavaPlugin implements SimplePoliceAPI {
+public class SPPlugin extends JavaPlugin implements SimplePolice {
     static HashMap<String, String> lastArrest = new HashMap<String, String>();
     private static SPPlugin instance;
     File DataFile;
@@ -124,77 +118,7 @@ public class SPPlugin extends JavaPlugin implements SimplePoliceAPI {
     }
 
     @Override
-    public ArrayList<String> onlinePoliceList() {
-        return work.onlinePoliceList();
+    public SimplePoliceAPI getApi() {
+        return new SimplePoliceAPI();
     }
-
-    @Override
-    public void addPolice(String uuid) {
-        work.addPolice(uuid);
-    }
-
-    @Override
-    public boolean isPolice(String uuid) {
-        return work.alreadyPolice(uuid);
-    }
-
-    @Override
-    public void removePolice(String uuid) {
-        work.removePolice(uuid);
-
-    }
-
-    @Override
-    public Location policeTp(Player player, int farthestTpDistance) {
-        return work.policeTp(player, farthestTpDistance);
-    }
-
-    @Override
-    public Location policeTp(Player player) {
-        return work.policeTp(player, SPPlugin.getInstance().getConfig().getInt("MaxPoliceTp"));
-    }
-
-    @Override
-    public ArrayList<String> listPolice() {
-        return work.listPolice();
-    }
-
-    @Override
-    public boolean inSafeArea(Player player) {
-        return work.inSafeArea(player);
-    }
-
-    @Override
-    public Material getBatonMaterial() {
-        return work.getBatonMaterial();
-    }
-
-    @Override
-    public Material getFriskStickMaterial() {
-        return work.getFriskStickMaterial();
-    }
-
-    @Override
-    public void addToFriskList(ItemStack item) {
-        work.addToFriskList(item);
-
-    }
-
-    @Override
-    public void removeFromFriskList(ItemStack item) {
-        work.removeFromFriskList(item);
-
-    }
-
-    @Override
-    public List<ItemStack> getFriskList() {
-        return work.getFriskList();
-    }
-
-    @Override
-    public boolean friskingEnabled() {
-        return work.friskingEnabled();
-    }
-
-
 }

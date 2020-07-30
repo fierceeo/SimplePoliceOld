@@ -2,6 +2,7 @@ package com.voidcitymc.api.SimplePolice;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -92,35 +93,64 @@ Material getBatonMaterial();
  * 
  * @return Material material of frisk stick
  */
-public Material getFriskStickMaterial();
+Material getFriskStickMaterial();
 
 /**
- * Add an item to the controband items list
+ * Add an item to the contraband items list
  * 
  * @param item The item to add
  */
-public void addToFriskList(ItemStack item);
+void addToFriskList(ItemStack item);
 
 /**
- * Remove an item to the controband items list
+ * Remove an item to the contraband items list
  * 
  * @param item The item to remove
  */
-public void removeFromFriskList(ItemStack item);
+void removeFromFriskList(ItemStack item);
 
 /**
- * Return a list of all the controband items
+ * Return a list of all the contraband items
+ * Not a recommended way to check if an item is contraband, because it could be a gun.
  * 
- * @return List<ItemStack> A list of all the controband items
+ * @return List<ItemStack> A list of all the contraband items
  */
-public List<ItemStack> getFriskList();
+List<ItemStack> getFriskList();
 
 /**
  * Return if frisking is enabled
  * 
  * @return boolean If frisking is enabled
  */
-public boolean friskingEnabled();
+boolean friskingEnabled();
 
+/**
+ * Check if an item is contraband (recommended way)
+ *
+ * @param item item to check
+ *
+ * @return boolean if the item is contraband
+ */
+boolean isItemContraband(ItemStack item);
+
+/**
+ * Get a plugin message with the path specified in messages.yml
+ *
+ * @param path the path of the message
+ *
+ * @param variables the variables to fill in if this is left blank, then they will be represented as $1, $2, etc.
+ *
+ * @return String the message with color codes translated
+ *
+ */
+String getMessage(String path, String... variables);
+
+/**
+ * Returns a map of all the messages in path > message form
+ * Variables are represented as $1, $2, $3, etc.
+ *
+ * @return Map<String, String>
+ */
+Map<String, String> getMessagesMap();
 
 }
