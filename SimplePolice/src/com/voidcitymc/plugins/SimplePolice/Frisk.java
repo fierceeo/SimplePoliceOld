@@ -47,7 +47,7 @@ public class Frisk implements Listener {
                                 if (!Objects.requireNonNull(Objects.requireNonNull(invToScan.getItem(i)).getItemMeta()).getDisplayName().equals("")) {
                                     textToReturn.add(ChatColor.DARK_AQUA + "" + Objects.requireNonNull(invToScan.getItem(i)).getAmount() + "x " + Objects.requireNonNull(Objects.requireNonNull(invToScan.getItem(i)).getItemMeta()).getDisplayName());
                                 } else {
-                                    textToReturn.add(ChatColor.DARK_AQUA + "" + Objects.requireNonNull(invToScan.getItem(i)).getAmount() + "x " + work.capitalize(Objects.requireNonNull(invToScan.getItem(i)).getType().toString().replace("_", " ")));
+                                    textToReturn.add(ChatColor.DARK_AQUA + "" + Objects.requireNonNull(invToScan.getItem(i)).getAmount() + "x " + work.capitalize((Objects.requireNonNull(invToScan.getItem(i)).getType().toString().replace("_", " ")).toLowerCase()));
                                 }
 
                                 guilty = true;
