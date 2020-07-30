@@ -43,7 +43,13 @@ public class Frisk implements Listener {
                     while (i < contents.length) {
                         if (work.isItemContraband(contents[i])) {
                             if (SPPlugin.getInstance().getConfig().getInt("PercentOfFindingContraband") - (Math.random() * 100) >= 0) {
-                                textToReturn.add(ChatColor.DARK_AQUA + "" + Objects.requireNonNull(invToScan.getItem(i)).getAmount() + "x " + Objects.requireNonNull(Objects.requireNonNull(invToScan.getItem(i)).getItemMeta()).getDisplayName());
+
+                                if (!Objects.requireNonNull(Objects.requireNonNull(invToScan.getItem(i)).getItemMeta()).getDisplayName().equals("")) {
+                                    textToReturn.add(ChatColor.DARK_AQUA + "" + Objects.requireNonNull(invToScan.getItem(i)).getAmount() + "x " + Objects.requireNonNull(Objects.requireNonNull(invToScan.getItem(i)).getItemMeta()).getDisplayName());
+                                } else {
+                                    textToReturn.add(ChatColor.DARK_AQUA + "" + Objects.requireNonNull(invToScan.getItem(i)).getAmount() + "x " + work.capitalize(Objects.requireNonNull(invToScan.getItem(i)).getType().toString().replace("_", " ")));
+                                }
+
                                 guilty = true;
                                 event.getPlayer().getInventory().addItem(invToScan.getContents()[i]);
                                 suspectedPlayer.getInventory().setItem(i, null);
