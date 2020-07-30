@@ -50,7 +50,7 @@ public class Frisk implements Listener {
 
                     while (i < contents.length) {
                         if (work.isItemContraband(contents[i])) {
-                            if (SPPlugin.getInstance().Controband.getInt("PrecentOfFindingControband") - Math.random() * 100 >= 0) {
+                            if (SPPlugin.getInstance().Controband.getInt("PrecentOfFindingControband") - (Math.random() * 100) >= 0) {
                                 textToReturn.add(ChatColor.DARK_AQUA + "" + invToScan.getContents()[i].getAmount() + "x " + invToScan.getContents()[i].getItemMeta().getDisplayName());
                                 guilty = true;
                                 event.getPlayer().getInventory().addItem(invToScan.getContents()[i]);
