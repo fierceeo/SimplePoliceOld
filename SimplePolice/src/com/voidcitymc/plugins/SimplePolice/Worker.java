@@ -339,7 +339,13 @@ public class Worker {
             
             ItemStack itemToTest = item.clone();
 
-            if ((Bukkit.getServer().getPluginManager().getPlugin("QualityArmory") != null) && QualityArmory.isGun(itemToTest)) {
+            boolean qaInstalled = (Bukkit.getServer().getPluginManager().getPlugin("QualityArmory") != null);
+
+            if (qaInstalled && QualityArmory.isGun(itemToTest) && SPPlugin.getInstance().getConfig().getBoolean("MarkAllGunsAsContraband")) {
+                return true;
+            }
+
+            if (qaInstalled && QualityArmory.isGun(itemToTest)) {
                 ItemMeta meta = itemToTest.getItemMeta();
                 if (meta != null) {
                     meta.setLore(Gun.getGunLore(QualityArmory.getGun(itemToTest), itemToTest, 0));
@@ -353,9 +359,12 @@ public class Worker {
                 if (contraband[i].isSimilar(item)) {
                     return true;
                 }
+                if (qaInstalled && QualityArmory.isGun(itemToTest) && Objects.equals(Objects.requireNonNull(itemToTest.getItemMeta()).getLore(), Objects.requireNonNull(contraband[i].getItemMeta()).getLore())) {
+                    return true;
+                }
                 i++;
             }
-            return (Bukkit.getServer().getPluginManager().getPlugin("QualityArmory") != null) && QualityArmory.isGun(itemToTest) && SPPlugin.getInstance().getConfig().getBoolean("MarkAllGunsAsContraband");
+
  
         }
 
