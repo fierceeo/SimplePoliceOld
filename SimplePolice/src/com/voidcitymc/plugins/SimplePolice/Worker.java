@@ -254,7 +254,7 @@ public class Worker {
     }
 
     public Material getFriskStickMaterial() {
-        String mat = SPPlugin.getInstance().Data.getString("FriskStickMaterialType");
+        String mat = SPPlugin.getInstance().getConfig().getString("FriskStickMaterialType");
         if (mat != null && Material.getMaterial(mat) != null) {
             return Material.getMaterial(mat);
         } else {
