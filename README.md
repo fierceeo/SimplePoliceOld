@@ -19,26 +19,39 @@ Here is a list of things this plugin can do:
 https://github.com/ramdon-person/SimplePolice/tree/master/Translations
 
 Jailing System:
+
 You can attack a player with a blaze rod (you can change the baton material in the config.yml file) which will open a gui asking how how long you want to jail that player for.
 
+
 Frisking system:
+
 A frisking system allows you to basically scan players for contraband items.
 Things like the precent chance of an item being detected and the material for the frisk stick can be configured in the config file.
 The frisking system supports custom items, and has support for quality armory guns.
 
+
 911 System:
+
 Players can "dial 911" using /911 (message) or just simply /911 which notifies all the police on the server
 
+
 Police Tp:
+
 Police can teleport to players within a configuged radius of them which notifies the player.
 
+
 Api:
+
 Simple Police has an api which is constantley improving and open to user feedback and suggestions.
 
+
 Plugins that use SimplePolice:
+
 https://www.spigotmc.org/resources/simplebankrobbing.78558/
 
+
 Note: if you would like your plugin added here, please contact me on discord. (My tag is ramdon#9244)
+
 
 **Permissions**
 
