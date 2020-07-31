@@ -42,7 +42,7 @@ Police can teleport to players within a configuged radius of them which notifies
 
 Api:
 
-Simple Police has an api which is constantley improving and open to user feedback and suggestions.
+Simple Police has an api which is constantley improving and is open to user feedback and suggestions.
 
 
 Plugins that use SimplePolice:
