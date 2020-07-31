@@ -9,6 +9,7 @@ To add a police do /police add (username)
 To jail a player, make sure you are a police and attack a player with a blaze rod
 
 **Features**
+
 Here is a list of things this plugin can do:
 1. Lets you arrest players and opens a gui on arrest
 2. Lets you pay police when you arrest a player
