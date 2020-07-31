@@ -37,9 +37,9 @@ public class NineOneOne implements CommandExecutor {
             i = 0;
 
             while (i < playerList.size()) {
-                    Objects.requireNonNull(Bukkit.getPlayerExact(playerList.get(i))).sendMessage(Messages.getMessage("NineOneOneMsgPolice", player.getName(), message.toString()));
+                    Objects.requireNonNull(Bukkit.getPlayerExact(UUID.fromString(playerList.get(i)))).sendMessage(Messages.getMessage("NineOneOneMsgPolice", player.getName(), message.toString()));
                 if (SPPlugin.getInstance().getConfig().getBoolean("ShowCords911")) {
-                    Objects.requireNonNull(Bukkit.getPlayerExact(playerList.get(i))).sendMessage(Messages.getMessage("NineOneOneCordsMessage", player.getName(), String.valueOf(player.getLocation().getBlockX()), String.valueOf(player.getLocation().getBlockY()), String.valueOf(player.getLocation().getBlockZ())));
+                    Objects.requireNonNull(Bukkit.getPlayerExact(UUID.fromString(playerList.get(i)))).sendMessage(Messages.getMessage("NineOneOneCordsMessage", player.getName(), String.valueOf(player.getLocation().getBlockX()), String.valueOf(player.getLocation().getBlockY()), String.valueOf(player.getLocation().getBlockZ())));
                 }
 
                 i++;

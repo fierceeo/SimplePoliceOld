@@ -31,7 +31,7 @@ public class Worker {
 
         //online police list
         while (i < policeList.size()) {
-            if (Bukkit.getPlayerExact(policeList.get(i)) != null) {
+            if (Bukkit.getPlayer(UUID.fromString(policeList.get(i))) != null) {
                 onlinePolice.add(policeList.get(i));
                 //cycle through online police
 
