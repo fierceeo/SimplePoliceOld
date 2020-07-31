@@ -31,7 +31,7 @@ public class Worker {
 
         //online police list
         while (i < policeList.size()) {
-            if (Bukkit.getPlayer(UUID.fromString(policeList.get(i))) != null) {
+            if (Bukkit.getPlayerExact(policeList.get(i)) != null) {
                 onlinePolice.add(policeList.get(i));
                 //cycle through online police
 
@@ -139,13 +139,11 @@ public class Worker {
 
         Object[] objectPoliceArray = police.keySet().toArray();
 
-        String[] policeArrayNotFinal = (String[]) objectPoliceArray;
-
         int i = 0;
 
-        while (i < policeArrayNotFinal.length) {
-            if ((boolean) police.get(policeArrayNotFinal[i])) {
-                policeList.add(policeArrayNotFinal[i]);
+        while (i < objectPoliceArray.length) {
+            if ((boolean) police.get((String) objectPoliceArray[i])) {
+                policeList.add((String) objectPoliceArray[i]);
             }
             i++;
         }
