@@ -82,4 +82,12 @@
 		</dependency>
 
 	</dependencies>
+	
+    <distributionManagement>
+       <repository>
+       <id>github</id>
+       <name>GitHub ramdon-person Apache Maven Packages</name>
+       <url>https://maven.pkg.github.com/ramdon-person/SimplePolice</url>
+        </repository>
+    </distributionManagement>
 </project>
