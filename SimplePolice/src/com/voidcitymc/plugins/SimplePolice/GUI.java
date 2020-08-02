@@ -10,6 +10,9 @@ import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 public class GUI implements Listener {
     @EventHandler
     public void gui(InventoryClickEvent event) {
@@ -24,29 +27,17 @@ public class GUI implements Listener {
         // verify current item is not null
         if (clickedItem == null || clickedItem.getType() == Material.AIR) return;
 
+        int i = event.getRawSlot();
 
-        int jailTime = 0;
+        CustomJailGuiItem customGuiItem = new CustomJailGuiItem();
 
-        if (event.getRawSlot() == 2) {
-            jailTime = 4;
-            event.getWhoClicked().closeInventory();
+
+        if (customGuiItem.isItemNull(i)) {
+            return;
         }
-        if (event.getRawSlot() == 3) {
-            jailTime = 8;
-            event.getWhoClicked().closeInventory();
-        }
-        if (event.getRawSlot() == 4) {
-            jailTime = 10;
-            event.getWhoClicked().closeInventory();
-        }
-        if (event.getRawSlot() == 5) {
-            jailTime = 12;
-            event.getWhoClicked().closeInventory();
-        }
-        if (event.getRawSlot() == 6) {
-            jailTime = 15;
-            event.getWhoClicked().closeInventory();
-        }
+
+        double jailTime = customGuiItem.getJailTime(i);
+
 
         String jailedPlayer = SPPlugin.lastArrest.get(player.getName());
         player.sendMessage(Messages.getMessage("JailTimePoliceMSG", jailedPlayer, String.valueOf(jailTime)));
@@ -59,7 +50,7 @@ public class GUI implements Listener {
 
     @EventHandler
     public void preventShiftgui(InventoryMoveItemEvent event) {
-        if (!((Player) event.getSource().getHolder()).getOpenInventory().getTitle().equalsIgnoreCase("Jail Time"))
+        if (!((Player) Objects.requireNonNull(event.getSource().getHolder())).getOpenInventory().getTitle().equalsIgnoreCase("Jail Time"))
             return;
         event.setCancelled(true);
     }
@@ -81,11 +72,40 @@ public class GUI implements Listener {
 
         Inventory inv = Bukkit.createInventory(null, 9, "Jail Time");
 
-        inv.setItem(2, work.createGuiItem(Material.RED_TERRACOTTA, "§f4M", "§bClick here to jail the player for 4 minutes", ""));
-        inv.setItem(3, work.createGuiItem(Material.ORANGE_TERRACOTTA, "§f8M", "§bClick here to jail the player for 8 minutes", ""));
-        inv.setItem(4, work.createGuiItem(Material.YELLOW_TERRACOTTA, "§f10M", "§bClick here to jail the player for 10 minutes", ""));
-        inv.setItem(5, work.createGuiItem(Material.LIME_TERRACOTTA, "§f12M", "§bClick here to jail the player for 12 minutes", ""));
-        inv.setItem(6, work.createGuiItem(Material.LIGHT_BLUE_TERRACOTTA, "§f15M", "§bClick here to jail the player for 15 minutes", ""));
+        ArrayList<Material> matList = new ArrayList<>();
+        int i = 1;
+
+        CustomJailGuiItem customGuiItem = new CustomJailGuiItem();
+        //itemListFromConfig.get(i) gets a list for the item
+        // (String)((HashMap<String, Object>) itemListFromConfig.get(i)).get(path) where path is material, jailtime, etc. returns info of item
+        while (!customGuiItem.isItemNull(i)) {
+            matList.add(customGuiItem.getMaterial(i));
+            i++;
+        }
+        i--;
+
+
+        boolean hasPerm = false;
+        int cnt = 0;
+        while (cnt < i) {
+            if (!matList.get(cnt + 1).equals(Material.AIR) || matList.get(cnt + 1) != null) {
+                String perm = customGuiItem.getPerm(i);
+
+                if (perm != null) {
+                    if (player.hasPermission(perm)) {
+                        hasPerm = true;
+                    }
+                } else {
+                    hasPerm = true;
+                }
+                if (hasPerm) {
+                    double jailTime = customGuiItem.getJailTime(i);
+                    inv.setItem(cnt + 1, work.createGuiItem(matList.get(cnt + i), "§f" + jailTime + "M", "§bClick here to jail the player for " + jailTime + " minutes", ""));
+                }
+            }
+            cnt++;
+        }
+
 
         return inv;
     }
