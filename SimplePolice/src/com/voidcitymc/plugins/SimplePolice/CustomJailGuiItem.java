@@ -5,6 +5,7 @@ import org.bukkit.Material;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class CustomJailGuiItem {
 //i goes from 1 to 9
@@ -12,7 +13,7 @@ public class CustomJailGuiItem {
 
 
     public boolean isItemNull(int i) {
-        if ( SPPlugin.getInstance().getConfig().getList("ArrestGUI").get(i) == null) {
+        if ( Objects.requireNonNull(SPPlugin.getInstance().getConfig().getList("ArrestGUI")).size() < i) {
             return true;
         } else {
             return false;
