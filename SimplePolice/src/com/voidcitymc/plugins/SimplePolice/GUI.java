@@ -36,7 +36,7 @@ public class GUI implements Listener {
             return;
         }
 
-        double jailTime = customGuiItem.getJailTime(i);
+        double jailTime = customGuiItem.getJailTime(i+1);
 
 
         String jailedPlayer = SPPlugin.lastArrest.get(player.getName());
