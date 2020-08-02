@@ -375,64 +375,54 @@ public class Worker {
 
     }
 
+    public void setConfig(FileConfiguration config, String path, int value) {
+        if (!config.isSet(path)) {
+            config.set(path, value);
+        }
+    }
+    public void setConfig(FileConfiguration config, String path, boolean value) {
+        if (!config.isSet(path)) {
+            config.set(path, value);
+        }
+    }
+    public void setConfig(FileConfiguration config, String path, String value) {
+        if (!config.isSet(path)) {
+            config.set(path, value);
+        }
+    }
+
     public void updateConfig() {
         FileConfiguration config = SPPlugin.getInstance().getConfig();
-        if (!config.isSet("MaxPoliceTp")) {
-            config.set("MaxPoliceTp", 50);
-        }
-        if (!config.isSet("PayPoliceOnArrest")) {
-            config.set("PayPoliceOnArrest", true);
-        }
-        if (!config.isSet("MoneyToGiveToPoliceOnArrest")) {
-            config.set("MoneyToGiveToPoliceOnArrest", 500);
-        }
-        if (!config.isSet("TakeMoneyOnArrest")) {
-            config.set("TakeMoneyOnArrest", false);
-        }
-        if (!config.isSet("PercentOfMoneyToTake")) {
-            config.set("PercentOfMoneyToTake", 20);
-        }
-        if (!config.isSet("SafeArea")) {
-            config.set("SafeArea", false);
-        }
+
+        this.setConfig(config, "MaxPoliceTp", 50);
+        this.setConfig(config, "PayPoliceOnArrest", true);
+        this.setConfig(config, "MoneyToGiveToPoliceOnArrest", 500);
+        this.setConfig(config, "TakeMoneyOnArrest", false);
+        this.setConfig(config, "PercentOfMoneyToTake", 20);
+        this.setConfig(config, "SafeArea", false);
         if (!config.isSet("SafeAreas")) {
             ArrayList<String> safeAreas = new ArrayList<>();
             safeAreas.add("examplesafearea1");
             safeAreas.add("examplesafearea2");
             config.set("SafeAreas", safeAreas);
         }
-        if (!config.isSet("BatonMaterialType")) {
-            config.set("BatonMaterialType", "BLAZE_ROD");
-        }
-        if (!config.isSet("PercentOfFindingContraband")) {
-            config.set("PercentOfFindingContraband", 20);
-        }
-        if (!config.isSet("FriskStickMaterialType")) {
-            config.set("FriskStickMaterialType", "BLAZE_ROD");
-        }
-        if (!config.isSet("MarkAllGunsAsContraband")) {
-            config.set("MarkAllGunsAsContraband", false);
-        }
-        if (!config.isSet("ShowCords911")) {
-            config.set("ShowCords911", false);
-        }
-        if (!config.isSet("FriskCooldown")) {
-            config.set("FriskCooldown", 600);
-        }
-        if (!config.isSet("CmdFor911")) {
-            config.set("CmdFor911n", "911");
-        }
-        if (!config.isSet("CmdForPolice")) {
-            config.set("CmdForPolice", "police");
+        this.setConfig(config,"BatonMaterialType", "BLAZE_ROD");
+        this.setConfig(config,"PercentOfFindingContraband", 20);
+        this.setConfig(config,"FriskStickMaterialType", "BLAZE_ROD");
+        this.setConfig(config,"MarkAllGunsAsContraband", false);
+        this.setConfig(config,"ShowCords911", false);
+        this.setConfig(config,"FriskCooldown", 600);
+        this.setConfig(config,"CmdFor911n", "911");
+        this.setConfig(config,"CmdForPolice", "police");
+        if (!config.isSet("ArrestGUI")) {
+            CustomJailGuiItem cItem = new CustomJailGuiItem();
+            ArrayList<Object> arrestGUI = new ArrayList<>();
+            arrestGUI.add(cItem.setFile("DIRT", 2.2, null));
+            arrestGUI.add(cItem.setFile("AIR", 10.1, null));
+            config.set("ArrestGUI", arrestGUI);
         }
 
-
-        /*
-        if (!config.isSet("MaxPoliceTp")) {
-            config.set("MaxPoliceTp", 50);
-        }
-        */
-
+        SPPlugin.getInstance().saveConfig();
 
     }
 
