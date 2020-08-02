@@ -100,7 +100,7 @@ public class GUI implements Listener {
                 }
                 if (hasPerm) {
                     double jailTime = customGuiItem.getJailTime(i);
-                    inv.setItem(cnt + 1, work.createGuiItem(matList.get(cnt + i), "§f" + jailTime + "M", "§bClick here to jail the player for " + jailTime + " minutes", ""));
+                    inv.setItem(cnt + 1, work.createGuiItem(matList.get(cnt), "§f" + jailTime + "M", "§bClick here to jail the player for " + jailTime + " minutes", ""));
                 }
             }
             cnt++;
