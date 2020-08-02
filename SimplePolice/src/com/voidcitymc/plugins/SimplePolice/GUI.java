@@ -88,7 +88,7 @@ public class GUI implements Listener {
         boolean hasPerm = false;
         int cnt = 0;
         while (cnt < i) {
-            if (!matList.get(cnt + 1).equals(Material.AIR) || matList.get(cnt + 1) != null) {
+            if (!matList.get(cnt).equals(Material.AIR) || matList.get(cnt) != null) {
                 String perm = customGuiItem.getPerm(i);
 
                 if (perm != null) {
