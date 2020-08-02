@@ -42,7 +42,7 @@ public class GUI implements Listener {
         String jailedPlayer = SPPlugin.lastArrest.get(player.getName());
         player.sendMessage(Messages.getMessage("JailTimePoliceMSG", jailedPlayer, String.valueOf(jailTime)));
         if (Bukkit.getPlayerExact(jailedPlayer) != null) {
-            Bukkit.getPlayerExact(jailedPlayer).sendMessage(Messages.getMessage("JailTimeMSG", String.valueOf(jailTime));
+            Bukkit.getPlayerExact(jailedPlayer).sendMessage(Messages.getMessage("JailTimeMSG", String.valueOf(jailTime)));
         }
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "essentials:jail " + jailedPlayer + " jail1 " + jailTime + "m");
         //need to find jailed player
