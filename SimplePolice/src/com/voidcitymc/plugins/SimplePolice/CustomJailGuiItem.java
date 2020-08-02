@@ -13,16 +13,12 @@ public class CustomJailGuiItem {
 
 
     public boolean isItemNull(int i) {
-        if ( Objects.requireNonNull(SPPlugin.getInstance().getConfig().getList("ArrestGUI")).size() < i) {
-            return true;
-        } else {
-            return false;
-        }
+        return Objects.requireNonNull(SPPlugin.getInstance().getConfig().getList("ArrestGUI")).size() < i;
     }
 
     public double getJailTime(int i) {
         if (!this.isItemNull(i)) {
-            return Double.parseDouble(((HashMap<String, String>) SPPlugin.getInstance().getConfig().getList("ArrestGUI").get(i)).get("JailTime"));
+            return Double.parseDouble(((HashMap<String, String>) SPPlugin.getInstance().getConfig().getList("ArrestGUI").get(i-1)).get("JailTime"));
         } else {
             return 0.0;
         }
@@ -30,7 +26,7 @@ public class CustomJailGuiItem {
 
     public Material getMaterial(int i) {
         if (!this.isItemNull(i)) {
-            return Material.valueOf(((HashMap<String, String>) SPPlugin.getInstance().getConfig().getList("ArrestGUI").get(i)).get("Material"));
+            return Material.valueOf(((HashMap<String, String>) SPPlugin.getInstance().getConfig().getList("ArrestGUI").get(i-1)).get("Material"));
         } else {
             return Material.AIR;
         }
@@ -38,7 +34,7 @@ public class CustomJailGuiItem {
 
     public String getPerm(int i) {
         if (!this.isItemNull(i)) {
-            return ((HashMap<String, String>) SPPlugin.getInstance().getConfig().getList("ArrestGUI").get(i)).get("Perm");
+            return ((HashMap<String, String>) SPPlugin.getInstance().getConfig().getList("ArrestGUI").get(i-1)).get("Perm");
         } else {
             return null;
         }
