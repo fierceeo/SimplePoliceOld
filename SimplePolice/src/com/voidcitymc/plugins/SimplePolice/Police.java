@@ -64,12 +64,12 @@ public class Police implements Listener, CommandExecutor {
                         	SPPlugin.getInstance().saveConfig();
                         	player.sendMessage(Messages.getMessage("AdminJailLocSet"));
                         } else if (args[1].equalsIgnoreCase("jail")) {
-                            if (args[2] != null) {
+                            if (args.length > 2) {
                                 if (Bukkit.getPlayerExact(args[2]) != null) {
                                     Jail jailer = new Jail();
-                                    if (args[3] != null) {
+                                    if (args.length > 3) {
                                         jailer.jailPlayer(Bukkit.getPlayerExact(args[2]).getUniqueId(), Double.parseDouble(args[3])*60);
-                                        player.sendMessage(Messages.getMessage("AdminJail", args[2], args[3]+"minutes"));
+                                        player.sendMessage(Messages.getMessage("AdminJail", args[2], args[3]+" minutes"));
                                     } else {
                                         jailer.jailPlayer(Bukkit.getPlayerExact(args[2]).getUniqueId(), 60.0);
                                         player.sendMessage(Messages.getMessage("AdminJail", args[2], "1 minute"));
@@ -103,6 +103,7 @@ public class Police implements Listener, CommandExecutor {
                     if (Bukkit.getPlayerExact(args[1]) != null) {
                         Jail jailer = new Jail();
                         jailer.unjailPlayer(Bukkit.getPlayerExact(args[1]).getUniqueId(), true);
+                        player.sendMessage(Messages.getMessage("UnjailPlayer", args[1]));
                     } else {
                         player.sendMessage(Messages.getMessage("ErrorUnjailingPlayerOffline", args[1]));
                     }

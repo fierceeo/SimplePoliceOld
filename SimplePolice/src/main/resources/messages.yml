@@ -75,3 +75,4 @@ JailTimeUnitForTimeLeftEqual60: "minute"
 JailRelease: "&3You have been released!"
 
 ErrorUnjailingPlayerOffline: "&cSorry You can not unjail $1 because they are offline"
+UnjailPlayer: "&3You have unjailed $1"
