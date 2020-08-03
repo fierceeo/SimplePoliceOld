@@ -106,10 +106,6 @@ public class Jail implements Listener {
     }
 
     public boolean isPlayerJailed(UUID player) {
-        System.out.println("1"+this.cooldowns.get(player.toString()));
-        System.out.println("2"+this.scheduledUnjails.get(player.toString()));
-        System.out.println("3"+this.previousLoc.get(player.toString()));
-        System.out.println("4"+this.originaljailTime.get(player.toString()));
         if (!this.cooldowns.containsKey(player.toString()) && !this.originaljailTime.containsKey(player.toString())) {
             return false;
         } else if (this.isJailTimeOver(player)) {
@@ -145,7 +141,6 @@ public class Jail implements Listener {
     }
 
     public void unjailPlayer(UUID player, boolean teleportBack) {
-        System.out.println("Unjail");
         this.cooldowns.remove(player.toString());
         this.originaljailTime.remove(player.toString());
         this.scheduledUnjails.remove(player.toString());
