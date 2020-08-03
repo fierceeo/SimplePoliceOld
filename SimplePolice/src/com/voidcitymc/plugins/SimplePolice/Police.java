@@ -103,7 +103,7 @@ public class Police implements Listener, CommandExecutor {
                     if (args.length > 1) {
                         if (work.alreadyPolice(Bukkit.getPlayer(args[1]).getUniqueId().toString())) {
                             work.removePolice(Bukkit.getPlayer(args[1]).getUniqueId().toString());
-                            player.sendMessage(Messages.getMessage("PoliceOfficerRemove"));
+                            player.sendMessage(Messages.getMessage("PoliceOfficerRemove", args[1]));
                         } else {
                             player.sendMessage(Messages.getMessage("PoliceOfficerRemoveFail", args[1]));
                         }
