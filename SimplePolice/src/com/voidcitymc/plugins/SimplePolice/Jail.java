@@ -42,8 +42,6 @@ public class Jail implements Listener {
     //Event handlers
     @EventHandler
     public void onTp(PlayerTeleportEvent event) {
-        System.out.println("1"+this.isPlayerJailed(event.getPlayer().getUniqueId()));
-        System.out.println(event.getPlayer().getUniqueId().toString());
         if (this.isPlayerJailed(event.getPlayer().getUniqueId())) {
             event.setCancelled(true);
             int timeLeft = (int) Math.round(timeLeft(event.getPlayer().getUniqueId()));
@@ -147,6 +145,7 @@ public class Jail implements Listener {
     }
 
     public void unjailPlayer(UUID player, boolean teleportBack) {
+        System.out.println("Unjail");
         this.cooldowns.remove(player.toString());
         this.originaljailTime.remove(player.toString());
         this.scheduledUnjails.remove(player.toString());
