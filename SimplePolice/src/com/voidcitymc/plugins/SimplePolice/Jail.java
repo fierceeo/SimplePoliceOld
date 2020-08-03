@@ -1,13 +1,12 @@
 package com.voidcitymc.plugins.SimplePolice;
 
-import com.voidcitymc.api.SimplePolice.SimplePolice;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
-import scala.concurrent.impl.FutureConvertersImpl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +17,7 @@ public class Jail implements Listener {
 
     private final Map<String, Double> originaljailTime = new HashMap<>();
     private final Map<String, Long> cooldowns = new HashMap<>();
+    private final Map<String, Location> previousLoc = new HashMap<>();
 
     private void setCooldown(UUID player, long time) {
         if (time < 1) {
@@ -78,7 +78,7 @@ public class Jail implements Listener {
                     timeLeftText = timeLeft+Messages.getMessage("JailTimeUnitForTimeLeftOver60");
                 }
 
-
+                player.teleport(this.previousLoc.get(player.getUniqueId().toString()));
                 player.sendMessage(Messages.getMessage("PlayerEscapeOutOfJail", timeLeftText));
             }, 1);
 
@@ -90,12 +90,16 @@ public class Jail implements Listener {
     //end event handlers
 
     public double getInitialJailTime(UUID player) {
-        double l = 0;
-        return originaljailTime.getOrDefault(player.toString(), l);
+        double d = 0.0;
+        return originaljailTime.getOrDefault(player.toString(), d);
     }
 
     public double timeLeft(UUID player){
-        return this.originaljailTime.get(player.toString()) - TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - this.getCooldown(player));
+        if (this.isPlayerJailed(player)) {
+            return this.originaljailTime.get(player.toString()) - TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - this.getCooldown(player));
+        } else {
+            return 0.0;
+        }
     }
 
     public boolean isPlayerJailed(UUID player) {
@@ -110,14 +114,27 @@ public class Jail implements Listener {
         }
     }
 
-    public void jailPlayer(UUID player, Double jailTime) {
-        this.setCooldown(player, System.currentTimeMillis());
-        this.originaljailTime.put(player.toString(), jailTime);
+    public void jailPlayer(Player player, Double jailTime) {
+        this.previousLoc.put(player.getUniqueId().toString(), player.getLocation());
+        this.setCooldown(player.getUniqueId(), System.currentTimeMillis());
+        this.originaljailTime.put(player.getUniqueId().toString(), jailTime);
+
+        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(SPPlugin.getInstance(), () -> {
+            this.unjailPlayer(player.getUniqueId(), true);
+            player.sendMessage(Messages.getMessage("JailRelease"));
+        }, (long) (jailTime*20));
+
     }
 
-    public void unjailPlayer(UUID player) {
+    public void unjailPlayer(UUID player, boolean teleportBack) {
         this.cooldowns.remove(player.toString());
         this.originaljailTime.remove(player.toString());
+        if (teleportBack && this.previousLoc.containsKey(player.toString())) {
+            if (Bukkit.getPlayer(player) != null) {
+                Bukkit.getPlayer(player).teleport(this.previousLoc.get(player.toString()));
+            }
+            this.previousLoc.remove(player.toString());
+        }
     }
 
 }
