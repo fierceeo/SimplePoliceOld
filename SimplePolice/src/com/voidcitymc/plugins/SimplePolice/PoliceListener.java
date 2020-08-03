@@ -23,7 +23,7 @@ public class PoliceListener implements Listener {
                 if (work.alreadyPolice(damagerP.getUniqueId().toString()) && work.testForItem(damagerP, Material.BLAZE_ROD, "Police")) /*put stuff here too) */ {
                     damageeP.sendMessage(Messages.getMessage("ArrestMsg"));
                     Jail jailer = new Jail();
-                    jailer.jailPlayer(damageeP, 60.0);
+                    jailer.jailPlayer(damageeP.getUniqueId(), 60.0);
 
                     work.payPoliceOnArrest(damagerP);
                     work.takeMoneyOnArrest(damageeP);
