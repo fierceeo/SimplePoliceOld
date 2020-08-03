@@ -46,7 +46,7 @@ public class GUI implements Listener {
         if (Bukkit.getPlayer(jailedPlayerUUID) != null) {
             Bukkit.getPlayer(jailedPlayerUUID).sendMessage(Messages.getMessage("JailTimeMSG", String.valueOf(jailTime)));
         }
-        Jail jailer = new Jail();
+        Jail jailer = SPPlugin.getInstance().getJailer();
         jailer.jailPlayer(UUID.fromString(jailedPlayerUUID), jailTime*60);
 
     }

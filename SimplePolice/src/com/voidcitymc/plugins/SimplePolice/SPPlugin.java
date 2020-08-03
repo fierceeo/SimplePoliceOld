@@ -18,6 +18,7 @@ public class SPPlugin extends JavaPlugin implements SimplePolice {
     FileConfiguration Controband;
     File MessageFile;
     FileConfiguration Message;
+    Jail jailer = new Jail();
     Worker work = new Worker();
 
     public static SPPlugin getInstance() {
@@ -73,6 +74,10 @@ public class SPPlugin extends JavaPlugin implements SimplePolice {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public Jail getJailer() {
+        return this.jailer;
     }
 
     //enabled
