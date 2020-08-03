@@ -33,7 +33,7 @@ public class PoliceListener implements Listener {
                 damagerP.sendMessage(Messages.getMessage("ArrestSafeArea"));
             }
 
-
+            event.setCancelled(true);
         }
     }
 
