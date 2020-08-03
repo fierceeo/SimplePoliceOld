@@ -55,8 +55,8 @@ public class Police implements Listener, CommandExecutor {
                         	Location loc = player.getLocation();
                         	jailLoc.put("World", (Object) loc.getWorld().getName());
                         	jailLoc.put("X", (Object) loc.getBlockX());
-                        	jailLoc.put("Y", (Object) loc.getBlockX());
-                        	jailLoc.put("Z", (Object) loc.getBlockX());
+                        	jailLoc.put("Y", (Object) loc.getBlockY());
+                        	jailLoc.put("Z", (Object) loc.getBlockZ());
                         	SPPlugin.getInstance().getConfig().set("JailLocation", jailLoc);
                         	SPPlugin.getInstance().saveConfig();
                         	player.sendMessage(Messages.getMessage("AdminJailLocSet"));
