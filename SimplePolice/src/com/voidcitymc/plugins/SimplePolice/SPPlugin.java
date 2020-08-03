@@ -18,7 +18,7 @@ public class SPPlugin extends JavaPlugin implements SimplePolice {
     FileConfiguration Controband;
     File MessageFile;
     FileConfiguration Message;
-    Jail jailer = new Jail();
+    private Jail jailer;
     Worker work = new Worker();
 
     public static SPPlugin getInstance() {
@@ -83,6 +83,7 @@ public class SPPlugin extends JavaPlugin implements SimplePolice {
     //enabled
     @Override
     public void onEnable() {
+        jailer = new Jail();
         instance = this;
         //create config
         this.getConfig().options().copyDefaults(true);
