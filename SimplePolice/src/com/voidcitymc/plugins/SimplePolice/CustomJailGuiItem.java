@@ -1,10 +1,8 @@
 package com.voidcitymc.plugins.SimplePolice;
 
-import it.unimi.dsi.fastutil.Hash;
 import org.bukkit.Material;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
 
 public class CustomJailGuiItem {

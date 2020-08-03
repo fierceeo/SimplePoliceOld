@@ -8,8 +8,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import java.util.Collections;
-
 public class Police implements Listener, CommandExecutor {
 
     @Override
