@@ -117,6 +117,7 @@ public class Jail implements Listener {
     public void jailPlayer(UUID player, Double jailTime) {
         if (Bukkit.getPlayer(player) != null) {
             this.previousLoc.put(player.toString(), Bukkit.getPlayer(player).getLocation());
+            Bukkit.getPlayer(player).teleport(this.jailLocation());
         }
         this.setCooldown(player, System.currentTimeMillis());
         this.originaljailTime.put(player.toString(), jailTime);
@@ -141,7 +142,7 @@ public class Jail implements Listener {
         }
     }
     
-    public static Location jailLocation() {
+    public Location jailLocation() {
     	@SuppressWarnings("unchecked")
 		HashMap<String, Object> jailLoc = ((HashMap<String,Object>) SPPlugin.getInstance().getConfig().getList("JailLocation").get(0));
     	return new Location(Bukkit.getWorld((String) jailLoc.get("World")), (int) jailLoc.get("X"), (int) jailLoc.get("Y"), (int) jailLoc.get("Z"));
