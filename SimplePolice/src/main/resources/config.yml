@@ -53,7 +53,7 @@ ArrestGUI:
   Material: LIGHT_BLUE_TERRACOTTA
   JailTime: '15'
 JailLocation:
-  X: 0
-  Y: 0
-  Z: 0
-  World: world
+  - X: 50
+    Y: 50
+    Z: 50
+    World: world

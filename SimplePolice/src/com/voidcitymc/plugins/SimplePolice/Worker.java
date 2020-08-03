@@ -427,9 +427,9 @@ public class Worker {
         if (!config.isSet("JailLocation")) {
             HashMap<String, Object> jailLoc = new HashMap<String, Object>();
         	jailLoc.put("World", (Object) "world");
-        	jailLoc.put("X", (Object) 0);
-        	jailLoc.put("Y", (Object) 0);
-        	jailLoc.put("Z", (Object) 0);
+        	jailLoc.put("X", (Object) 50);
+        	jailLoc.put("Y", (Object) 50);
+        	jailLoc.put("Z", (Object) 50);
             ArrayList<Object> arrayL = new ArrayList<Object>();
             arrayL.add(jailLoc);
         	config.set("JailLocation", arrayL);

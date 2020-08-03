@@ -52,17 +52,36 @@ public class Police implements Listener, CommandExecutor {
                                 player.sendMessage(Messages.getMessage("AdminRemoveItemFail"));
                             }
                         } else if (args[1].equalsIgnoreCase("setjail")) {
-                        	HashMap<String, Object> jailLoc = new HashMap<String, Object>();
+                        	HashMap<String, Object> jailLoc = new HashMap<>();
                         	Location loc = player.getLocation();
                         	jailLoc.put("World", (Object) loc.getWorld().getName());
                         	jailLoc.put("X", (Object) loc.getBlockX());
                         	jailLoc.put("Y", (Object) loc.getBlockY());
                         	jailLoc.put("Z", (Object) loc.getBlockZ());
-                        	ArrayList<Object> arrayL = new ArrayList<Object>();
+                        	ArrayList<Object> arrayL = new ArrayList<>();
                         	arrayL.add(jailLoc);
                         	SPPlugin.getInstance().getConfig().set("JailLocation", arrayL);
                         	SPPlugin.getInstance().saveConfig();
                         	player.sendMessage(Messages.getMessage("AdminJailLocSet"));
+                        } else if (args[1].equalsIgnoreCase("jail")) {
+                            if (args[2] != null) {
+                                if (Bukkit.getPlayerExact(args[2]) != null) {
+                                    Jail jailer = new Jail();
+                                    if (args[3] != null) {
+                                        jailer.jailPlayer(Bukkit.getPlayerExact(args[2]).getUniqueId(), Double.parseDouble(args[3])*60);
+                                        player.sendMessage(Messages.getMessage("AdminJail", args[2], args[3]+"minutes"));
+                                    } else {
+                                        jailer.jailPlayer(Bukkit.getPlayerExact(args[2]).getUniqueId(), 60.0);
+                                        player.sendMessage(Messages.getMessage("AdminJail", args[2], "1 minute"));
+                                    }
+                                } else {
+                                    player.sendMessage(Messages.getMessage("AdminJailPlayerOffline"));
+                                }
+
+                            } else {
+                                player.sendMessage(Messages.getMessage("AdminJailSpecifyPlayer"));
+                            }
+
                         }
 
                     } else {
@@ -71,6 +90,8 @@ public class Police implements Listener, CommandExecutor {
                         player.sendMessage(Messages.getMessage("PoliceAdminHelp2"));
                         player.sendMessage(Messages.getMessage("PoliceAdminHelp3"));
                         player.sendMessage(Messages.getMessage("PoliceAdminHelp4"));
+                        player.sendMessage(Messages.getMessage("PoliceAdminHelp5"));
+                        player.sendMessage(Messages.getMessage("PoliceAdminHelp6"));
                     }
                 }
             }
@@ -194,10 +215,14 @@ public class Police implements Listener, CommandExecutor {
                 if (args.length > 0) {
                     if (args[0].equalsIgnoreCase("tp")) {
                         if (args.length > 1) {
-                            int MaxValTp = SPPlugin.getInstance().getConfig().getInt("MaxPoliceTp");
-                            player.teleport(work.policeTp(Bukkit.getPlayer(args[1]), MaxValTp));
-                            player.sendMessage(Messages.getMessage("PoliceTp"));
-                            Bukkit.getPlayer(args[1]).sendMessage(Messages.getMessage("PoliceTpComingMessage"));
+                            if (Bukkit.getPlayer(args[1]) != null) {
+                                int MaxValTp = SPPlugin.getInstance().getConfig().getInt("MaxPoliceTp");
+                                player.teleport(work.policeTp(Bukkit.getPlayer(args[1]), MaxValTp));
+                                player.sendMessage(Messages.getMessage("PoliceTp"));
+                                Bukkit.getPlayer(args[1]).sendMessage(Messages.getMessage("PoliceTpComingMessage"));
+                            } else {
+                                player.sendMessage(Messages.getMessage("PoliceTpPlayerOffline"));
+                            }
                         } else {
                             player.sendMessage(Messages.getMessage("PoliceSpecifyPlayer"));
                         }
