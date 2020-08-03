@@ -1,5 +1,6 @@
 package com.voidcitymc.plugins.SimplePolice;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.bukkit.Bukkit;
@@ -57,7 +58,9 @@ public class Police implements Listener, CommandExecutor {
                         	jailLoc.put("X", (Object) loc.getBlockX());
                         	jailLoc.put("Y", (Object) loc.getBlockY());
                         	jailLoc.put("Z", (Object) loc.getBlockZ());
-                        	SPPlugin.getInstance().getConfig().set("JailLocation", jailLoc);
+                        	ArrayList<Object> arrayL = new ArrayList<Object>();
+                        	arrayL.add(jailLoc);
+                        	SPPlugin.getInstance().getConfig().set("JailLocation", arrayL);
                         	SPPlugin.getInstance().saveConfig();
                         	player.sendMessage(Messages.getMessage("AdminJailLocSet"));
                         }

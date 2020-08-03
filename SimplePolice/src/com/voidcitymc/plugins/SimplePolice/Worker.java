@@ -430,7 +430,9 @@ public class Worker {
         	jailLoc.put("X", (Object) 0);
         	jailLoc.put("Y", (Object) 0);
         	jailLoc.put("Z", (Object) 0);
-        	config.set("JailLocation", jailLoc);
+            ArrayList<Object> arrayL = new ArrayList<Object>();
+            arrayL.add(jailLoc);
+        	config.set("JailLocation", arrayL);
         }
     	
         SPPlugin.getInstance().saveConfig();
