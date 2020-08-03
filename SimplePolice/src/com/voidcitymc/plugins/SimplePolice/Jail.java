@@ -108,10 +108,10 @@ public class Jail implements Listener {
     }
 
     public boolean isPlayerJailed(UUID player) {
-        System.out.println("1"+(!this.cooldowns.containsKey(player.toString())));
-        System.out.println("2"+(!this.originaljailTime.containsKey(player.toString())));
-        System.out.println("3"+this.isJailTimeOver(player));
-        System.out.println("4"+player.toString());
+        System.out.println("1"+this.cooldowns.toString());
+        System.out.println("2"+this.scheduledUnjails.toString());
+        System.out.println("3"+this.previousLoc.toString());
+        System.out.println("4"+this.originaljailTime.toString());
         if (!this.cooldowns.containsKey(player.toString()) && !this.originaljailTime.containsKey(player.toString())) {
             return false;
         } else if (this.isJailTimeOver(player)) {
