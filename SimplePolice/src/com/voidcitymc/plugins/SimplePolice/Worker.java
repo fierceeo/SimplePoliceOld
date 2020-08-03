@@ -415,8 +415,13 @@ public class Worker {
         if (!config.isSet("ArrestGUI")) {
             CustomJailGuiItem cItem = new CustomJailGuiItem();
             ArrayList<Object> arrestGUI = new ArrayList<>();
-            arrestGUI.add(cItem.setFile("DIRT", 2.2, null));
-            arrestGUI.add(cItem.setFile("AIR", 10.1, null));
+            arrestGUI.add(cItem.setFile("AIR", 0.0, null));
+            arrestGUI.add(cItem.setFile("AIR", 0.0, null));
+            arrestGUI.add(cItem.setFile("RED_TERRACOTTA", 4.0, null));
+            arrestGUI.add(cItem.setFile("ORANGE_TERRACOTTA", 8.0, null));
+            arrestGUI.add(cItem.setFile("YELLOW_TERRACOTTA", 10.0, null));
+            arrestGUI.add(cItem.setFile("LIME_TERRACOTTA", 12.0, null));
+            arrestGUI.add(cItem.setFile("LIGHT_BLUE_TERRACOTTA", 15.0, null));
             config.set("ArrestGUI", arrestGUI);
         }
         if (!config.isSet("JailLocation")) {

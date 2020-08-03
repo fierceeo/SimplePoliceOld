@@ -30,3 +30,30 @@ MarkAllGunsAsContraband: false
 ShowCords911: false
 #frisk cooldown in seconds
 FriskCooldown: 600
+ArrestGUI:
+- Perm: null
+  Material: AIR
+  JailTime: '2.2'
+- Perm: null
+  Material: AIR
+  JailTime: '10.1'
+- Perm: null
+  Material: RED_TERRACOTTA
+  JailTime: '4'
+- Perm: null
+  Material: ORANGE_TERRACOTTA
+  JailTime: '8'
+- Perm: null
+  Material: YELLOW_TERRACOTTA
+  JailTime: '10'
+- Perm: null
+  Material: LIME_TERRACOTTA
+  JailTime: '12'
+- Perm: null
+  Material: LIGHT_BLUE_TERRACOTTA
+  JailTime: '15'
+JailLocation:
+  X: 0
+  Y: 0
+  Z: 0
+  World: world
