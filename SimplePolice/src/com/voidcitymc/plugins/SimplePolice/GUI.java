@@ -90,6 +90,7 @@ public class GUI implements Listener {
 
         boolean hasPerm = false;
         int cnt = 0;
+        double jailTime;
         while (cnt < i) {
             if (!matList.get(cnt).equals(Material.AIR) || matList.get(cnt) != null) {
                 String perm = customGuiItem.getPerm(i);
@@ -102,7 +103,7 @@ public class GUI implements Listener {
                     hasPerm = true;
                 }
                 if (hasPerm) {
-                    double jailTime = customGuiItem.getJailTime(i-1);
+                    jailTime = customGuiItem.getJailTime(cnt);
                     //to-do translate this
                     inv.setItem(cnt, work.createGuiItem(matList.get(cnt), "§f" + jailTime + "M", "§bClick here to jail the player for " + jailTime + " minutes", ""));
                 }
