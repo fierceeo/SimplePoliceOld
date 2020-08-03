@@ -8,9 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class Jail implements Listener {
@@ -153,8 +151,12 @@ public class Jail implements Listener {
     }
     
     public Location jailLocation() {
-    	@SuppressWarnings("unchecked")
-		HashMap<String, Object> jailLoc = ((HashMap<String, Object>) SPPlugin.getInstance().getConfig().get("JailLocation"));
+    	if (SPPlugin.getInstance().getConfig().get("JailLocation") instanceof HashMap) System.out.println(true);
+        if (SPPlugin.getInstance().getConfig().get("JailLocation") instanceof Map) System.out.println(true);
+        if (SPPlugin.getInstance().getConfig().get("JailLocation") instanceof ArrayList) System.out.println(true);
+        if (SPPlugin.getInstance().getConfig().get("JailLocation") instanceof List) System.out.println(true);
+        @SuppressWarnings("unchecked")
+        HashMap<String, Object> jailLoc = ((HashMap<String, Object>) SPPlugin.getInstance().getConfig().get("JailLocation"));
     	return new Location(Bukkit.getWorld((String) jailLoc.get("World")), (int) jailLoc.get("X"), (int) jailLoc.get("Y"), (int) jailLoc.get("Z"));
     }
 
