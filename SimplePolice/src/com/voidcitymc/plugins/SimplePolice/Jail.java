@@ -42,6 +42,9 @@ public class Jail implements Listener {
     //Event handlers
     @EventHandler
     public void onTp(PlayerTeleportEvent event) {
+        //debug
+        event.getPlayer().sendMessage(SPPlugin.getInstance().getJailer().toString());
+
         if (this.isPlayerJailed(event.getPlayer().getUniqueId())) {
             event.setCancelled(true);
             int timeLeft = (int) Math.round(timeLeft(event.getPlayer().getUniqueId()));
