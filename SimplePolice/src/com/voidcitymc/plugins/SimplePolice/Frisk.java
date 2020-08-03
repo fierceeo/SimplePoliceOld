@@ -13,7 +13,7 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class Frisk implements Listener {
-    private final CooldownManager cooldownManager = new CooldownManager();
+    private final FriskCooldownManager cooldownManager = new FriskCooldownManager();
 
     @EventHandler
     public void onFrisk(PlayerInteractEntityEvent event) {
@@ -25,7 +25,7 @@ public class Frisk implements Listener {
 
                 long timeLeft = System.currentTimeMillis() - cooldownManager.getCooldown(event.getPlayer().getUniqueId(), suspectedPlayer.getUniqueId());
 
-                if (TimeUnit.MILLISECONDS.toSeconds(timeLeft) >= CooldownManager.DEFAULT_COOLDOWN) {
+                if (TimeUnit.MILLISECONDS.toSeconds(timeLeft) >= FriskCooldownManager.DEFAULT_COOLDOWN) {
                     cooldownManager.setCooldown(event.getPlayer().getUniqueId(), suspectedPlayer.getUniqueId(), System.currentTimeMillis());
 
 
@@ -76,7 +76,7 @@ public class Frisk implements Listener {
                     event.getPlayer().sendMessage(textToReturn.toArray(new String[0]));
 
                 } else {
-                    event.getPlayer().sendMessage(Messages.getMessage("FriskTimeLeft", String.valueOf(CooldownManager.DEFAULT_COOLDOWN - TimeUnit.MILLISECONDS.toSeconds(timeLeft))));
+                    event.getPlayer().sendMessage(Messages.getMessage("FriskTimeLeft", String.valueOf(FriskCooldownManager.DEFAULT_COOLDOWN - TimeUnit.MILLISECONDS.toSeconds(timeLeft))));
                 }
 
             }

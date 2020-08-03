@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class CooldownManager {
+public class FriskCooldownManager {
 
     public static final int DEFAULT_COOLDOWN = SPPlugin.getInstance().getConfig().getInt("FriskCooldown"); //10 minutes default
     private final Map<String, Long> cooldowns = new HashMap<>();
