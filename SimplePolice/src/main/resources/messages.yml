@@ -13,6 +13,7 @@ AdminAddItemFail: "&3Please make sure you have an item in your hand"
 AdminAddItemFailContraband: "&3The item you are trying to add has already been added"
 AdminRemoveItem: "&3Removed item"
 AdminRemoveItemFail: "&3Please make sure you have an item in your hand"
+AdminJailLocSet: "&3Jail location added!"
 
 PoliceAdminHelpTitle: "&3[Police]"
 PoliceAdminHelp1: "Admin Commands:"

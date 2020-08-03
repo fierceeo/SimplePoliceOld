@@ -1,6 +1,9 @@
 package com.voidcitymc.plugins.SimplePolice;
 
+import java.util.HashMap;
+
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -47,6 +50,16 @@ public class Police implements Listener, CommandExecutor {
                             } else {
                                 player.sendMessage(Messages.getMessage("AdminRemoveItemFail"));
                             }
+                        } else if (args[1].equalsIgnoreCase("setjail")) {
+                        	HashMap<String, Object> jailLoc = new HashMap<String, Object>();
+                        	Location loc = player.getLocation();
+                        	jailLoc.put("World", (Object) loc.getWorld().getName());
+                        	jailLoc.put("X", (Object) loc.getBlockX());
+                        	jailLoc.put("Y", (Object) loc.getBlockX());
+                        	jailLoc.put("Z", (Object) loc.getBlockX());
+                        	SPPlugin.getInstance().getConfig().set("JailLocation", jailLoc);
+                        	SPPlugin.getInstance().saveConfig();
+                        	player.sendMessage(Messages.getMessage("AdminJailLocSet"));
                         }
 
                     } else {

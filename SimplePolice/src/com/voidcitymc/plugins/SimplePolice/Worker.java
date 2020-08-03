@@ -419,7 +419,15 @@ public class Worker {
             arrestGUI.add(cItem.setFile("AIR", 10.1, null));
             config.set("ArrestGUI", arrestGUI);
         }
-
+        if (!config.isSet("JailLocation")) {
+            HashMap<String, Object> jailLoc = new HashMap<String, Object>();
+        	jailLoc.put("World", (Object) "world");
+        	jailLoc.put("X", (Object) 0);
+        	jailLoc.put("Y", (Object) 0);
+        	jailLoc.put("Z", (Object) 0);
+        	config.set("JailLocation", jailLoc);
+        }
+    	
         SPPlugin.getInstance().saveConfig();
 
     }
