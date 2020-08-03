@@ -151,10 +151,12 @@ public class Jail implements Listener {
     }
     
     public Location jailLocation() {
-    	if (SPPlugin.getInstance().getConfig().get("JailLocation") instanceof HashMap) System.out.println(true);
-        if (SPPlugin.getInstance().getConfig().get("JailLocation") instanceof Map) System.out.println(true);
-        if (SPPlugin.getInstance().getConfig().get("JailLocation") instanceof ArrayList) System.out.println(true);
-        if (SPPlugin.getInstance().getConfig().get("JailLocation") instanceof List) System.out.println(true);
+    	if (SPPlugin.getInstance().getConfig().get("JailLocation") instanceof HashMap) System.out.println("1");
+        if (SPPlugin.getInstance().getConfig().get("JailLocation") instanceof Map) System.out.println("2");
+        if (SPPlugin.getInstance().getConfig().get("JailLocation") instanceof ArrayList) System.out.println("3");
+        if (SPPlugin.getInstance().getConfig().get("JailLocation") instanceof List) System.out.println("4");
+        System.out.println(SPPlugin.getInstance().getConfig().get("JailLocation").toString());
+        System.out.println(SPPlugin.getInstance().getConfig().get("JailLocation"));
         @SuppressWarnings("unchecked")
         HashMap<String, Object> jailLoc = ((HashMap<String, Object>) SPPlugin.getInstance().getConfig().get("JailLocation"));
     	return new Location(Bukkit.getWorld((String) jailLoc.get("World")), (int) jailLoc.get("X"), (int) jailLoc.get("Y"), (int) jailLoc.get("Z"));
