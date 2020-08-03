@@ -12,6 +12,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.UUID;
 
 public class GUI implements Listener {
     @EventHandler
@@ -39,14 +40,14 @@ public class GUI implements Listener {
         double jailTime = customGuiItem.getJailTime(i+1);
 
 
-        String jailedPlayer = SPPlugin.lastArrest.get(player.getName());
+        String jailedPlayerUUID = SPPlugin.lastArrest.get(player.getName()).split(",")[0];
+        String jailedPlayer = SPPlugin.lastArrest.get(player.getName()).split(",")[1];
         player.sendMessage(Messages.getMessage("JailTimePoliceMSG", jailedPlayer, String.valueOf(jailTime)));
-        if (Bukkit.getPlayerExact(jailedPlayer) != null) {
-            Bukkit.getPlayerExact(jailedPlayer).sendMessage(Messages.getMessage("JailTimeMSG", String.valueOf(jailTime)));
+        if (Bukkit.getPlayer(jailedPlayerUUID) != null) {
+            Bukkit.getPlayer(jailedPlayerUUID).sendMessage(Messages.getMessage("JailTimeMSG", String.valueOf(jailTime)));
         }
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "essentials:jail " + jailedPlayer + " jail1 " + jailTime + "m");
-        //need to find jailed player
-
+        Jail jailer = new Jail();
+        jailer.jailPlayer(UUID.fromString(jailedPlayerUUID), jailTime*60);
 
     }
 

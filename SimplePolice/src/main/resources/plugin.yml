@@ -3,7 +3,6 @@ api-version: 1.13
 author: ramdon_person
 main: com.voidcitymc.plugins.SimplePolice.SPPlugin
 version: 3.4
-depend: [Essentials]
 softdepend: [Vault, QualityArmory, WorldGuard, WorldEdit]
 website: https://plugins.voidcitymc.com
 commands:

@@ -114,14 +114,18 @@ public class Jail implements Listener {
         }
     }
 
-    public void jailPlayer(Player player, Double jailTime) {
-        this.previousLoc.put(player.getUniqueId().toString(), player.getLocation());
-        this.setCooldown(player.getUniqueId(), System.currentTimeMillis());
-        this.originaljailTime.put(player.getUniqueId().toString(), jailTime);
+    public void jailPlayer(UUID player, Double jailTime) {
+        if (Bukkit.getPlayer(player) != null) {
+            this.previousLoc.put(player.toString(), Bukkit.getPlayer(player).getLocation());
+        }
+        this.setCooldown(player, System.currentTimeMillis());
+        this.originaljailTime.put(player.toString(), jailTime);
 
         Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(SPPlugin.getInstance(), () -> {
-            this.unjailPlayer(player.getUniqueId(), true);
-            player.sendMessage(Messages.getMessage("JailRelease"));
+            this.unjailPlayer(player, true);
+            if (Bukkit.getPlayer(player) != null) {
+                Bukkit.getPlayer(player).sendMessage(Messages.getMessage("JailRelease"));
+            }
         }, (long) (jailTime*20));
 
     }

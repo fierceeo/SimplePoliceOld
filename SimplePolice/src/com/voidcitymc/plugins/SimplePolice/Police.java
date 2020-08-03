@@ -28,14 +28,6 @@ public class Police implements Listener, CommandExecutor {
                         if (args[1].equalsIgnoreCase("reload")) {
                             SPPlugin.getInstance().reloadConfig();
                             SPPlugin.getInstance().createMessage();
-
-                            if (!SPPlugin.getInstance().getCommand("police").getAliases().contains(SPPlugin.getInstance().getConfig().getString("CmdForPolice"))) {
-                                SPPlugin.getInstance().getCommand("police").setAliases(Collections.singletonList(SPPlugin.getInstance().getConfig().getString("CmdForPolice")));
-                            }
-                            if (!SPPlugin.getInstance().getCommand("police").getAliases().contains(SPPlugin.getInstance().getConfig().getString("CmdFor911"))) {
-                                SPPlugin.getInstance().getCommand("911").setAliases(Collections.singletonList(SPPlugin.getInstance().getConfig().getString("CmdFor911")));
-                            }
-
                             player.sendMessage(Messages.getMessage("AdminConfigReload"));
                         } else if (args[1].equalsIgnoreCase("add")) {
                             if (!work.isItemContraband(player.getInventory().getItemInMainHand())) {
@@ -73,7 +65,12 @@ public class Police implements Listener, CommandExecutor {
 //unjail
             if (args.length > 0 && (player.hasPermission("police.unjail") || work.alreadyPolice(player.getUniqueId().toString()))) {
                 if (args[0].equalsIgnoreCase("unjail")) {
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "essentials:unjail " + args[1]);
+                    if (Bukkit.getPlayerExact(args[1]) != null) {
+                        Jail jailer = new Jail();
+                        jailer.unjailPlayer(Bukkit.getPlayerExact(args[1]).getUniqueId(), true);
+                    } else {
+                        player.sendMessage(Messages.getMessage("ErrorUnjailingPlayerOffline", args[1]));
+                    }
                 }
             }
 

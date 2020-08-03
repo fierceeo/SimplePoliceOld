@@ -60,10 +60,11 @@ FriskPoliceAfterMsg: "&3Contraband items found in player:"
 FriskNoItems: "&3Nothing"
 FriskTimeLeft: "&cYou can frisk this player again in $1 seconds"
 
-
 PlayerEscapeOutOfJail: "&cYou do the crime, you do the time. You have $1 until release jailed"
 JailTimeUnitForTimeLeftUnder60: "seconds"
 JailTimeUnitForTimeLeftEqual1: "second"
 JailTimeUnitForTimeLeftOver60: "minutes"
 JailTimeUnitForTimeLeftEqual60: "minute"
 JailRelease: "&3You have been released!"
+
+ErrorUnjailingPlayerOffline: "&cSorry You can not unjail $1 because they are offline"

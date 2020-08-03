@@ -30,5 +30,3 @@ MarkAllGunsAsContraband: false
 ShowCords911: false
 #frisk cooldown in seconds
 FriskCooldown: 600
-CmdFor911: 911
-CmdForPolice: police
