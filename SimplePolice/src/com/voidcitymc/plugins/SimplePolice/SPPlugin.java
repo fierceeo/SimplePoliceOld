@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.HashMap;
 
 public class SPPlugin extends JavaPlugin implements SimplePolice {
-    static HashMap<String, String> lastArrest = new HashMap<String, String>();
+    static HashMap<String, String> lastArrest = new HashMap<>();
     private static SPPlugin instance;
     File DataFile;
     FileConfiguration Data;
@@ -97,6 +97,7 @@ public class SPPlugin extends JavaPlugin implements SimplePolice {
         getServer().getPluginManager().registerEvents(new GUI(), this);
         getServer().getPluginManager().registerEvents(new PoliceListener(), this);
         getServer().getPluginManager().registerEvents(new Frisk(), this);
+        getServer().getPluginManager().registerEvents(new Jail(), this);
         this.getCommand("police").setExecutor(new Police());
         this.getCommand("911").setExecutor(new NineOneOne());
         this.getCommand("police").setAliases(Collections.singletonList(this.getConfig().getString("CmdForPolice")));

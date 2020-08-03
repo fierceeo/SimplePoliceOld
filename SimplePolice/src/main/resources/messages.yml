@@ -59,3 +59,10 @@ FriskNotGuilty: "&3The police have scanned your inventory and have found no ille
 FriskPoliceAfterMsg: "&3Contraband items found in player:"
 FriskNoItems: "&3Nothing"
 FriskTimeLeft: "&cYou can frisk this player again in $1 seconds"
+
+
+PlayerEscapeOutOfJail: "&cYou do the crime, you do the time. You have $1 until release jailed"
+JailTimeUnitForTimeLeftUnder60: "seconds"
+JailTimeUnitForTimeLeftEqual1: "second"
+JailTimeUnitForTimeLeftOver60: "minutes"
+JailTimeUnitForTimeLeftEqual60: "minute"
