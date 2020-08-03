@@ -33,10 +33,10 @@ FriskCooldown: 600
 ArrestGUI:
 - Perm: null
   Material: AIR
-  JailTime: '2.2'
+  JailTime: '0'
 - Perm: null
   Material: AIR
-  JailTime: '10.1'
+  JailTime: '0'
 - Perm: null
   Material: RED_TERRACOTTA
   JailTime: '4'
