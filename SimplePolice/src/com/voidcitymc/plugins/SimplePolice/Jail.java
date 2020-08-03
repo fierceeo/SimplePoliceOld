@@ -126,7 +126,7 @@ public class Jail implements Listener {
         this.originaljailTime.put(player.toString(), jailTime);
 
         
-        if (this.originaljailTime.containsKey(player.toString())) {
+        if (this.scheduledUnjails.containsKey(player.toString())) {
         	Bukkit.getScheduler().cancelTask(this.scheduledUnjails.get(player.toString()));
         }
         int id = Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(SPPlugin.getInstance(), () -> {
