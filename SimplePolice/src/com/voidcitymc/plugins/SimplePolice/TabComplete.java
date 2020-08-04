@@ -5,8 +5,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.TabCompleteEvent;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TabComplete implements Listener {
 
@@ -23,23 +26,21 @@ public class TabComplete implements Listener {
             }
 
 
-            List<String> completions = new ArrayList<>(event.getCompletions());
+            ArrayList<String> completions = new ArrayList<>(event.getCompletions());
             Player player = (Player) event.getSender();
 
             Worker work = new Worker();
             boolean isPolice = work.alreadyPolice(player.getUniqueId().toString());
 
-
-            if (player.hasPermission("police.admin") && buffer.length == 1) {
-                if (buffer[0].equalsIgnoreCase("admin")) {
-                    //admin reload, /admin setjail, etc.
-                    completions.add("reload");
-                    completions.add("add");
-                    completions.add("remove");
-                    completions.add("setjail");
-                    completions.add("jail");
-                }
+            if (player.hasPermission("police.admin")) {
+                //admin reload, /admin setjail, etc.
+                completions = this.cmdCompleatePlayer(completions, "police admin reload", buffer);
+                completions = this.cmdCompleatePlayer(completions, "police admin add", buffer);
+                completions = this.cmdCompleatePlayer(completions, "police admin remove", buffer);
+                completions = this.cmdCompleatePlayer(completions, "police admin setjail", buffer);
+                completions = this.cmdCompleatePlayer(completions, "police admin jail", buffer);
             }
+
 
 
 
@@ -84,4 +85,12 @@ public class TabComplete implements Listener {
 
     //end event handler
 
+    public ArrayList<String> cmdCompleatePlayer(ArrayList<String> listToAddTo, String command, String[] buffer) {
+        String[] cmd = ("/"+command).split(" ");
+        int maxLength = Math.min(cmd.length, buffer.length)-1;
+        if (!cmd[maxLength].equalsIgnoreCase(buffer[maxLength]) && cmd[maxLength].startsWith(buffer[maxLength])) {
+            listToAddTo.add(cmd[maxLength]);
+        }
+        return listToAddTo;
+    }
 }
