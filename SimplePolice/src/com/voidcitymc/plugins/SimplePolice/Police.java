@@ -22,6 +22,7 @@ public class Police implements Listener, CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             Worker work = new Worker();
+            boolean isPolice = work.alreadyPolice(player.getUniqueId().toString());
 
 
 //add controband item
@@ -98,7 +99,7 @@ public class Police implements Listener, CommandExecutor {
 
 
 //unjail
-            if (args.length > 0 && (player.hasPermission("police.unjail") || work.alreadyPolice(player.getUniqueId().toString()))) {
+            if (args.length > 0 && (player.hasPermission("police.unjail") || isPolice)) {
                 if (args[0].equalsIgnoreCase("unjail")) {
                     if (Bukkit.getPlayerExact(args[1]) != null) {
                         Jail jailer = new Jail();
@@ -149,12 +150,12 @@ public class Police implements Listener, CommandExecutor {
 //help
 
 
-            if ((player.hasPermission("police.help") || work.alreadyPolice(player.getUniqueId().toString())) ) {
+            if ((player.hasPermission("police.help") || isPolice) ) {
                 if (args.length == 0 || args[0].equalsIgnoreCase("help")) {
                     player.sendMessage(Messages.getMessage("PoliceHelpTitle"));
                     player.sendMessage(Messages.getMessage("PoliceHelpCommands"));
                     //police tp help
-                    if (player.hasPermission("police.tp") || work.alreadyPolice(player.getUniqueId().toString())) {
+                    if (player.hasPermission("police.tp") || isPolice) {
                         player.sendMessage(Messages.getMessage("PoliceHelpPoliceTp"));
                     }
                     //police remove help
@@ -168,10 +169,10 @@ public class Police implements Listener, CommandExecutor {
 
 
                     //police unjail
-                    if (player.hasPermission("police.unjail") || work.alreadyPolice(player.getUniqueId().toString())) {
+                    if (player.hasPermission("police.unjail") || isPolice) {
                         player.sendMessage(Messages.getMessage("PoliceHelpPoliceUnjail"));
                     }
-                    if (player.hasPermission("police.chat") || work.alreadyPolice(player.getUniqueId().toString())) {
+                    if (player.hasPermission("police.chat") || isPolice) {
                         player.sendMessage(Messages.getMessage("PoliceHelpPoliceChat"));
                     }
                     if (player.hasPermission("police.admin")) {
@@ -188,7 +189,7 @@ public class Police implements Listener, CommandExecutor {
 
 
 //police tp
-            if (player.hasPermission("police.tp") || work.alreadyPolice(player.getUniqueId().toString())) {
+            if (player.hasPermission("police.tp") || isPolice) {
                 if (args.length > 0) {
                     if (args[0].equalsIgnoreCase("tp")) {
                         if (args.length > 1) {
@@ -208,7 +209,7 @@ public class Police implements Listener, CommandExecutor {
                 }
             }
 
-            if (player.hasPermission("police.chat") || work.alreadyPolice(player.getUniqueId().toString())) {
+            if (player.hasPermission("police.chat") || isPolice) {
                 if (args.length > 0) {
                     if (args[0].equalsIgnoreCase("chat")) {
                         if (args.length > 1) {
