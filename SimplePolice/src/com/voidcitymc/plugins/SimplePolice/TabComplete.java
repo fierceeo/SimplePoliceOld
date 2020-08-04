@@ -13,7 +13,7 @@ public class TabComplete implements Listener {
     //event handler
     @EventHandler
     public void onTab(TabCompleteEvent event) {
-        if (event.getSender() instanceof Player && event.getBuffer().split(" ")[0].equalsIgnoreCase("police")) {
+        if (event.getSender() instanceof Player && event.getBuffer().split(" ")[0].equalsIgnoreCase("/police")) {
             String[] bufferWithCmdPrefix = event.getBuffer().split(" ");
             String[] buffer = new String[bufferWithCmdPrefix.length-1];
             int i = 0;
