@@ -212,10 +212,10 @@ public class Police implements Listener, CommandExecutor {
                 if (args.length > 0) {
                     if (args[0].equalsIgnoreCase("chat")) {
                         if (args.length > 1) {
-                            if (args[2].equalsIgnoreCase("on") || args[2].equalsIgnoreCase("true")) {
+                            if (args[1].equalsIgnoreCase("on") || args[1].equalsIgnoreCase("true")) {
                                 PoliceChat.addPlayerToToggledChat(player.getUniqueId().toString());
                                 player.sendMessage(Messages.getMessage("PoliceChatToggleOn"));
-                            } else if (args[2].equalsIgnoreCase("off") || args[2].equalsIgnoreCase("false")) {
+                            } else if (args[1].equalsIgnoreCase("off") || args[1].equalsIgnoreCase("false")) {
                                 PoliceChat.removePlayerFromToggledChat(player.getUniqueId().toString());
                                 player.sendMessage(Messages.getMessage("PoliceChatToggleOff"));
                             } else {

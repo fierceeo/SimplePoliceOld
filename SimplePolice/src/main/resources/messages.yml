@@ -79,5 +79,5 @@ ErrorUnjailingPlayerOffline: "&cSorry You can not unjail $1 because they are off
 UnjailPlayer: "&3You have unjailed $1"
 
 PoliceChat: "&3[Police Chat]&f $1: $2"
-PoliceChatToggleOff: "&3Police chat toggled on"
-PoliceChatToggleOn: "&3Police chat toggled off"
+PoliceChatToggleOff: "&3Police chat toggled off"
+PoliceChatToggleOn: "&3Police chat toggled on"
