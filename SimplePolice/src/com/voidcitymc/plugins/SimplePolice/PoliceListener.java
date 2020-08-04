@@ -20,8 +20,7 @@ public class PoliceListener implements Listener {
             if (!work.inSafeArea(damageeP)) {
                 if (work.alreadyPolice(damagerP.getUniqueId().toString()) && work.testForItem(damagerP, Material.BLAZE_ROD, "Police")) /*put stuff here too) */ {
                     damageeP.sendMessage(Messages.getMessage("ArrestMsg"));
-                    Jail jailer = SPPlugin.getInstance().getJailer();
-                    damageeP.teleport(jailer.jailLocation());
+                    damageeP.teleport(Jail.jailLocation());
 
                     work.payPoliceOnArrest(damagerP);
                     work.takeMoneyOnArrest(damageeP);
