@@ -99,6 +99,7 @@ public class SPPlugin extends JavaPlugin implements SimplePolice {
         getServer().getPluginManager().registerEvents(new Frisk(), this);
         getServer().getPluginManager().registerEvents(new Jail(), this);
         getServer().getPluginManager().registerEvents(new PoliceChat(), this);
+        getServer().getPluginManager().registerEvents(new TabComplete(), this);
         this.getCommand("police").setExecutor(new Police());
         this.getCommand("911").setExecutor(new NineOneOne());
         this.getCommand("police").setAliases(Collections.singletonList(this.getConfig().getString("CmdForPolice")));
