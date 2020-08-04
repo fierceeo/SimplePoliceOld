@@ -43,8 +43,12 @@ public class Jail implements Listener {
     @EventHandler
     public void onTp(PlayerTeleportEvent event) {
         //debug
-        event.getPlayer().sendMessage(SPPlugin.getInstance().getJailer().toString());
+        System.out.println(this.cooldowns.toString());
+        System.out.println(this.originaljailTime.toString());
+        System.out.println(this.previousLoc.toString());
+        System.out.println(this.scheduledUnjails.toString());
 
+        System.out.println(this.isPlayerJailed(event.getPlayer().getUniqueId()));
         if (this.isPlayerJailed(event.getPlayer().getUniqueId())) {
             event.setCancelled(true);
             int timeLeft = (int) Math.round(timeLeft(event.getPlayer().getUniqueId()));
@@ -109,6 +113,14 @@ public class Jail implements Listener {
     }
 
     public boolean isPlayerJailed(UUID player) {
+        System.out.println(this.cooldowns.toString());
+        System.out.println(this.originaljailTime.toString());
+        System.out.println(this.previousLoc.toString());
+        System.out.println(this.scheduledUnjails.toString());
+
+        System.out.println("1"+!this.cooldowns.containsKey(player.toString()));
+        System.out.println("1"+!this.originaljailTime.containsKey(player.toString()));
+        System.out.println(this.isJailTimeOver(player));
         if (!this.cooldowns.containsKey(player.toString()) && !this.originaljailTime.containsKey(player.toString())) {
             return false;
         } else if (this.isJailTimeOver(player)) {
@@ -141,6 +153,11 @@ public class Jail implements Listener {
         
         this.scheduledUnjails.put(player.toString(), id);
 
+        System.out.println(this.cooldowns.toString());
+        System.out.println(this.originaljailTime.toString());
+        System.out.println(this.previousLoc.toString());
+        System.out.println(this.scheduledUnjails.toString());
+
     }
 
     public void unjailPlayer(UUID player, boolean teleportBack) {
@@ -153,12 +170,24 @@ public class Jail implements Listener {
             }
             this.previousLoc.remove(player.toString());
         }
+
+        System.out.println(this.cooldowns.toString());
+        System.out.println(this.originaljailTime.toString());
+        System.out.println(this.previousLoc.toString());
+        System.out.println(this.scheduledUnjails.toString());
     }
     
     public Location jailLocation() {
-    	@SuppressWarnings("unchecked")
+        System.out.println(this.cooldowns.toString());
+        System.out.println(this.originaljailTime.toString());
+        System.out.println(this.previousLoc.toString());
+        System.out.println(this.scheduledUnjails.toString());
+
+        @SuppressWarnings("unchecked")
 		HashMap<String, Object> jailLoc = ((HashMap<String,Object>) SPPlugin.getInstance().getConfig().getList("JailLocation").get(0));
     	return new Location(Bukkit.getWorld((String) jailLoc.get("World")), (int) jailLoc.get("X"), (int) jailLoc.get("Y"), (int) jailLoc.get("Z"));
+
+
     }
 
 }
