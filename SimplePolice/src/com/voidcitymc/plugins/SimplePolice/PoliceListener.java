@@ -27,12 +27,12 @@ public class PoliceListener implements Listener {
                     SPPlugin.lastArrest.put(damagerP.getName(), damageeP.getUniqueId().toString() + "," + damageeP.getName());
                     GUI gui = new GUI();
                     gui.openInventory(damagerP);
+                    event.setCancelled(true);
                 }
             } else {
                 damagerP.sendMessage(Messages.getMessage("ArrestSafeArea"));
             }
 
-            event.setCancelled(true);
         }
     }
 
