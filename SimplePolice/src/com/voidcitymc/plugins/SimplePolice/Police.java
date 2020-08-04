@@ -149,8 +149,8 @@ public class Police implements Listener, CommandExecutor {
 //help
 
 
-            if ((player.hasPermission("police.help") || work.alreadyPolice(player.getUniqueId().toString())) || (args.length > 0 && args[0].equalsIgnoreCase("help")) ) {
-                if (args.length == 0) {
+            if ((player.hasPermission("police.help") || work.alreadyPolice(player.getUniqueId().toString())) ) {
+                if (args.length == 0 || args[0].equalsIgnoreCase("help")) {
                     player.sendMessage(Messages.getMessage("PoliceHelpTitle"));
                     player.sendMessage(Messages.getMessage("PoliceHelpCommands"));
                     //police tp help
