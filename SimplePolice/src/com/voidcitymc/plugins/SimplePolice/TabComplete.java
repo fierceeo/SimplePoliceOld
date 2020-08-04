@@ -23,7 +23,7 @@ public class TabComplete implements Listener {
             }
 
 
-            List<String> completions = new ArrayList<>();
+            List<String> completions = new ArrayList<>(event.getCompletions());
             Player player = (Player) event.getSender();
 
             Worker work = new Worker();
