@@ -132,14 +132,7 @@ I will be adding support for multiple jails soon!
      alt="Badge"
      style="float: left; margin-right: 10px;" />
 
-Plugin:
-
-https://ci.codemc.io/job/ramdon-person/job/SimplePolice/lastSuccessfulBuild/artifact/SimplePolice/target/SimplePolice-3.3.jar
-
-Api:
-
-https://ci.codemc.io/job/ramdon-person/job/SimplePolice/lastSuccessfulBuild/artifact/SimplePolice-API/target/SimplePolice-API-3.3.jar
-
+https://ci.codemc.io/job/ramdon-person/job/SimplePolice/
 
 **Support:**
 
