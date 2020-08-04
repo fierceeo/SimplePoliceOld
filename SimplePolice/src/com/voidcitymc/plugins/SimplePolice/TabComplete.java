@@ -90,13 +90,13 @@ public class TabComplete implements Listener {
         // /police admin setjail
         String[] cmd = ("/" + command).split(" ");
         if (!(buffer.length == 0)) {
-            int maxLength = Math.min(cmd.length, buffer.length) - 1;
+            int maxLength = Math.min(cmd.length, buffer.length);
             if (!cmd[maxLength].equalsIgnoreCase(buffer[maxLength]) && cmd[maxLength].startsWith(buffer[maxLength])) {
                 listToAddTo.add(cmd[maxLength]);
             }
             return listToAddTo;
-        } else if (!listToAddTo.contains(cmd[0])) {
-            listToAddTo.add(cmd[0]);
+        } else if (!listToAddTo.contains(cmd[1])) {
+            listToAddTo.add(cmd[1]);
         }
         return listToAddTo;
     }
