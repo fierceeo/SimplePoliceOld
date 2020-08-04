@@ -39,26 +39,28 @@ public class Jail implements Listener {
     }
 
 
+    public static String timeLeftText(UUID player) {
+        int timeLeft = ((int) Math.round(timeLeft(player)));
+        String timeLeftText;
+
+        if (timeLeft == 1) {
+            timeLeftText = 1+" "+Messages.getMessage("JailTimeUnitForTimeLeftEqual1");
+        } else if (timeLeft < 60) {
+            timeLeftText = timeLeft+" "+Messages.getMessage("JailTimeUnitForTimeLeftUnder60");
+        } else if (timeLeft == 60) {
+            timeLeftText = 1+" "+Messages.getMessage("JailTimeUnitForTimeLeftEqual60");
+        } else {
+            timeLeftText = Math.round(((double)timeLeft)/60)+" "+Messages.getMessage("JailTimeUnitForTimeLeftOver60");
+        }
+        return timeLeftText;
+    }
+
     //Event handlers
     @EventHandler
     public static void onTp(PlayerTeleportEvent event) {
         if (isPlayerJailed(event.getPlayer().getUniqueId())) {
             event.setCancelled(true);
-            int timeLeft = (((int) Math.round(timeLeft(event.getPlayer().getUniqueId())))/60);
-            String timeLeftText;
-
-            if (timeLeft == 1) {
-                timeLeftText = timeLeft+" "+Messages.getMessage("JailTimeUnitForTimeLeftEqual1");
-            } else if (timeLeft < 60) {
-                timeLeftText = timeLeft+" "+Messages.getMessage("JailTimeUnitForTimeLeftUnder60");
-            } else if (timeLeft == 60) {
-                timeLeftText = timeLeft+" "+Messages.getMessage("JailTimeUnitForTimeLeftEqual60");
-            } else {
-                timeLeftText = timeLeft+" "+Messages.getMessage("JailTimeUnitForTimeLeftOver60");
-            }
-
-
-            event.getPlayer().sendMessage(Messages.getMessage("PlayerEscapeOutOfJail", timeLeftText));
+            event.getPlayer().sendMessage(Messages.getMessage("PlayerEscapeOutOfJail", timeLeftText(event.getPlayer().getUniqueId())));
         }
     }
 
@@ -68,21 +70,9 @@ public class Jail implements Listener {
 
             Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(SPPlugin.getInstance(), () -> {
                 Player player = event.getEntity();
-                int timeLeft = (((int) Math.round(timeLeft(player.getUniqueId())))/60);
-                String timeLeftText;
-
-                if (timeLeft == 1) {
-                    timeLeftText = timeLeft+" "+Messages.getMessage("JailTimeUnitForTimeLeftEqual1");
-                } else if (timeLeft < 60) {
-                    timeLeftText = timeLeft+" "+Messages.getMessage("JailTimeUnitForTimeLeftUnder60");
-                } else if (timeLeft == 60) {
-                    timeLeftText = timeLeft+" "+Messages.getMessage("JailTimeUnitForTimeLeftEqual60");
-                } else {
-                    timeLeftText = timeLeft+" "+Messages.getMessage("JailTimeUnitForTimeLeftOver60");
-                }
 
                 player.teleport(previousLoc.get(player.getUniqueId().toString()));
-                player.sendMessage(Messages.getMessage("PlayerEscapeOutOfJail", timeLeftText));
+                player.sendMessage(Messages.getMessage("PlayerEscapeOutOfJail", timeLeftText(player.getUniqueId())));
             }, 1);
 
         }
