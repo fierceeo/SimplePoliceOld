@@ -34,3 +34,6 @@ permissions:
   police.tp:
     description: Allows you to police tp to a player
     default: op
+  police.chat:
+    description: Allows you to use police chat
+    default: op

@@ -149,7 +149,7 @@ public class Police implements Listener, CommandExecutor {
 //help
 
 
-            if (player.hasPermission("police.help") || work.alreadyPolice(player.getUniqueId().toString())) {
+            if ((player.hasPermission("police.help") || work.alreadyPolice(player.getUniqueId().toString())) || (args.length > 0 && args[0].equalsIgnoreCase("help")) ) {
                 if (args.length == 0) {
                     player.sendMessage(Messages.getMessage("PoliceHelpTitle"));
                     player.sendMessage(Messages.getMessage("PoliceHelpCommands"));
@@ -171,42 +171,18 @@ public class Police implements Listener, CommandExecutor {
                     if (player.hasPermission("police.unjail") || work.alreadyPolice(player.getUniqueId().toString())) {
                         player.sendMessage(Messages.getMessage("PoliceHelpPoliceUnjail"));
                     }
+                    if (player.hasPermission("police.chat") || work.alreadyPolice(player.getUniqueId().toString())) {
+                        player.sendMessage(Messages.getMessage("PoliceHelpPoliceChat"));
+                    }
                     if (player.hasPermission("police.admin")) {
                         player.sendMessage(Messages.getMessage("PoliceHelpPoliceAdmin"));
                     }
 
 
+
+
                     //help info
                     player.sendMessage(Messages.getMessage("PoliceHelpPoliceHelp"));
-                }
-
-                if (args.length > 0) {
-                    if (args[0].equalsIgnoreCase("help")) {
-                        player.sendMessage(Messages.getMessage("PoliceHelpTitle"));
-                        player.sendMessage(Messages.getMessage("PoliceHelpCommands"));
-                        //police tp help
-                        if (player.hasPermission("police.tp") || work.alreadyPolice(player.getUniqueId().toString())) {
-                            player.sendMessage(Messages.getMessage("PoliceHelpPoliceTp"));
-                        }
-                        //police remove help
-                        if (player.hasPermission("police.remove")) {
-                            player.sendMessage(Messages.getMessage("PoliceHelpPoliceRemove"));
-                        }
-                        //police add help
-                        if (player.hasPermission("police.add")) {
-                            player.sendMessage(Messages.getMessage("PoliceHelpPoliceAdd"));
-                        }
-
-                        if (player.hasPermission("police.unjail") || work.alreadyPolice(player.getUniqueId().toString())) {
-                            player.sendMessage(Messages.getMessage("PoliceHelpPoliceUnjail"));
-                        }
-                        if (player.hasPermission("police.admin")) {
-                            player.sendMessage(Messages.getMessage("PoliceHelpPoliceAdmin"));
-                        }
-
-                        //help info
-                        player.sendMessage(Messages.getMessage("PoliceHelpPoliceHelp"));
-                    }
                 }
             }
 
@@ -231,6 +207,35 @@ public class Police implements Listener, CommandExecutor {
                     }
                 }
             }
+
+            if (player.hasPermission("police.chat") || work.alreadyPolice(player.getUniqueId().toString())) {
+                if (args.length > 0) {
+                    if (args[0].equalsIgnoreCase("chat")) {
+                        if (args.length > 1) {
+                            if (args[2].equalsIgnoreCase("on") || args[2].equalsIgnoreCase("true")) {
+                                PoliceChat.addPlayerToToggledChat(player.getUniqueId().toString());
+                                player.sendMessage(Messages.getMessage("PoliceChatToggleOn"));
+                            } else if (args[2].equalsIgnoreCase("off") || args[2].equalsIgnoreCase("false")) {
+                                PoliceChat.removePlayerFromToggledChat(player.getUniqueId().toString());
+                                player.sendMessage(Messages.getMessage("PoliceChatToggleOff"));
+                            } else {
+                                if (PoliceChat.isPoliceChatToggledOn(player.getUniqueId().toString())) {
+                                    player.sendMessage(Messages.getMessage("PoliceChatToggleOff"));
+                                } else {
+                                    player.sendMessage(Messages.getMessage("PoliceChatToggleOn"));
+                                }
+                                PoliceChat.toggleChat(player.getUniqueId().toString());
+                            }
+                        } else {
+                            PoliceChat.toggleChat(player.getUniqueId().toString());
+                        }
+
+                    }
+                }
+            }
+
+
+
             return true;
         } else {
             sender.sendMessage(Messages.getMessage("OnlyPlayersCanUseCMD"));
