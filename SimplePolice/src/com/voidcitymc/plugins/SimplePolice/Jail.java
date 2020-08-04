@@ -42,23 +42,19 @@ public class Jail implements Listener {
     //Event handlers
     @EventHandler
     public static void onTp(PlayerTeleportEvent event) {
-        System.out.println(cooldowns.toString());
-        System.out.println(originaljailTime.toString());
-        System.out.println(previousLoc.toString());
-        System.out.println(scheduledUnjails.toString());
         if (isPlayerJailed(event.getPlayer().getUniqueId())) {
             event.setCancelled(true);
-            int timeLeft = (int) Math.round(timeLeft(event.getPlayer().getUniqueId()));
+            int timeLeft = (((int) Math.round(timeLeft(event.getPlayer().getUniqueId())))/60);
             String timeLeftText;
 
             if (timeLeft == 1) {
-                timeLeftText = timeLeft+Messages.getMessage("JailTimeUnitForTimeLeftEqual1");
+                timeLeftText = timeLeft+" "+Messages.getMessage("JailTimeUnitForTimeLeftEqual1");
             } else if (timeLeft < 60) {
-                timeLeftText = timeLeft+Messages.getMessage("JailTimeUnitForTimeLeftUnder60");
+                timeLeftText = timeLeft+" "+Messages.getMessage("JailTimeUnitForTimeLeftUnder60");
             } else if (timeLeft == 60) {
-                timeLeftText = timeLeft+Messages.getMessage("JailTimeUnitForTimeLeftEqual60");
+                timeLeftText = timeLeft+" "+Messages.getMessage("JailTimeUnitForTimeLeftEqual60");
             } else {
-                timeLeftText = timeLeft+Messages.getMessage("JailTimeUnitForTimeLeftOver60");
+                timeLeftText = timeLeft+" "+Messages.getMessage("JailTimeUnitForTimeLeftOver60");
             }
 
 
@@ -72,17 +68,17 @@ public class Jail implements Listener {
 
             Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(SPPlugin.getInstance(), () -> {
                 Player player = event.getEntity();
-                int timeLeft = (int) Math.round(timeLeft(player.getUniqueId()));
+                int timeLeft = (((int) Math.round(timeLeft(player.getUniqueId())))/60);
                 String timeLeftText;
 
                 if (timeLeft == 1) {
-                    timeLeftText = timeLeft+Messages.getMessage("JailTimeUnitForTimeLeftEqual1");
+                    timeLeftText = timeLeft+" "+Messages.getMessage("JailTimeUnitForTimeLeftEqual1");
                 } else if (timeLeft < 60) {
-                    timeLeftText = timeLeft+Messages.getMessage("JailTimeUnitForTimeLeftUnder60");
+                    timeLeftText = timeLeft+" "+Messages.getMessage("JailTimeUnitForTimeLeftUnder60");
                 } else if (timeLeft == 60) {
-                    timeLeftText = timeLeft+Messages.getMessage("JailTimeUnitForTimeLeftEqual60");
+                    timeLeftText = timeLeft+" "+Messages.getMessage("JailTimeUnitForTimeLeftEqual60");
                 } else {
-                    timeLeftText = timeLeft+Messages.getMessage("JailTimeUnitForTimeLeftOver60");
+                    timeLeftText = timeLeft+" "+Messages.getMessage("JailTimeUnitForTimeLeftOver60");
                 }
 
                 player.teleport(previousLoc.get(player.getUniqueId().toString()));
