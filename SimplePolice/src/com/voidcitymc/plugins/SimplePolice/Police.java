@@ -54,10 +54,10 @@ public class Police implements Listener, CommandExecutor {
                         } else if (args[1].equalsIgnoreCase("setjail")) {
                         	HashMap<String, Object> jailLoc = new HashMap<>();
                         	Location loc = player.getLocation();
-                        	jailLoc.put("World", (Object) loc.getWorld().getName());
-                        	jailLoc.put("X", (Object) loc.getBlockX());
-                        	jailLoc.put("Y", (Object) loc.getBlockY());
-                        	jailLoc.put("Z", (Object) loc.getBlockZ());
+                        	jailLoc.put("World", loc.getWorld().getName());
+                        	jailLoc.put("X", loc.getBlockX());
+                        	jailLoc.put("Y", loc.getBlockY());
+                        	jailLoc.put("Z", loc.getBlockZ());
                         	ArrayList<Object> arrayL = new ArrayList<>();
                         	arrayL.add(jailLoc);
                         	SPPlugin.getInstance().getConfig().set("JailLocation", arrayL);
