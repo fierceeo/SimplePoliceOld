@@ -68,7 +68,7 @@ public class Police implements Listener, CommandExecutor {
                                 if (Bukkit.getPlayerExact(args[2]) != null) {
                                     if (args.length > 3) {
                                         Jail.jailPlayer(Bukkit.getPlayerExact(args[2]).getUniqueId(), Double.parseDouble(args[3])*60);
-                                        player.sendMessage(Messages.getMessage("AdminJail", args[2], args[3]+" minutes"));
+                                        player.sendMessage(Messages.getMessage("AdminJail", args[2], Jail.timeLeftText(Integer.parseInt(args[3]))));
                                     } else {
                                         Jail.jailPlayer(Bukkit.getPlayerExact(args[2]).getUniqueId(), 60.0);
                                         player.sendMessage(Messages.getMessage("AdminJail", args[2], "1 minute"));

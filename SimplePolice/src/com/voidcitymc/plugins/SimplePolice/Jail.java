@@ -38,23 +38,6 @@ public class Jail implements Listener {
         return TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - getCooldown(player)) >= originaljailTime.get(player.toString());
     }
 
-
-    public static String timeLeftText(UUID player) {
-        int timeLeft = ((int) Math.round(timeLeft(player)));
-        String timeLeftText;
-
-        if (timeLeft == 1) {
-            timeLeftText = 1+" "+Messages.getMessage("JailTimeUnitForTimeLeftEqual1");
-        } else if (timeLeft < 60) {
-            timeLeftText = timeLeft+" "+Messages.getMessage("JailTimeUnitForTimeLeftUnder60");
-        } else if (timeLeft == 60) {
-            timeLeftText = 1+" "+Messages.getMessage("JailTimeUnitForTimeLeftEqual60");
-        } else {
-            timeLeftText = Math.round(((double)timeLeft)/60)+" "+Messages.getMessage("JailTimeUnitForTimeLeftOver60");
-        }
-        return timeLeftText;
-    }
-
     //Event handlers
     @EventHandler
     public static void onTp(PlayerTeleportEvent event) {
@@ -81,6 +64,37 @@ public class Jail implements Listener {
 
 
     //end event handlers
+
+    public static String timeLeftText(UUID player) {
+        int timeLeft = ((int) Math.round(timeLeft(player)));
+        String timeLeftText;
+
+        if (timeLeft == 1) {
+            timeLeftText = 1+" "+Messages.getMessage("JailTimeUnitForTimeLeftEqual1");
+        } else if (timeLeft < 60) {
+            timeLeftText = timeLeft+" "+Messages.getMessage("JailTimeUnitForTimeLeftUnder60");
+        } else if (timeLeft == 60) {
+            timeLeftText = 1+" "+Messages.getMessage("JailTimeUnitForTimeLeftEqual60");
+        } else {
+            timeLeftText = Math.round(((double)timeLeft)/60)+" "+Messages.getMessage("JailTimeUnitForTimeLeftOver60");
+        }
+        return timeLeftText;
+    }
+
+    public static String timeLeftText(int seconds) {
+        String timeLeftText;
+
+        if (seconds == 1) {
+            timeLeftText = 1+" "+Messages.getMessage("JailTimeUnitForTimeLeftEqual1");
+        } else if (seconds < 60) {
+            timeLeftText = seconds +" "+Messages.getMessage("JailTimeUnitForTimeLeftUnder60");
+        } else if (seconds == 60) {
+            timeLeftText = 1+" "+Messages.getMessage("JailTimeUnitForTimeLeftEqual60");
+        } else {
+            timeLeftText = Math.round(((double) seconds)/60)+" "+Messages.getMessage("JailTimeUnitForTimeLeftOver60");
+        }
+        return timeLeftText;
+    }
 
     public static double getInitialJailTime(UUID player) {
         double d = 0.0;
