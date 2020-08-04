@@ -67,6 +67,7 @@ public class TabComplete implements Listener {
                 }
             }
 
+            event.setCompletions(compleations);
 
         }
     }
