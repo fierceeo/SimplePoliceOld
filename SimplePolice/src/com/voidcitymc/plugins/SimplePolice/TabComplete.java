@@ -1,6 +1,7 @@
 package com.voidcitymc.plugins.SimplePolice;
 
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.TabCompleteEvent;
 
@@ -10,10 +11,19 @@ import java.util.List;
 public class TabComplete implements Listener {
 
     //event handler
+    @EventHandler
     public void onTab(TabCompleteEvent event) {
-        if (event.getSender() instanceof Player) {
-            String[] buffer = event.getBuffer().split(" ");
-            List<String> compleations = new ArrayList<>();
+        if (event.getSender() instanceof Player && event.getBuffer().split(" ")[0].equalsIgnoreCase("police")) {
+            String[] bufferWithCmdPrefix = event.getBuffer().split(" ");
+            String[] buffer = new String[bufferWithCmdPrefix.length-1];
+            int i = 0;
+            while (i < buffer.length) {
+                buffer[i] = bufferWithCmdPrefix[i+1];
+                i++;
+            }
+
+
+            List<String> completions = new ArrayList<>();
             Player player = (Player) event.getSender();
 
             Worker work = new Worker();
@@ -23,11 +33,11 @@ public class TabComplete implements Listener {
             if (player.hasPermission("police.admin") && buffer.length == 1) {
                 if (buffer[0].equalsIgnoreCase("admin")) {
                     //admin reload, /admin setjail, etc.
-                    compleations.add("reload");
-                    compleations.add("add");
-                    compleations.add("remove");
-                    compleations.add("setjail");
-                    compleations.add("jail");
+                    completions.add("reload");
+                    completions.add("add");
+                    completions.add("remove");
+                    completions.add("setjail");
+                    completions.add("jail");
                 }
             }
 
@@ -38,36 +48,36 @@ public class TabComplete implements Listener {
                 if (buffer.length == 0) {
 
                     if (player.hasPermission("police.tp") || isPolice) {
-                        compleations.add("tp");
+                        completions.add("tp");
                     }
                     if (player.hasPermission("police.remove")) {
-                        compleations.add("remove");
+                        completions.add("remove");
                     }
                     if (player.hasPermission("police.add")) {
-                        compleations.add("add");
+                        completions.add("add");
                     }
                     if (player.hasPermission("police.unjail") || isPolice) {
-                        compleations.add("unjail");
+                        completions.add("unjail");
                     }
                     if (player.hasPermission("police.chat") || isPolice) {
-                        compleations.add("chat");
+                        completions.add("chat");
                     }
                     if (player.hasPermission("police.admin")) {
-                        compleations.add("admin");
+                        completions.add("admin");
                     }
-                    compleations.add("help");
+                    completions.add("help");
                 }
             }
 
 
             if (player.hasPermission("police.chat") || isPolice) {
                 if (buffer.length == 1 && buffer[0].equalsIgnoreCase("chat")) {
-                    compleations.add("on");
-                    compleations.add("off");
+                    completions.add("on");
+                    completions.add("off");
                 }
             }
 
-            event.setCompletions(compleations);
+            event.setCompletions(completions);
 
         }
     }
