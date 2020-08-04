@@ -30,6 +30,7 @@ MarkAllGunsAsContraband: false
 ShowCords911: false
 #frisk cooldown in seconds
 FriskCooldown: 600
+UsePlayerDisplayNameInPoliceChat: true
 ArrestGUI:
 - Perm: null
   Material: AIR
