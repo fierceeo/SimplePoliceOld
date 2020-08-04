@@ -142,7 +142,7 @@ public class Worker {
         int i = 0;
 
         while (i < objectPoliceArray.length) {
-            if ((boolean) police.get((String) objectPoliceArray[i])) {
+            if ((boolean) police.get(objectPoliceArray[i])) {
                 policeList.add((String) objectPoliceArray[i]);
             }
             i++;
@@ -380,11 +380,13 @@ public class Worker {
             config.set(path, value);
         }
     }
+
     public void setConfig(FileConfiguration config, String path, boolean value) {
         if (!config.isSet(path)) {
             config.set(path, value);
         }
     }
+
     public void setConfig(FileConfiguration config, String path, String value) {
         if (!config.isSet(path)) {
             config.set(path, value);
@@ -406,12 +408,12 @@ public class Worker {
             safeAreas.add("examplesafearea2");
             config.set("SafeAreas", safeAreas);
         }
-        this.setConfig(config,"BatonMaterialType", "BLAZE_ROD");
-        this.setConfig(config,"PercentOfFindingContraband", 20);
-        this.setConfig(config,"FriskStickMaterialType", "BLAZE_ROD");
-        this.setConfig(config,"MarkAllGunsAsContraband", false);
-        this.setConfig(config,"ShowCords911", false);
-        this.setConfig(config,"FriskCooldown", 600);
+        this.setConfig(config, "BatonMaterialType", "BLAZE_ROD");
+        this.setConfig(config, "PercentOfFindingContraband", 20);
+        this.setConfig(config, "FriskStickMaterialType", "BLAZE_ROD");
+        this.setConfig(config, "MarkAllGunsAsContraband", false);
+        this.setConfig(config, "ShowCords911", false);
+        this.setConfig(config, "FriskCooldown", 600);
         if (!config.isSet("ArrestGUI")) {
             CustomJailGuiItem cItem = new CustomJailGuiItem();
             ArrayList<Object> arrestGUI = new ArrayList<>();
@@ -425,16 +427,16 @@ public class Worker {
             config.set("ArrestGUI", arrestGUI);
         }
         if (!config.isSet("JailLocation")) {
-            HashMap<String, Object> jailLoc = new HashMap<String, Object>();
-        	jailLoc.put("World", (Object) "world");
-        	jailLoc.put("X", (Object) 50);
-        	jailLoc.put("Y", (Object) 50);
-        	jailLoc.put("Z", (Object) 50);
-            ArrayList<Object> arrayL = new ArrayList<Object>();
+            HashMap<String, Object> jailLoc = new HashMap<>();
+            jailLoc.put("World", "world");
+            jailLoc.put("X", 50);
+            jailLoc.put("Y", 50);
+            jailLoc.put("Z", 50);
+            ArrayList<Object> arrayL = new ArrayList<>();
             arrayL.add(jailLoc);
-        	config.set("JailLocation", arrayL);
+            config.set("JailLocation", arrayL);
         }
-    	
+
         SPPlugin.getInstance().saveConfig();
 
     }

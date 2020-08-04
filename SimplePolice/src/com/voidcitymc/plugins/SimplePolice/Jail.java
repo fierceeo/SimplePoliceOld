@@ -10,6 +10,7 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -18,9 +19,9 @@ public class Jail implements Listener {
     private static final Map<String, Double> originaljailTime = new HashMap<>();
     private static final Map<String, Long> cooldowns = new HashMap<>();
     private static final Map<String, Location> previousLoc = new HashMap<>();
-    
+
     //uuid > taskId
-    private static final Map<String, Integer> scheduledUnjails= new HashMap<>();
+    private static final Map<String, Integer> scheduledUnjails = new HashMap<>();
 
     private static void setCooldown(UUID player, long time) {
         if (time < 1) {
@@ -34,6 +35,7 @@ public class Jail implements Listener {
         long l = 0;
         return cooldowns.getOrDefault(player.toString(), l);
     }
+
     private static boolean isJailTimeOver(UUID player) {
         return TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - getCooldown(player)) >= originaljailTime.get(player.toString());
     }
@@ -70,13 +72,13 @@ public class Jail implements Listener {
         String timeLeftText;
 
         if (timeLeft == 1) {
-            timeLeftText = 1+" "+Messages.getMessage("JailTimeUnitForTimeLeftEqual1");
+            timeLeftText = 1 + " " + Messages.getMessage("JailTimeUnitForTimeLeftEqual1");
         } else if (timeLeft < 60) {
-            timeLeftText = timeLeft+" "+Messages.getMessage("JailTimeUnitForTimeLeftUnder60");
+            timeLeftText = timeLeft + " " + Messages.getMessage("JailTimeUnitForTimeLeftUnder60");
         } else if (timeLeft == 60) {
-            timeLeftText = 1+" "+Messages.getMessage("JailTimeUnitForTimeLeftEqual60");
+            timeLeftText = 1 + " " + Messages.getMessage("JailTimeUnitForTimeLeftEqual60");
         } else {
-            timeLeftText = Math.round(((double)timeLeft)/60)+" "+Messages.getMessage("JailTimeUnitForTimeLeftOver60");
+            timeLeftText = Math.round(((double) timeLeft) / 60) + " " + Messages.getMessage("JailTimeUnitForTimeLeftOver60");
         }
         return timeLeftText;
     }
@@ -85,13 +87,13 @@ public class Jail implements Listener {
         String timeLeftText;
 
         if (seconds == 1) {
-            timeLeftText = 1+" "+Messages.getMessage("JailTimeUnitForTimeLeftEqual1");
+            timeLeftText = 1 + " " + Messages.getMessage("JailTimeUnitForTimeLeftEqual1");
         } else if (seconds < 60) {
-            timeLeftText = seconds +" "+Messages.getMessage("JailTimeUnitForTimeLeftUnder60");
+            timeLeftText = seconds + " " + Messages.getMessage("JailTimeUnitForTimeLeftUnder60");
         } else if (seconds == 60) {
-            timeLeftText = 1+" "+Messages.getMessage("JailTimeUnitForTimeLeftEqual60");
+            timeLeftText = 1 + " " + Messages.getMessage("JailTimeUnitForTimeLeftEqual60");
         } else {
-            timeLeftText = Math.round(((double) seconds)/60)+" "+Messages.getMessage("JailTimeUnitForTimeLeftOver60");
+            timeLeftText = Math.round(((double) seconds) / 60) + " " + Messages.getMessage("JailTimeUnitForTimeLeftOver60");
         }
         return timeLeftText;
     }
@@ -101,7 +103,7 @@ public class Jail implements Listener {
         return originaljailTime.getOrDefault(player.toString(), d);
     }
 
-    public static double timeLeft(UUID player){
+    public static double timeLeft(UUID player) {
         if (isPlayerJailed(player)) {
             return originaljailTime.get(player.toString()) - TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - getCooldown(player));
         } else {
@@ -123,23 +125,23 @@ public class Jail implements Listener {
 
     public static void jailPlayer(UUID player, Double jailTime) {
         if (Bukkit.getPlayer(player) != null) {
-            previousLoc.put(player.toString(), Bukkit.getPlayer(player).getLocation());
-            Bukkit.getPlayer(player).teleport(jailLocation());
+            previousLoc.put(player.toString(), Objects.requireNonNull(Bukkit.getPlayer(player)).getLocation());
+            Objects.requireNonNull(Bukkit.getPlayer(player)).teleport(jailLocation());
         }
         setCooldown(player, System.currentTimeMillis());
         originaljailTime.put(player.toString(), jailTime);
 
-        
+
         if (scheduledUnjails.containsKey(player.toString())) {
-        	Bukkit.getScheduler().cancelTask(scheduledUnjails.get(player.toString()));
+            Bukkit.getScheduler().cancelTask(scheduledUnjails.get(player.toString()));
         }
         int id = Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(SPPlugin.getInstance(), () -> {
             unjailPlayer(player, true);
             if (Bukkit.getPlayer(player) != null) {
-                Bukkit.getPlayer(player).sendMessage(Messages.getMessage("JailRelease"));
+                Objects.requireNonNull(Bukkit.getPlayer(player)).sendMessage(Messages.getMessage("JailRelease"));
             }
-        }, (long) (jailTime*20));
-        
+        }, (long) (jailTime * 20));
+
         scheduledUnjails.put(player.toString(), id);
 
     }
@@ -150,16 +152,16 @@ public class Jail implements Listener {
         scheduledUnjails.remove(player.toString());
         if (teleportBack && previousLoc.containsKey(player.toString())) {
             if (Bukkit.getPlayer(player) != null) {
-                Bukkit.getPlayer(player).teleport(previousLoc.get(player.toString()));
+                Objects.requireNonNull(Bukkit.getPlayer(player)).teleport(previousLoc.get(player.toString()));
             }
             previousLoc.remove(player.toString());
         }
     }
-    
+
     public static Location jailLocation() {
-    	@SuppressWarnings("unchecked")
-		HashMap<String, Object> jailLoc = ((HashMap<String,Object>) SPPlugin.getInstance().getConfig().getList("JailLocation").get(0));
-    	return new Location(Bukkit.getWorld((String) jailLoc.get("World")), (int) jailLoc.get("X"), (int) jailLoc.get("Y"), (int) jailLoc.get("Z"));
+        @SuppressWarnings("unchecked")
+        HashMap<String, Object> jailLoc = ((HashMap<String, Object>) Objects.requireNonNull(SPPlugin.getInstance().getConfig().getList("JailLocation")).get(0));
+        return new Location(Bukkit.getWorld((String) jailLoc.get("World")), (int) jailLoc.get("X"), (int) jailLoc.get("Y"), (int) jailLoc.get("Z"));
     }
 
 }

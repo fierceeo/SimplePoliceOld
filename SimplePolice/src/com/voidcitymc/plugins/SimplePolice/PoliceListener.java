@@ -24,7 +24,7 @@ public class PoliceListener implements Listener {
 
                     work.payPoliceOnArrest(damagerP);
                     work.takeMoneyOnArrest(damageeP);
-                    SPPlugin.lastArrest.put(damagerP.getName(), damageeP.getUniqueId().toString()+","+damageeP.getName());
+                    SPPlugin.lastArrest.put(damagerP.getName(), damageeP.getUniqueId().toString() + "," + damageeP.getName());
                     GUI gui = new GUI();
                     gui.openInventory(damagerP);
                 }

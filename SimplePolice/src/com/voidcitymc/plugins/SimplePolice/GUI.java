@@ -37,16 +37,16 @@ public class GUI implements Listener {
             return;
         }
 
-        double jailTime = customGuiItem.getJailTime(i+1);
+        double jailTime = customGuiItem.getJailTime(i + 1);
 
 
         String jailedPlayerUUID = SPPlugin.lastArrest.get(player.getName()).split(",")[0];
         String jailedPlayer = SPPlugin.lastArrest.get(player.getName()).split(",")[1];
         player.sendMessage(Messages.getMessage("JailTimePoliceMSG", jailedPlayer, String.valueOf(jailTime)));
         if (Bukkit.getPlayer(jailedPlayerUUID) != null) {
-            Bukkit.getPlayer(jailedPlayerUUID).sendMessage(Messages.getMessage("JailTimeMSG", String.valueOf(jailTime)));
+            Objects.requireNonNull(Bukkit.getPlayer(jailedPlayerUUID)).sendMessage(Messages.getMessage("JailTimeMSG", String.valueOf(jailTime)));
         }
-        Jail.jailPlayer(UUID.fromString(jailedPlayerUUID), jailTime*60);
+        Jail.jailPlayer(UUID.fromString(jailedPlayerUUID), jailTime * 60);
 
     }
 
@@ -59,11 +59,7 @@ public class GUI implements Listener {
 
 
     public void openInventory(final Player player) {
-        Bukkit.getScheduler().scheduleSyncDelayedTask(SPPlugin.getInstance(), new Runnable() {
-            public void run() {
-                player.openInventory(createGUI(player));
-            }
-        }, 1L);
+        Bukkit.getScheduler().scheduleSyncDelayedTask(SPPlugin.getInstance(), () -> player.openInventory(createGUI(player)), 1L);
 
     }
 
@@ -102,7 +98,7 @@ public class GUI implements Listener {
                     hasPerm = true;
                 }
                 if (hasPerm) {
-                    jailTime = customGuiItem.getJailTime(cnt+1);
+                    jailTime = customGuiItem.getJailTime(cnt + 1);
                     //to-do translate this
                     inv.setItem(cnt, work.createGuiItem(matList.get(cnt), "§f" + jailTime + "M", "§bClick here to jail the player for " + jailTime + " minutes", ""));
                 }

@@ -1,8 +1,5 @@
 package com.voidcitymc.plugins.SimplePolice;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -11,6 +8,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
 
 public class Police implements Listener, CommandExecutor {
 
@@ -52,25 +53,25 @@ public class Police implements Listener, CommandExecutor {
                                 player.sendMessage(Messages.getMessage("AdminRemoveItemFail"));
                             }
                         } else if (args[1].equalsIgnoreCase("setjail")) {
-                        	HashMap<String, Object> jailLoc = new HashMap<>();
-                        	Location loc = player.getLocation();
-                        	jailLoc.put("World", loc.getWorld().getName());
-                        	jailLoc.put("X", loc.getBlockX());
-                        	jailLoc.put("Y", loc.getBlockY());
-                        	jailLoc.put("Z", loc.getBlockZ());
-                        	ArrayList<Object> arrayL = new ArrayList<>();
-                        	arrayL.add(jailLoc);
-                        	SPPlugin.getInstance().getConfig().set("JailLocation", arrayL);
-                        	SPPlugin.getInstance().saveConfig();
-                        	player.sendMessage(Messages.getMessage("AdminJailLocSet"));
+                            HashMap<String, Object> jailLoc = new HashMap<>();
+                            Location loc = player.getLocation();
+                            jailLoc.put("World", Objects.requireNonNull(loc.getWorld()).getName());
+                            jailLoc.put("X", loc.getBlockX());
+                            jailLoc.put("Y", loc.getBlockY());
+                            jailLoc.put("Z", loc.getBlockZ());
+                            ArrayList<Object> arrayL = new ArrayList<>();
+                            arrayL.add(jailLoc);
+                            SPPlugin.getInstance().getConfig().set("JailLocation", arrayL);
+                            SPPlugin.getInstance().saveConfig();
+                            player.sendMessage(Messages.getMessage("AdminJailLocSet"));
                         } else if (args[1].equalsIgnoreCase("jail")) {
                             if (args.length > 2) {
                                 if (Bukkit.getPlayerExact(args[2]) != null) {
                                     if (args.length > 3) {
-                                        Jail.jailPlayer(Bukkit.getPlayerExact(args[2]).getUniqueId(), Double.parseDouble(args[3])*60);
+                                        Jail.jailPlayer(Objects.requireNonNull(Bukkit.getPlayerExact(args[2])).getUniqueId(), Double.parseDouble(args[3]) * 60);
                                         player.sendMessage(Messages.getMessage("AdminJail", args[2], Jail.timeLeftText(Integer.parseInt(args[3]))));
                                     } else {
-                                        Jail.jailPlayer(Bukkit.getPlayerExact(args[2]).getUniqueId(), 60.0);
+                                        Jail.jailPlayer(Objects.requireNonNull(Bukkit.getPlayerExact(args[2])).getUniqueId(), 60.0);
                                         player.sendMessage(Messages.getMessage("AdminJail", args[2], "1 minute"));
                                     }
                                 } else {
@@ -101,7 +102,7 @@ public class Police implements Listener, CommandExecutor {
                 if (args[0].equalsIgnoreCase("unjail")) {
                     if (Bukkit.getPlayerExact(args[1]) != null) {
                         Jail jailer = new Jail();
-                        jailer.unjailPlayer(Bukkit.getPlayerExact(args[1]).getUniqueId(), true);
+                        Jail.unjailPlayer(Objects.requireNonNull(Bukkit.getPlayerExact(args[1])).getUniqueId(), true);
                         player.sendMessage(Messages.getMessage("UnjailPlayer", args[1]));
                     } else {
                         player.sendMessage(Messages.getMessage("ErrorUnjailingPlayerOffline", args[1]));
@@ -114,8 +115,8 @@ public class Police implements Listener, CommandExecutor {
                 if (args[0].equalsIgnoreCase("add")) {
                     if (args.length > 1) {
 
-                        if (!work.alreadyPolice(Bukkit.getPlayer(args[1]).getUniqueId().toString())) {
-                            work.addPolice(Bukkit.getPlayer(args[1]).getUniqueId().toString());
+                        if (!work.alreadyPolice(Objects.requireNonNull(Bukkit.getPlayer(args[1])).getUniqueId().toString())) {
+                            work.addPolice(Objects.requireNonNull(Bukkit.getPlayer(args[1])).getUniqueId().toString());
                             player.sendMessage(Messages.getMessage("PoliceOfficerAdd", args[1]));
                         } else {
                             player.sendMessage(Messages.getMessage("PoliceOfficerAddFail", args[1]));
@@ -133,8 +134,8 @@ public class Police implements Listener, CommandExecutor {
             if (player.hasPermission("police.remove") && args.length > 0) {
                 if (args[0].equalsIgnoreCase("remove")) {
                     if (args.length > 1) {
-                        if (work.alreadyPolice(Bukkit.getPlayer(args[1]).getUniqueId().toString())) {
-                            work.removePolice(Bukkit.getPlayer(args[1]).getUniqueId().toString());
+                        if (work.alreadyPolice(Objects.requireNonNull(Bukkit.getPlayer(args[1])).getUniqueId().toString())) {
+                            work.removePolice(Objects.requireNonNull(Bukkit.getPlayer(args[1])).getUniqueId().toString());
                             player.sendMessage(Messages.getMessage("PoliceOfficerRemove", args[1]));
                         } else {
                             player.sendMessage(Messages.getMessage("PoliceOfficerRemoveFail", args[1]));
@@ -217,9 +218,9 @@ public class Police implements Listener, CommandExecutor {
                         if (args.length > 1) {
                             if (Bukkit.getPlayer(args[1]) != null) {
                                 int MaxValTp = SPPlugin.getInstance().getConfig().getInt("MaxPoliceTp");
-                                player.teleport(work.policeTp(Bukkit.getPlayer(args[1]), MaxValTp));
+                                player.teleport(work.policeTp(Objects.requireNonNull(Bukkit.getPlayer(args[1])), MaxValTp));
                                 player.sendMessage(Messages.getMessage("PoliceTp"));
-                                Bukkit.getPlayer(args[1]).sendMessage(Messages.getMessage("PoliceTpComingMessage"));
+                                Objects.requireNonNull(Bukkit.getPlayer(args[1])).sendMessage(Messages.getMessage("PoliceTpComingMessage"));
                             } else {
                                 player.sendMessage(Messages.getMessage("PoliceTpPlayerOffline"));
                             }

@@ -22,13 +22,13 @@ public class Messages {
                 return ChatColor.translateAlternateColorCodes('&', textToReturn);
             }
         } else {
-            return "Error with path "+path+" in the message.yml file of simple police, please check that that path is exists";
+            return "Error with path " + path + " in the message.yml file of simple police, please check that that path is exists";
         }
     }
 
     public Map<String, String> getMessagesMap() {
         Map<String, Object> map = SPPlugin.getInstance().Data.getValues(false);
-        Map<String,String> newMap = new HashMap<>();
+        Map<String, String> newMap = new HashMap<>();
         for (Map.Entry<String, Object> entry : map.entrySet()) {
             if (entry.getValue() instanceof String) {
                 newMap.put(entry.getKey(), (String) entry.getValue());
