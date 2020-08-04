@@ -227,6 +227,11 @@ public class Police implements Listener, CommandExecutor {
                                 PoliceChat.toggleChat(player.getUniqueId().toString());
                             }
                         } else {
+                            if (PoliceChat.isPoliceChatToggledOn(player.getUniqueId().toString())) {
+                                player.sendMessage(Messages.getMessage("PoliceChatToggleOff"));
+                            } else {
+                                player.sendMessage(Messages.getMessage("PoliceChatToggleOn"));
+                            }
                             PoliceChat.toggleChat(player.getUniqueId().toString());
                         }
 
