@@ -17,14 +17,7 @@ public class TabComplete implements Listener {
     @EventHandler
     public void onTab(TabCompleteEvent event) {
         if (event.getSender() instanceof Player && event.getBuffer().split(" ")[0].equalsIgnoreCase("/police")) {
-            String[] bufferWithCmdPrefix = event.getBuffer().split(" ");
-            String[] buffer = new String[bufferWithCmdPrefix.length-1];
-            int i = 0;
-            while (i < buffer.length) {
-                buffer[i] = bufferWithCmdPrefix[i+1];
-                i++;
-            }
-
+            String[] buffer = event.getBuffer().split(" ");
 
             ArrayList<String> completions = new ArrayList<>(event.getCompletions());
             Player player = (Player) event.getSender();
