@@ -24,11 +24,11 @@ public class TabComplete implements Listener {
 
             if (player.hasPermission("police.admin")) {
                 //admin reload, /admin setjail, etc.
-                completions = this.cmdCompleatePlayer(completions, "police admin reload", buffer, false);
-                completions = this.cmdCompleatePlayer(completions, "police admin add", buffer, false);
-                completions = this.cmdCompleatePlayer(completions, "police admin remove", buffer, false);
-                completions = this.cmdCompleatePlayer(completions, "police admin setjail", buffer, false);
-                completions = this.cmdCompleatePlayer(completions, "police admin jail", buffer, true);
+                completions = this.cmdCompletePlayer(completions, "police admin reload", buffer, false);
+                completions = this.cmdCompletePlayer(completions, "police admin add", buffer, false);
+                completions = this.cmdCompletePlayer(completions, "police admin remove", buffer, false);
+                completions = this.cmdCompletePlayer(completions, "police admin setjail", buffer, false);
+                completions = this.cmdCompletePlayer(completions, "police admin jail", buffer, true);
             }
 
 
@@ -75,7 +75,7 @@ public class TabComplete implements Listener {
 
     //end event handler
 
-    public ArrayList<String> cmdCompleatePlayer(ArrayList<String> listToAddTo, String command, String[] buffer, boolean addAllOnlinePlayers) {
+    public ArrayList<String> cmdCompletePlayer(ArrayList<String> listToAddTo, String command, String[] buffer, boolean addAllOnlinePlayers) {
         // /police admin s
         // /police admin setjail
         String[] cmd = ("/" + command).split(" ");
@@ -86,7 +86,8 @@ public class TabComplete implements Listener {
             } else if (cmd[maxLength].equalsIgnoreCase(buffer[maxLength]) && (cmd.length > maxLength+1)) {
                 listToAddTo.add(cmd[maxLength+1]);
             }
-        } else if (cmd[maxLength].equalsIgnoreCase(buffer[maxLength]) && addAllOnlinePlayers) {
+        }
+        if (cmd[maxLength].equalsIgnoreCase(buffer[maxLength]) && addAllOnlinePlayers) {
             Player[] onlinePlayers = Bukkit.getOnlinePlayers().toArray(new Player[0]);
             int i = 0;
             while (i < onlinePlayers.length) {
