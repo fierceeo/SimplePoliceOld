@@ -87,7 +87,7 @@ public class TabComplete implements Listener {
             if (!cmd[maxLength].equalsIgnoreCase(buffer[maxLength]) && cmd[maxLength].startsWith(buffer[maxLength])) {
                 listToAddTo.add(cmd[maxLength]);
             } else if (cmd[maxLength].equalsIgnoreCase(buffer[maxLength])) {
-                listToAddTo.add(cmd[maxLength]);
+                listToAddTo.add(cmd[maxLength+1]);
             }
             return listToAddTo;
         } else if (!listToAddTo.contains(cmd[1])) {
