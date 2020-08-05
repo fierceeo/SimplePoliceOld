@@ -80,7 +80,7 @@ public class TabComplete implements Listener {
         // /police admin setjail
         String[] cmd = ("/" + command).split(" ");
         int maxLength = Math.min(cmd.length, buffer.length)-1;
-        if (!(buffer.length == 0) && !(buffer.length-1 > cmd.length)) {
+        if (!(buffer.length == 0)) {
             if (!cmd[maxLength].equalsIgnoreCase(buffer[maxLength]) && cmd[maxLength].startsWith(buffer[maxLength])) {
                 listToAddTo.add(cmd[maxLength]);
             } else if (cmd[maxLength].equalsIgnoreCase(buffer[maxLength]) && (cmd.length > maxLength+1)) {
