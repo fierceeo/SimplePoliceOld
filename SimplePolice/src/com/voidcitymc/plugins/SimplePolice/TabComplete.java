@@ -1,15 +1,12 @@
 package com.voidcitymc.plugins.SimplePolice;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.TabCompleteEvent;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class TabComplete implements Listener {
 
@@ -19,7 +16,7 @@ public class TabComplete implements Listener {
         if (event.getSender() instanceof Player && event.getBuffer().split(" ")[0].equalsIgnoreCase("/police")) {
             String[] buffer = event.getBuffer().split(" ");
 
-            ArrayList<String> completions = new ArrayList<>(event.getCompletions());
+            ArrayList<String> completions = new ArrayList<>();
             Player player = (Player) event.getSender();
 
             Worker work = new Worker();
@@ -27,11 +24,11 @@ public class TabComplete implements Listener {
 
             if (player.hasPermission("police.admin")) {
                 //admin reload, /admin setjail, etc.
-                completions = this.cmdCompleatePlayer(completions, "police admin reload", buffer);
-                completions = this.cmdCompleatePlayer(completions, "police admin add", buffer);
-                completions = this.cmdCompleatePlayer(completions, "police admin remove", buffer);
-                completions = this.cmdCompleatePlayer(completions, "police admin setjail", buffer);
-                completions = this.cmdCompleatePlayer(completions, "police admin jail", buffer);
+                completions = this.cmdCompleatePlayer(completions, "police admin reload", buffer, false);
+                completions = this.cmdCompleatePlayer(completions, "police admin add", buffer, false);
+                completions = this.cmdCompleatePlayer(completions, "police admin remove", buffer, false);
+                completions = this.cmdCompleatePlayer(completions, "police admin setjail", buffer, false);
+                completions = this.cmdCompleatePlayer(completions, "police admin jail", buffer, true);
             }
 
 
@@ -78,7 +75,7 @@ public class TabComplete implements Listener {
 
     //end event handler
 
-    public ArrayList<String> cmdCompleatePlayer(ArrayList<String> listToAddTo, String command, String[] buffer) {
+    public ArrayList<String> cmdCompleatePlayer(ArrayList<String> listToAddTo, String command, String[] buffer, boolean addAllOnlinePlayers) {
         // /police admin s
         // /police admin setjail
         String[] cmd = ("/" + command).split(" ");
@@ -89,10 +86,15 @@ public class TabComplete implements Listener {
             } else if (cmd[maxLength].equalsIgnoreCase(buffer[maxLength])) {
                 listToAddTo.add(cmd[maxLength+1]);
             }
-            return listToAddTo;
-        } /* else if (!listToAddTo.contains(cmd[1])) {
-            listToAddTo.add(cmd[1]);
-        } */
+        }
+        if (addAllOnlinePlayers) {
+            Player[] onlinePlayers = Bukkit.getOnlinePlayers().toArray(new Player[0]);
+            int i = 0;
+            while (i < onlinePlayers.length) {
+                listToAddTo.add(onlinePlayers[i].getName());
+                i++;
+            }
+        }
         return listToAddTo;
     }
 }
