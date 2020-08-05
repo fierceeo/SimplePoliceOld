@@ -86,7 +86,7 @@ public class TabComplete implements Listener {
             int maxLength = Math.min(cmd.length, buffer.length)-1;
             if (!cmd[maxLength].equalsIgnoreCase(buffer[maxLength]) && cmd[maxLength].startsWith(buffer[maxLength])) {
                 listToAddTo.add(cmd[maxLength]);
-            } else if (buffer[maxLength].isEmpty()) {
+            } else if (cmd[maxLength].equalsIgnoreCase(buffer[maxLength])) {
                 listToAddTo.add(cmd[maxLength]);
             }
             return listToAddTo;
