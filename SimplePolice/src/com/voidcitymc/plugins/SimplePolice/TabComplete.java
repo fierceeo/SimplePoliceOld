@@ -79,14 +79,14 @@ public class TabComplete implements Listener {
         // /police admin s
         // /police admin setjail
         String[] cmd = ("/" + command).split(" ");
+        int maxLength = Math.min(cmd.length, buffer.length)-1;
         if (!(buffer.length == 0) && !(buffer.length-1 > cmd.length)) {
-            int maxLength = Math.min(cmd.length, buffer.length)-1;
             if (!cmd[maxLength].equalsIgnoreCase(buffer[maxLength]) && cmd[maxLength].startsWith(buffer[maxLength])) {
                 listToAddTo.add(cmd[maxLength]);
             } else if (cmd[maxLength].equalsIgnoreCase(buffer[maxLength]) && (cmd.length > maxLength+1)) {
                 listToAddTo.add(cmd[maxLength+1]);
             }
-        } else if ((buffer.length > cmd.length-1) && addAllOnlinePlayers) {
+        } else if (cmd[maxLength].equalsIgnoreCase(buffer[maxLength]) && addAllOnlinePlayers) {
             Player[] onlinePlayers = Bukkit.getOnlinePlayers().toArray(new Player[0]);
             int i = 0;
             while (i < onlinePlayers.length) {
