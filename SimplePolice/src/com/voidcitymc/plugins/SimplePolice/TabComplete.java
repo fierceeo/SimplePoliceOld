@@ -87,7 +87,7 @@ public class TabComplete implements Listener {
                 listToAddTo.add(cmd[maxLength+1]);
             }
         }
-        if (maxLength+1 > cmd.length  && cmd[maxLength].equalsIgnoreCase(buffer[maxLength]) && addAllOnlinePlayers) {
+        if (buffer.length-1 > cmd.length && cmd[maxLength].equalsIgnoreCase(buffer[maxLength]) && addAllOnlinePlayers) {
             Player[] onlinePlayers = Bukkit.getOnlinePlayers().toArray(new Player[0]);
             int i = 0;
             while (i < onlinePlayers.length) {
