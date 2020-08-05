@@ -90,9 +90,9 @@ public class TabComplete implements Listener {
                 listToAddTo.add(cmd[maxLength+1]);
             }
             return listToAddTo;
-        } else if (!listToAddTo.contains(cmd[1])) {
+        } /* else if (!listToAddTo.contains(cmd[1])) {
             listToAddTo.add(cmd[1]);
-        }
+        } */
         return listToAddTo;
     }
 }
