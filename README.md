@@ -103,7 +103,7 @@ Maven Repo:
  	<dependency>
 	    <groupId>com.github.ramdon-person.SimplePolice</groupId>
 	    <artifactId>SimplePolice-API</artifactId>
-	    <version>3.2.2</version>
+	    <version>4.0</version>
 	</dependency>
 
 Java docs:
