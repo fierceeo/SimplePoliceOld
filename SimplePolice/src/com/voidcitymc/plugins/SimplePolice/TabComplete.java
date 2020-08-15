@@ -1,6 +1,5 @@
 package com.voidcitymc.plugins.SimplePolice;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -38,10 +37,7 @@ public class TabComplete implements Listener {
             }
 
 
-
-
-
-            if ((player.hasPermission("police.help") || isPolice) ) {
+            if ((player.hasPermission("police.help") || isPolice)) {
                 completions = work.cmdCompletePlayer(completions, "police help", buffer, false);
             }
             if (player.hasPermission("police.tp") || isPolice) {

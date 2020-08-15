@@ -20,7 +20,7 @@ public class CustomJailGuiItem {
 
     public double getJailTime(int i) {
         if (!this.isItemNull(i)) {
-            return Double.parseDouble(((HashMap<String, String>) plugin.getConfig().getList("ArrestGUI").get(i-1)).get("JailTime"));
+            return Double.parseDouble(((HashMap<String, String>) plugin.getConfig().getList("ArrestGUI").get(i - 1)).get("JailTime"));
         } else {
             return 0.0;
         }
@@ -28,7 +28,7 @@ public class CustomJailGuiItem {
 
     public Material getMaterial(int i) {
         if (!this.isItemNull(i)) {
-            return Material.valueOf(((HashMap<String, String>) plugin.getConfig().getList("ArrestGUI").get(i-1)).get("Material"));
+            return Material.valueOf(((HashMap<String, String>) plugin.getConfig().getList("ArrestGUI").get(i - 1)).get("Material"));
         } else {
             return Material.AIR;
         }
@@ -36,7 +36,7 @@ public class CustomJailGuiItem {
 
     public String getPerm(int i) {
         if (!this.isItemNull(i)) {
-            return ((HashMap<String, String>) plugin.getConfig().getList("ArrestGUI").get(i-1)).get("Perm");
+            return ((HashMap<String, String>) plugin.getConfig().getList("ArrestGUI").get(i - 1)).get("Perm");
         } else {
             return null;
         }
@@ -44,17 +44,18 @@ public class CustomJailGuiItem {
 
     public String getMsg(int i) {
         if (!this.isItemNull(i)) {
-            return ((HashMap<String, String>) plugin.getConfig().getList("ArrestGUI").get(i-1)).get("Message");
+            return ((HashMap<String, String>) plugin.getConfig().getList("ArrestGUI").get(i - 1)).get("Message");
         } else {
             return null;
         }
     }
-/*
-    - Material: AIR
-    - JailTime:
-    - Perm:
-    - Message:
- */
+
+    /*
+        - Material: AIR
+        - JailTime:
+        - Perm:
+        - Message:
+     */
     public HashMap<String, String> setFile(String mat, Double jailTime, String perm, String msg) {
         HashMap<String, String> mappy = new HashMap<>();
         mappy.put("Material", mat);

@@ -14,7 +14,7 @@ public class CrimRecordListiner implements Listener {
     //Event handlers
     @EventHandler
     public static void onTp(EntityDamageByEntityEvent event) {
-        if (event.getDamager() instanceof  Player && event.getEntity() instanceof Player) {
+        if (event.getDamager() instanceof Player && event.getEntity() instanceof Player) {
             Player hurtPlayer = (Player) event.getEntity();
             Player attacker = (Player) event.getDamager();
         }

@@ -124,7 +124,6 @@ public class SPPlugin extends JavaPlugin implements SimplePoliceAPI {
     }
 
 
-
     //api
     @Override
     public ArrayList<String> onlinePoliceList() {

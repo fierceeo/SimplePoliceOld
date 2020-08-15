@@ -20,10 +20,6 @@ import java.net.URL;
 
 public class UpdateChecker {
 
-    private final JavaPlugin javaPlugin;
-    private final String localPluginVersion;
-    private String spigotPluginVersion;
-
     //Constants. Customize to your liking.
     private static final int ID = 73996; //The ID of your resource. Can be found in the resource URL.
     private static final String ERR_MSG = Messages.getMessage("UpdateCheckerFail");
@@ -32,6 +28,9 @@ public class UpdateChecker {
     //PermissionDefault.TRUE == all OPs are notified regardless of having the permission.
     private static final Permission UPDATE_PERM = new Permission("police.update", PermissionDefault.OP);
     private static final long CHECK_INTERVAL = 12_000; //In ticks.
+    private final JavaPlugin javaPlugin;
+    private final String localPluginVersion;
+    private String spigotPluginVersion;
 
     public UpdateChecker(final JavaPlugin javaPlugin) {
         this.javaPlugin = javaPlugin;

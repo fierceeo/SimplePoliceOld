@@ -156,7 +156,7 @@ public class Police implements Listener, CommandExecutor {
 //help
 
 
-            if ((player.hasPermission("police.help") || isPolice) ) {
+            if ((player.hasPermission("police.help") || isPolice)) {
                 if (args.length == 0 || args[0].equalsIgnoreCase("help")) {
                     player.sendMessage(Messages.getMessage("PoliceHelpTitle"));
                     player.sendMessage(Messages.getMessage("PoliceHelpCommands"));
@@ -184,8 +184,6 @@ public class Police implements Listener, CommandExecutor {
                     if (player.hasPermission("police.admin")) {
                         player.sendMessage(Messages.getMessage("PoliceHelpPoliceAdmin"));
                     }
-
-
 
 
                     //help info
@@ -245,7 +243,6 @@ public class Police implements Listener, CommandExecutor {
                     }
                 }
             }
-
 
 
             return true;

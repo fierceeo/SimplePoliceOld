@@ -12,13 +12,40 @@ import java.util.UUID;
 
 public class PoliceChat implements Listener {
 
+    private static final ArrayList<String> playersWithToggledChat = new ArrayList<>();
     SPPlugin plugin;
 
     public PoliceChat(SPPlugin plugin) {
         this.plugin = plugin;
     }
 
-    private static final ArrayList<String> playersWithToggledChat = new ArrayList<>();
+    public static void addPlayerToToggledChat(String uuid) {
+        if (!playersWithToggledChat.contains(uuid)) {
+            playersWithToggledChat.add(uuid);
+        }
+    }
+
+    public static void removePlayerFromToggledChat(String uuid) {
+        playersWithToggledChat.remove(uuid);
+    }
+
+    //end Event handlers
+
+    public static boolean isPoliceChatToggledOn(String uuid) {
+        return playersWithToggledChat.contains(uuid);
+    }
+
+    public static void toggleChat(String uuid) {
+        if (isPoliceChatToggledOn(uuid)) {
+            removePlayerFromToggledChat(uuid);
+        } else {
+            addPlayerToToggledChat(uuid);
+        }
+    }
+
+    public static ArrayList<String> getPlayersWithToggledChat() {
+        return playersWithToggledChat;
+    }
 
     //Event handlers
     @EventHandler
@@ -36,7 +63,7 @@ public class PoliceChat implements Listener {
                 playerName = event.getPlayer().getName();
             }
 
-            while (i <  getPlayersWithToggledChat().size()) {
+            while (i < getPlayersWithToggledChat().size()) {
                 if (Bukkit.getPlayer(UUID.fromString(getPlayersWithToggledChat().get(i))) != null) {
                     Objects.requireNonNull(Bukkit.getPlayer(UUID.fromString(getPlayersWithToggledChat().get(i)))).sendMessage(Messages.getMessage("PoliceChat", playerName, event.getMessage()));
                 }
@@ -47,34 +74,6 @@ public class PoliceChat implements Listener {
 
     public void onLeave(PlayerQuitEvent event) {
         getPlayersWithToggledChat().remove(event.getPlayer().getUniqueId().toString());
-    }
-
-    //end Event handlers
-
-    public static void addPlayerToToggledChat(String uuid) {
-        if (!playersWithToggledChat.contains(uuid)) {
-            playersWithToggledChat.add(uuid);
-        }
-    }
-
-    public static void removePlayerFromToggledChat(String uuid) {
-        playersWithToggledChat.remove(uuid);
-    }
-
-    public static boolean isPoliceChatToggledOn(String uuid) {
-        return playersWithToggledChat.contains(uuid);
-    }
-
-    public static void toggleChat(String uuid) {
-        if (isPoliceChatToggledOn(uuid)) {
-            removePlayerFromToggledChat(uuid);
-        } else {
-            addPlayerToToggledChat(uuid);
-        }
-    }
-
-    public static ArrayList<String> getPlayersWithToggledChat() {
-        return playersWithToggledChat;
     }
 
 }
