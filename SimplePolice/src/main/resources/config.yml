@@ -35,24 +35,31 @@ ArrestGUI:
 - Perm: null
   Material: AIR
   JailTime: '0'
+  Message: "&bClick here to jail the player for $1 minutes"
 - Perm: null
   Material: AIR
   JailTime: '0'
+  Message: "&bClick here to jail the player for $1 minutes"
 - Perm: null
   Material: RED_TERRACOTTA
   JailTime: '4'
+  Message: "&bClick here to jail the player for $1 minutes"
 - Perm: null
   Material: ORANGE_TERRACOTTA
   JailTime: '8'
+  Message: "&bClick here to jail the player for $1 minutes"
 - Perm: null
   Material: YELLOW_TERRACOTTA
   JailTime: '10'
+  Message: "&bClick here to jail the player for $1 minutes"
 - Perm: null
   Material: LIME_TERRACOTTA
   JailTime: '12'
+  Message: "&bClick here to jail the player for $1 minutes"
 - Perm: null
   Material: LIGHT_BLUE_TERRACOTTA
   JailTime: '15'
+  Message: "&bClick here to jail the player for $1 minutes"
 JailLocation:
   - X: 50
     Y: 50

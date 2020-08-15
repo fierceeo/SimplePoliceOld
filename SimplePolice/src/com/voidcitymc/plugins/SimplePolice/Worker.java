@@ -445,13 +445,13 @@ public class Worker {
         if (!config.isSet("ArrestGUI")) {
             CustomJailGuiItem cItem = new CustomJailGuiItem(plugin);
             ArrayList<Object> arrestGUI = new ArrayList<>();
-            arrestGUI.add(cItem.setFile("AIR", 0.0, null));
-            arrestGUI.add(cItem.setFile("AIR", 0.0, null));
-            arrestGUI.add(cItem.setFile("RED_TERRACOTTA", 4.0, null));
-            arrestGUI.add(cItem.setFile("ORANGE_TERRACOTTA", 8.0, null));
-            arrestGUI.add(cItem.setFile("YELLOW_TERRACOTTA", 10.0, null));
-            arrestGUI.add(cItem.setFile("LIME_TERRACOTTA", 12.0, null));
-            arrestGUI.add(cItem.setFile("LIGHT_BLUE_TERRACOTTA", 15.0, null));
+            arrestGUI.add(cItem.setFile("AIR", 0.0, null, "&bClick here to jail the player for $1 minutes"));
+            arrestGUI.add(cItem.setFile("AIR", 0.0, null, "&bClick here to jail the player for $1 minutes"));
+            arrestGUI.add(cItem.setFile("RED_TERRACOTTA", 4.0, null, "&bClick here to jail the player for $1 minutes"));
+            arrestGUI.add(cItem.setFile("ORANGE_TERRACOTTA", 8.0, null, "&bClick here to jail the player for $1 minutes"));
+            arrestGUI.add(cItem.setFile("YELLOW_TERRACOTTA", 10.0, null, "&bClick here to jail the player for $1 minutes"));
+            arrestGUI.add(cItem.setFile("LIME_TERRACOTTA", 12.0, null, "&bClick here to jail the player for $1 minutes"));
+            arrestGUI.add(cItem.setFile("LIGHT_BLUE_TERRACOTTA", 15.0, null, "&bClick here to jail the player for $1 minutes"));
             config.set("ArrestGUI", arrestGUI);
         }
         if (!config.isSet("JailLocation")) {

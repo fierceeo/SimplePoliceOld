@@ -41,16 +41,26 @@ public class CustomJailGuiItem {
             return null;
         }
     }
+
+    public String getMsg(int i) {
+        if (!this.isItemNull(i)) {
+            return ((HashMap<String, String>) plugin.getConfig().getList("ArrestGUI").get(i-1)).get("Message");
+        } else {
+            return null;
+        }
+    }
 /*
     - Material: AIR
     - JailTime:
     - Perm:
+    - Message:
  */
-    public HashMap<String, String> setFile(String mat, Double jailTime, String perm) {
+    public HashMap<String, String> setFile(String mat, Double jailTime, String perm, String msg) {
         HashMap<String, String> mappy = new HashMap<>();
         mappy.put("Material", mat);
         mappy.put("JailTime", String.valueOf(jailTime));
         mappy.put("Perm", perm);
+        mappy.put("Message", msg);
         return mappy;
     }
 
