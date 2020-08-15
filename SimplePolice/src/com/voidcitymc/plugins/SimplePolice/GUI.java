@@ -108,7 +108,7 @@ public class GUI implements Listener {
                 if (hasPerm) {
                     jailTime = customGuiItem.getJailTime(cnt + 1);
                     //to-do translate this
-                    inv.setItem(cnt, work.createGuiItem(matList.get(cnt), "§f" + jailTime + "M", Messages.getMessage(customGuiItem.getMsg(cnt + 1), String.valueOf(jailTime)), ""));
+                    inv.setItem(cnt, work.createGuiItem(matList.get(cnt), "§f" + jailTime + "M", Messages.translateMSG(customGuiItem.getMsg(cnt + 1), String.valueOf(jailTime)), ""));
                 }
             }
             cnt++;

@@ -11,7 +11,7 @@ public class Messages {
     public static String getMessage(String path, String... variable) {
         String textToReturn = SPPlugin.getInstance().Message.getString(path);
         if (textToReturn != null) {
-            if (variable.length != 0) {
+            if (variable.length > 0) {
                 int i = 0;
                 while (i < variable.length) {
                     textToReturn = textToReturn.replace("$" + (i + 1), variable[i]);
@@ -35,6 +35,18 @@ public class Messages {
             }
         }
         return newMap;
+    }
+
+    public static String translateMSG(String msg, String... variable) {
+        String textToReturn = msg;
+        if (variable.length > 0) {
+            int i = 0;
+            while (i < variable.length) {
+                textToReturn = textToReturn.replace("$" + (i + 1), variable[i]);
+                i++;
+            }
+        }
+        return ChatColor.translateAlternateColorCodes('&', textToReturn);
     }
 
 }
