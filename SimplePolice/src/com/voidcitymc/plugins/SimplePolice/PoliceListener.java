@@ -24,7 +24,7 @@ public class PoliceListener implements Listener {
             //damager is the police
             //damagee is the criminal
             if (!work.inSafeArea(damageeP)) {
-                if (work.alreadyPolice(damagerP.getUniqueId().toString()) && work.testForItem(damagerP, Material.BLAZE_ROD, "Police")) /*put stuff here too) */ {
+                if (work.alreadyPolice(damagerP.getUniqueId().toString()) && work.testForItem(damagerP, work.getBatonMaterial(), "Police")) /*put stuff here too) */ {
                     damageeP.sendMessage(Messages.getMessage("ArrestMsg"));
                     damageeP.teleport(Jail.jailLocation());
 
