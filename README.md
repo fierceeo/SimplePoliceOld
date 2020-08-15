@@ -111,7 +111,7 @@ https://plugins.voidcitymc.com/SimplePolice/doc/
 
 Getting the api:
 
-SimplePoliceAPI api = ((SimplePolice) Bukkit.getPluginManager().getPlugin("Simple Police")).getApi();
+SimplePoliceAPI api = (SimplePoliceAPI) Bukkit.getPluginManager().getPlugin("Simple Police");
 
 The you can do stuff like api.listPolice();
 
