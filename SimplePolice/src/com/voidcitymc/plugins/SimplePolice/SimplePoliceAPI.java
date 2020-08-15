@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class SimplePoliceAPI implements com.voidcitymc.api.SimplePolice.SimplePoliceAPI {
 
-    Worker work = new Worker();
+    Worker work = new Worker(SPPlugin.getInstance());
 
     @Override
     public ArrayList<String> onlinePoliceList() {

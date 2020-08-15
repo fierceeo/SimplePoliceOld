@@ -15,6 +15,13 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class GUI implements Listener {
+
+    SPPlugin plugin;
+
+    public GUI(SPPlugin plugin) {
+        this.plugin = plugin;
+    }
+
     @EventHandler
     public void gui(InventoryClickEvent event) {
 
@@ -30,7 +37,7 @@ public class GUI implements Listener {
 
         int i = event.getRawSlot();
 
-        CustomJailGuiItem customGuiItem = new CustomJailGuiItem();
+        CustomJailGuiItem customGuiItem = new CustomJailGuiItem(plugin);
 
 
         if (customGuiItem.isItemNull(i)) {
@@ -59,21 +66,21 @@ public class GUI implements Listener {
 
 
     public void openInventory(final Player player) {
-        Bukkit.getScheduler().scheduleSyncDelayedTask(SPPlugin.getInstance(), () -> player.openInventory(createGUI(player)), 1L);
+        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> player.openInventory(createGUI(player)), 1L);
 
     }
 
 
     public Inventory createGUI(Player player) {
 
-        Worker work = new Worker();
+        Worker work = new Worker(plugin);
 
         Inventory inv = Bukkit.createInventory(null, 9, "Jail Time");
 
         ArrayList<Material> matList = new ArrayList<>();
         int i = 1;
 
-        CustomJailGuiItem customGuiItem = new CustomJailGuiItem();
+        CustomJailGuiItem customGuiItem = new CustomJailGuiItem(plugin);
         //itemListFromConfig.get(i) gets a list for the item
         // (String)((HashMap<String, Object>) itemListFromConfig.get(i)).get(path) where path is material, jailtime, etc. returns info of item
         while (!customGuiItem.isItemNull(i)) {

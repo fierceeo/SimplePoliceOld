@@ -8,9 +8,15 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 public class PoliceListener implements Listener {
 
+    SPPlugin plugin;
+
+    public PoliceListener(SPPlugin plugin) {
+        this.plugin = plugin;
+    }
+
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent event) {
-        Worker work = new Worker();
+        Worker work = new Worker(plugin);
         if (event.getEntity() instanceof Player && event.getDamager() instanceof Player) {
             //check if the player who punched someone is a police and has the police bataan
             Player damagerP = (Player) event.getDamager();
@@ -25,7 +31,7 @@ public class PoliceListener implements Listener {
                     work.payPoliceOnArrest(damagerP);
                     work.takeMoneyOnArrest(damageeP);
                     SPPlugin.lastArrest.put(damagerP.getName(), damageeP.getUniqueId().toString() + "," + damageeP.getName());
-                    GUI gui = new GUI();
+                    GUI gui = new GUI(plugin);
                     gui.openInventory(damagerP);
                     event.setCancelled(true);
                 }

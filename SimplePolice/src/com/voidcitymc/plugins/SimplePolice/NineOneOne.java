@@ -14,11 +14,17 @@ public class NineOneOne implements CommandExecutor {
 
     // This method is called, when somebody uses our command
 
+    SPPlugin plugin;
+
+    public NineOneOne(SPPlugin plugin) {
+        this.plugin = plugin;
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            Worker work = new Worker();
+            Worker work = new Worker(plugin);
 
             ArrayList<String> playerList = work.onlinePoliceList();
 
@@ -38,7 +44,7 @@ public class NineOneOne implements CommandExecutor {
 
             while (i < playerList.size()) {
                 Objects.requireNonNull(Bukkit.getPlayer(UUID.fromString(playerList.get(i)))).sendMessage(Messages.getMessage("NineOneOneMsgPolice", player.getName(), message.toString()));
-                if (SPPlugin.getInstance().getConfig().getBoolean("ShowCords911")) {
+                if (plugin.getConfig().getBoolean("ShowCords911")) {
                     Objects.requireNonNull(Bukkit.getPlayer(UUID.fromString(playerList.get(i)))).sendMessage(Messages.getMessage("NineOneOneCordsMessage", player.getName(), String.valueOf(player.getLocation().getBlockX()), String.valueOf(player.getLocation().getBlockY()), String.valueOf(player.getLocation().getBlockZ())));
                 }
 

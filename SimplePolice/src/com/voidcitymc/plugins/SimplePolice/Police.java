@@ -15,13 +15,19 @@ import java.util.Objects;
 
 public class Police implements Listener, CommandExecutor {
 
+    SPPlugin plugin;
+
+    public Police(SPPlugin plugin) {
+        this.plugin = plugin;
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
 
 
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            Worker work = new Worker();
+            Worker work = new Worker(plugin);
             boolean isPolice = work.alreadyPolice(player.getUniqueId().toString());
 
 
@@ -30,8 +36,8 @@ public class Police implements Listener, CommandExecutor {
                 if (args[0].equalsIgnoreCase("admin")) {
                     if (args.length > 1) {
                         if (args[1].equalsIgnoreCase("reload")) {
-                            SPPlugin.getInstance().reloadConfig();
-                            SPPlugin.getInstance().createMessage();
+                            plugin.reloadConfig();
+                            plugin.createMessage();
                             player.sendMessage(Messages.getMessage("AdminConfigReload"));
                         } else if (args[1].equalsIgnoreCase("add")) {
                             if (!work.isItemContraband(player.getInventory().getItemInMainHand())) {
@@ -62,8 +68,8 @@ public class Police implements Listener, CommandExecutor {
                             jailLoc.put("Z", loc.getBlockZ());
                             ArrayList<Object> arrayL = new ArrayList<>();
                             arrayL.add(jailLoc);
-                            SPPlugin.getInstance().getConfig().set("JailLocation", arrayL);
-                            SPPlugin.getInstance().saveConfig();
+                            plugin.getConfig().set("JailLocation", arrayL);
+                            plugin.saveConfig();
                             player.sendMessage(Messages.getMessage("AdminJailLocSet"));
                         } else if (args[1].equalsIgnoreCase("jail")) {
                             if (args.length > 2) {
@@ -102,7 +108,7 @@ public class Police implements Listener, CommandExecutor {
             if (args.length > 0 && (player.hasPermission("police.unjail") || isPolice)) {
                 if (args[0].equalsIgnoreCase("unjail")) {
                     if (Bukkit.getPlayerExact(args[1]) != null) {
-                        Jail jailer = new Jail();
+                        Jail jailer = new Jail(plugin);
                         Jail.unjailPlayer(Objects.requireNonNull(Bukkit.getPlayerExact(args[1])).getUniqueId(), true);
                         player.sendMessage(Messages.getMessage("UnjailPlayer", args[1]));
                     } else {
@@ -194,7 +200,7 @@ public class Police implements Listener, CommandExecutor {
                     if (args[0].equalsIgnoreCase("tp")) {
                         if (args.length > 1) {
                             if (Bukkit.getPlayer(args[1]) != null) {
-                                int MaxValTp = SPPlugin.getInstance().getConfig().getInt("MaxPoliceTp");
+                                int MaxValTp = plugin.getConfig().getInt("MaxPoliceTp");
                                 player.teleport(work.policeTp(Objects.requireNonNull(Bukkit.getPlayer(args[1])), MaxValTp));
                                 player.sendMessage(Messages.getMessage("PoliceTp"));
                                 Objects.requireNonNull(Bukkit.getPlayer(args[1])).sendMessage(Messages.getMessage("PoliceTpComingMessage"));

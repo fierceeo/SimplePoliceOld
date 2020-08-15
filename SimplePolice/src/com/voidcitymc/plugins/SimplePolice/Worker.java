@@ -23,6 +23,12 @@ import java.util.*;
 
 public class Worker {
 
+    SPPlugin plugin;
+
+    public Worker(SPPlugin plugin) {
+        this.plugin = plugin;
+    }
+
     public ArrayList<String> onlinePoliceList() {
         ArrayList<String> policeList = this.listPolice();
         ArrayList<String> onlinePolice = new ArrayList<>();
@@ -49,19 +55,19 @@ public class Worker {
 
     public void addPolice(String uuid) {
         if (!alreadyPolice(uuid)) {
-            SPPlugin.getInstance().Data.set(uuid, true);
-            SPPlugin.getInstance().SaveDataFile();
+            plugin.Data.set(uuid, true);
+            plugin.SaveDataFile();
         }
     }
 
     public boolean alreadyPolice(String uuid) {
-        return SPPlugin.getInstance().Data.getBoolean(uuid);
+        return plugin.Data.getBoolean(uuid);
     }
 
     public void removePolice(String uuid) {
         if (this.alreadyPolice(uuid)) {
-            SPPlugin.getInstance().Data.set(uuid, false);
-            SPPlugin.getInstance().SaveDataFile();
+            plugin.Data.set(uuid, false);
+            plugin.SaveDataFile();
         }
     }
 
@@ -133,7 +139,7 @@ public class Worker {
 
     public ArrayList<String> listPolice() {
 
-        Map<String, Object> police = SPPlugin.getInstance().Data.getValues(false);
+        Map<String, Object> police = plugin.Data.getValues(false);
 
         ArrayList<String> policeList = new ArrayList<>();
 
@@ -152,14 +158,14 @@ public class Worker {
     }
 
     public void payPoliceOnArrest(Player player) {
-        if (SPPlugin.getInstance().getConfig().getBoolean("PayPoliceOnArrest")) {
+        if (plugin.getConfig().getBoolean("PayPoliceOnArrest")) {
             //make sure vault is installed
             if (Bukkit.getServer().getPluginManager().getPlugin("Vault") != null) {
                 Economy economy = this.setupEconomy();
                 if (economy != null) {
-                    economy.depositPlayer(player, SPPlugin.getInstance().getConfig().getDouble("MoneyToGiveToPoliceOnArrest"));
+                    economy.depositPlayer(player, plugin.getConfig().getDouble("MoneyToGiveToPoliceOnArrest"));
                 }
-                player.sendMessage(Messages.getMessage("MoneyEarnOnArrest", "$" + SPPlugin.getInstance().getConfig().getDouble("MoneyToGiveToPoliceOnArrest")));
+                player.sendMessage(Messages.getMessage("MoneyEarnOnArrest", "$" + plugin.getConfig().getDouble("MoneyToGiveToPoliceOnArrest")));
             }
         }
     }
@@ -174,11 +180,11 @@ public class Worker {
     }
 
     public void takeMoneyOnArrest(Player player) {
-        if (SPPlugin.getInstance().getConfig().getBoolean("TakeMoneyOnArrest")) {
+        if (plugin.getConfig().getBoolean("TakeMoneyOnArrest")) {
             //make sure vault is installed
             if (Bukkit.getServer().getPluginManager().getPlugin("Vault") != null) {
 
-                double percent = SPPlugin.getInstance().getConfig().getDouble("PercentOfMoneyToTake");
+                double percent = plugin.getConfig().getDouble("PercentOfMoneyToTake");
 
 
                 Economy economy = this.setupEconomy();
@@ -212,7 +218,7 @@ public class Worker {
     }
 
     public boolean inSafeArea(Player police) {
-        if (SPPlugin.getInstance().getConfig().getBoolean("SafeArea")) {
+        if (plugin.getConfig().getBoolean("SafeArea")) {
             //make sure worldguard is installed
             if (Bukkit.getServer().getPluginManager().getPlugin("WorldGuard") != null) {
 
@@ -226,7 +232,7 @@ public class Worker {
                 //create Worker
 
                 for (ProtectedRegion region : set) {
-                    if (Objects.requireNonNull(SPPlugin.getInstance().getConfig().getList("SafeAreas")).contains(region.getId())) {
+                    if (Objects.requireNonNull(plugin.getConfig().getList("SafeAreas")).contains(region.getId())) {
                         return true;
                     }
                 }
@@ -242,7 +248,7 @@ public class Worker {
     }
 
     public Material getBatonMaterial() {
-        String mat = SPPlugin.getInstance().Data.getString("BatonMaterialType");
+        String mat = plugin.Data.getString("BatonMaterialType");
         if (mat != null && Material.getMaterial(mat) != null) {
             return Material.getMaterial(mat);
         } else {
@@ -252,7 +258,7 @@ public class Worker {
     }
 
     public Material getFriskStickMaterial() {
-        String mat = SPPlugin.getInstance().getConfig().getString("FriskStickMaterialType");
+        String mat = plugin.getConfig().getString("FriskStickMaterialType");
         if (mat != null && Material.getMaterial(mat) != null) {
             return Material.getMaterial(mat);
         } else {
@@ -263,7 +269,7 @@ public class Worker {
 
     public void addToFriskList(ItemStack item) {
         @SuppressWarnings("unchecked")
-        List<ItemStack> items = (List<ItemStack>) SPPlugin.getInstance().Controband.getList("Items");
+        List<ItemStack> items = (List<ItemStack>) plugin.Controband.getList("Items");
         if (items == null) {
             items = new ArrayList<>();
         }
@@ -287,13 +293,13 @@ public class Worker {
             items.add(itemToTest);
         }
 
-        SPPlugin.getInstance().Controband.set("Items", items);
-        SPPlugin.getInstance().SaveControbandFile();
+        plugin.Controband.set("Items", items);
+        plugin.SaveControbandFile();
     }
 
     public void removeFromFriskList(ItemStack item) {
         @SuppressWarnings("unchecked")
-        List<ItemStack> items = (List<ItemStack>) SPPlugin.getInstance().Controband.getList("Items");
+        List<ItemStack> items = (List<ItemStack>) plugin.Controband.getList("Items");
         if (items == null) {
             items = new ArrayList<>();
         }
@@ -316,13 +322,13 @@ public class Worker {
         items.remove(itemToTest);
 
 
-        SPPlugin.getInstance().Controband.set("Items", items);
-        SPPlugin.getInstance().SaveControbandFile();
+        plugin.Controband.set("Items", items);
+        plugin.SaveControbandFile();
     }
 
     public List<ItemStack> getFriskList() {
         @SuppressWarnings("unchecked")
-        List<ItemStack> items = (List<ItemStack>) SPPlugin.getInstance().Controband.getList("Items");
+        List<ItemStack> items = (List<ItemStack>) plugin.Controband.getList("Items");
         if (items == null) {
             items = new ArrayList<>();
         }
@@ -339,7 +345,7 @@ public class Worker {
 
             boolean qaInstalled = (Bukkit.getServer().getPluginManager().getPlugin("QualityArmory") != null);
 
-            if (qaInstalled && QualityArmory.isGun(itemToTest) && SPPlugin.getInstance().getConfig().getBoolean("MarkAllGunsAsContraband")) {
+            if (qaInstalled && QualityArmory.isGun(itemToTest) && plugin.getConfig().getBoolean("MarkAllGunsAsContraband")) {
                 return true;
             }
 
@@ -371,7 +377,7 @@ public class Worker {
     }
 
     public boolean friskingEnabled() {
-        return SPPlugin.getInstance().getConfig().getBoolean("Frisking");
+        return plugin.getConfig().getBoolean("Frisking");
 
     }
 
@@ -415,7 +421,7 @@ public class Worker {
     }
 
     public void updateConfig() {
-        FileConfiguration config = SPPlugin.getInstance().getConfig();
+        FileConfiguration config = plugin.getConfig();
 
         this.setConfig(config, "MaxPoliceTp", 50);
         this.setConfig(config, "PayPoliceOnArrest", true);
@@ -437,7 +443,7 @@ public class Worker {
         this.setConfig(config, "FriskCooldown", 600);
         this.setConfig(config, "UsePlayerDisplayNameInPoliceChat", true);
         if (!config.isSet("ArrestGUI")) {
-            CustomJailGuiItem cItem = new CustomJailGuiItem();
+            CustomJailGuiItem cItem = new CustomJailGuiItem(plugin);
             ArrayList<Object> arrestGUI = new ArrayList<>();
             arrestGUI.add(cItem.setFile("AIR", 0.0, null));
             arrestGUI.add(cItem.setFile("AIR", 0.0, null));
@@ -459,7 +465,7 @@ public class Worker {
             config.set("JailLocation", arrayL);
         }
 
-        SPPlugin.getInstance().saveConfig();
+        plugin.saveConfig();
 
     }
 

@@ -15,6 +15,11 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public class Jail implements Listener {
+    SPPlugin plugin;
+
+    public Jail(SPPlugin plugin) {
+        this.plugin = plugin;
+    }
 
     private static final Map<String, Double> originaljailTime = new HashMap<>();
     private static final Map<String, Long> cooldowns = new HashMap<>();
@@ -42,7 +47,7 @@ public class Jail implements Listener {
 
     //Event handlers
     @EventHandler
-    public static void onTp(PlayerTeleportEvent event) {
+    public void onTp(PlayerTeleportEvent event) {
         if (isPlayerJailed(event.getPlayer().getUniqueId())) {
             event.setCancelled(true);
             event.getPlayer().sendMessage(Messages.getMessage("PlayerEscapeOutOfJail", timeLeftText(event.getPlayer().getUniqueId())));
@@ -50,10 +55,10 @@ public class Jail implements Listener {
     }
 
     @EventHandler
-    public static void onDeath(PlayerDeathEvent event) {
+    public void onDeath(PlayerDeathEvent event) {
         if (isPlayerJailed(event.getEntity().getUniqueId())) {
 
-            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(SPPlugin.getInstance(), () -> {
+            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
                 Player player = event.getEntity();
 
                 player.teleport(previousLoc.get(player.getUniqueId().toString()));

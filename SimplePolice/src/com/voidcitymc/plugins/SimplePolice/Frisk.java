@@ -15,10 +15,17 @@ import java.util.concurrent.TimeUnit;
 public class Frisk implements Listener {
     private final FriskCooldownManager cooldownManager = new FriskCooldownManager();
 
+
+    SPPlugin plugin;
+
+    public Frisk(SPPlugin plugin) {
+        this.plugin = plugin;
+    }
+
     @EventHandler
     public void onFrisk(PlayerInteractEntityEvent event) {
         if (event.getRightClicked() instanceof Player) {
-            Worker work = new Worker();
+            Worker work = new Worker(plugin);
             if (work.friskingEnabled() && work.alreadyPolice(event.getPlayer().getUniqueId().toString()) && event.getPlayer().getInventory().getItemInMainHand().getType().equals(work.getFriskStickMaterial())) {
                 //begin frisk
                 Player suspectedPlayer = (Player) event.getRightClicked();
@@ -42,7 +49,7 @@ public class Frisk implements Listener {
 
                     while (i < contents.length) {
                         if (work.isItemContraband(contents[i])) {
-                            if (SPPlugin.getInstance().getConfig().getInt("PercentOfFindingContraband") - (Math.random() * 100) >= 0) {
+                            if (plugin.getConfig().getInt("PercentOfFindingContraband") - (Math.random() * 100) >= 0) {
 
                                 if (!Objects.requireNonNull(Objects.requireNonNull(invToScan.getItem(i)).getItemMeta()).getDisplayName().equals("")) {
                                     textToReturn.add(ChatColor.DARK_AQUA + "" + Objects.requireNonNull(invToScan.getItem(i)).getAmount() + "x " + Objects.requireNonNull(Objects.requireNonNull(invToScan.getItem(i)).getItemMeta()).getDisplayName());

@@ -10,6 +10,12 @@ import java.util.ArrayList;
 
 public class TabComplete implements Listener {
 
+    SPPlugin plugin;
+
+    public TabComplete(SPPlugin plugin) {
+        this.plugin = plugin;
+    }
+
     //event handler
     @EventHandler
     public void onTab(TabCompleteEvent event) {
@@ -18,7 +24,7 @@ public class TabComplete implements Listener {
 
             ArrayList<String> completions = new ArrayList<>();
             Player player = (Player) event.getSender();
-            Worker work = new Worker();
+            Worker work = new Worker(plugin);
 
             boolean isPolice = work.alreadyPolice(player.getUniqueId().toString());
 

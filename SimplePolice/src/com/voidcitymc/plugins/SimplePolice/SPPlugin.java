@@ -18,7 +18,7 @@ public class SPPlugin extends JavaPlugin implements SimplePolice {
     FileConfiguration Controband;
     File MessageFile;
     FileConfiguration Message;
-    Worker work = new Worker();
+    Worker work = new Worker(this);
 
     public static SPPlugin getInstance() {
         return instance;
@@ -94,14 +94,14 @@ public class SPPlugin extends JavaPlugin implements SimplePolice {
         @SuppressWarnings("unused")
         Metrics metrics = new Metrics(this, 6814);
         //
-        getServer().getPluginManager().registerEvents(new GUI(), this);
-        getServer().getPluginManager().registerEvents(new PoliceListener(), this);
-        getServer().getPluginManager().registerEvents(new Frisk(), this);
-        getServer().getPluginManager().registerEvents(new Jail(), this);
-        getServer().getPluginManager().registerEvents(new PoliceChat(), this);
-        getServer().getPluginManager().registerEvents(new TabComplete(), this);
-        this.getCommand("police").setExecutor(new Police());
-        this.getCommand("911").setExecutor(new NineOneOne());
+        getServer().getPluginManager().registerEvents(new GUI(this), this);
+        getServer().getPluginManager().registerEvents(new PoliceListener(this), this);
+        getServer().getPluginManager().registerEvents(new Frisk(this), this);
+        getServer().getPluginManager().registerEvents(new Jail(this), this);
+        getServer().getPluginManager().registerEvents(new PoliceChat(this), this);
+        getServer().getPluginManager().registerEvents(new TabComplete(this), this);
+        this.getCommand("police").setExecutor(new Police(this));
+        this.getCommand("911").setExecutor(new NineOneOne(this));
         this.getCommand("police").setAliases(Collections.singletonList(this.getConfig().getString("CmdForPolice")));
         this.getCommand("911").setAliases(Collections.singletonList(this.getConfig().getString("CmdFor911")));
         System.out.println("ramdon_person's Police Plugin Has Been Enabled!");

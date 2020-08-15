@@ -12,6 +12,12 @@ import java.util.UUID;
 
 public class PoliceChat implements Listener {
 
+    SPPlugin plugin;
+
+    public PoliceChat(SPPlugin plugin) {
+        this.plugin = plugin;
+    }
+
     private static final ArrayList<String> playersWithToggledChat = new ArrayList<>();
 
     //Event handlers
@@ -22,7 +28,7 @@ public class PoliceChat implements Listener {
             event.getRecipients().clear();
             int i = 0;
             String playerName;
-            if (SPPlugin.getInstance().getConfig().getBoolean("UsePlayerDisplayNameInPoliceChat")) {
+            if (plugin.getConfig().getBoolean("UsePlayerDisplayNameInPoliceChat")) {
                 //use display name
                 playerName = event.getPlayer().getDisplayName();
             } else {
