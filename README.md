@@ -17,6 +17,7 @@ Here is a list of things this plugin can do:
 4. A frisking system, lets you take away contraband items from a player, but you can set the percentage of finding an item
 5. A message.yml file lets you translate this plugin into any language (enlgish is the default and spanish can be found at the link below:)
 https://github.com/ramdon-person/SimplePolice/tree/master/Translations
+6. Police chat
 
 Jailing System:
 
@@ -38,6 +39,11 @@ Players can "dial 911" using /911 (message) or just simply /911 which notifies a
 Police Tp:
 
 Police can teleport to players within a configuged radius of them which notifies the player.
+
+
+Police Chat:
+
+Police can chat with /police chat
 
 
 Api:
@@ -79,6 +85,8 @@ police.unjail, Allows you to unjail someone
 
 /police unjail - unjails a player
 
+/police chat - toggle police chat
+
 /911 - calls the police
 
 By default a police will have access to /police help, /police unjail and /police tp
@@ -111,7 +119,7 @@ https://plugins.voidcitymc.com/SimplePolice/doc/
 
 Getting the api:
 
-SimplePoliceAPI api = (SimplePoliceAPI) Bukkit.getPluginManager().getPlugin("Simple Police");
+SimplePoliceAPI api = (SimplePoliceAPI) Bukkit.getPluginManager().getPlugin("SimplePolice");
 
 The you can do stuff like api.listPolice();
 
