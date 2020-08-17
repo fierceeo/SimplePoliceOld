@@ -2,7 +2,7 @@ name: SimplePolice
 api-version: 1.13
 author: ramdon_person
 main: com.voidcitymc.plugins.SimplePolice.SPPlugin
-version: 4.0
+version: 4.1-pre
 softdepend: [Vault, QualityArmory, WorldGuard, WorldEdit]
 website: https://plugins.voidcitymc.com
 commands:
