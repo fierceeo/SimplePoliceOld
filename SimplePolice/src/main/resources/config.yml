@@ -31,35 +31,44 @@ ShowCords911: false
 #frisk cooldown in seconds
 FriskCooldown: 600
 UsePlayerDisplayNameInPoliceChat: true
+#use the essentials jail system instead of the internal one
+UseEssentialsJailSystem: false
 ArrestGUI:
 - Perm: null
   Material: AIR
   JailTime: '0'
   Message: "&bClick here to jail the player for $1 minutes"
+  JailCmd: "essentials:jail jail1 $1 $2"
 - Perm: null
   Material: AIR
   JailTime: '0'
   Message: "&bClick here to jail the player for $1 minutes"
+  JailCmd: "internal"
 - Perm: null
   Material: RED_TERRACOTTA
   JailTime: '4'
   Message: "&bClick here to jail the player for $1 minutes"
+  JailCmd: "internal"
 - Perm: null
   Material: ORANGE_TERRACOTTA
   JailTime: '8'
   Message: "&bClick here to jail the player for $1 minutes"
+  JailCmd: "internal"
 - Perm: null
   Material: YELLOW_TERRACOTTA
   JailTime: '10'
   Message: "&bClick here to jail the player for $1 minutes"
+  JailCmd: "internal"
 - Perm: null
   Material: LIME_TERRACOTTA
   JailTime: '12'
   Message: "&bClick here to jail the player for $1 minutes"
+  JailCmd: "internal"
 - Perm: null
   Material: LIGHT_BLUE_TERRACOTTA
   JailTime: '15'
   Message: "&bClick here to jail the player for $1 minutes"
+  JailCmd: "internal"
 JailLocation:
   - X: 50
     Y: 50

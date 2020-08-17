@@ -442,6 +442,7 @@ public class Worker {
         this.setConfig(config, "ShowCords911", false);
         this.setConfig(config, "FriskCooldown", 600);
         this.setConfig(config, "UsePlayerDisplayNameInPoliceChat", true);
+        this.setConfig(config, "UseEssentialsJailSystem", false);
         if (!config.isSet("ArrestGUI")) {
             CustomJailGuiItem cItem = new CustomJailGuiItem(plugin);
             ArrayList<Object> arrestGUI = new ArrayList<>();

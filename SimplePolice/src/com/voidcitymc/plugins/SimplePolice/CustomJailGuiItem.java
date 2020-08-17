@@ -50,6 +50,14 @@ public class CustomJailGuiItem {
         }
     }
 
+
+    public String getJailTypeOrCommand(int i) {
+        if (!this.isItemNull(i)) {
+            return ((HashMap<String, String>) plugin.getConfig().getList("ArrestGUI").get(i - 1)).get("UseEssentialsJailSystem");
+        } else {
+            return null;
+        }
+    }
     /*
         - Material: AIR
         - JailTime:

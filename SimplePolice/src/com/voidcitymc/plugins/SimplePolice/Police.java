@@ -75,10 +75,10 @@ public class Police implements Listener, CommandExecutor {
                             if (args.length > 2) {
                                 if (Bukkit.getPlayerExact(args[2]) != null) {
                                     if (args.length > 3) {
-                                        Jail.jailPlayer(Objects.requireNonNull(Bukkit.getPlayerExact(args[2])).getUniqueId(), Double.parseDouble(args[3]) * 60);
+                                        Jail.jailPlayerInternal(Objects.requireNonNull(Bukkit.getPlayerExact(args[2])).getUniqueId(), Double.parseDouble(args[3]) * 60);
                                         player.sendMessage(Messages.getMessage("AdminJail", args[2], Jail.timeLeftText(Integer.parseInt(args[3]) * 60)));
                                     } else {
-                                        Jail.jailPlayer(Objects.requireNonNull(Bukkit.getPlayerExact(args[2])).getUniqueId(), 60.0);
+                                        Jail.jailPlayerInternal(Objects.requireNonNull(Bukkit.getPlayerExact(args[2])).getUniqueId(), 60.0);
                                         player.sendMessage(Messages.getMessage("AdminJail", args[2], "1 minute"));
                                     }
                                 } else {
@@ -108,7 +108,6 @@ public class Police implements Listener, CommandExecutor {
             if (args.length > 0 && (player.hasPermission("police.unjail") || isPolice)) {
                 if (args[0].equalsIgnoreCase("unjail")) {
                     if (Bukkit.getPlayerExact(args[1]) != null) {
-                        Jail jailer = new Jail(plugin);
                         Jail.unjailPlayer(Objects.requireNonNull(Bukkit.getPlayerExact(args[1])).getUniqueId(), true);
                         player.sendMessage(Messages.getMessage("UnjailPlayer", args[1]));
                     } else {

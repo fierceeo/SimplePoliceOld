@@ -102,7 +102,7 @@ public class Jail implements Listener {
         }
     }
 
-    public static void jailPlayer(UUID player, Double jailTime) {
+    public static void jailPlayerInternal(UUID player, Double jailTime) {
         if (Bukkit.getPlayer(player) != null) {
             previousLoc.put(player.toString(), Objects.requireNonNull(Bukkit.getPlayer(player)).getLocation());
             Objects.requireNonNull(Bukkit.getPlayer(player)).teleport(jailLocation());
@@ -123,6 +123,17 @@ public class Jail implements Listener {
 
         scheduledUnjails.put(player.toString(), id);
 
+    }
+
+    public static void jailPlayer(UUID player, Double jailTime, int jailBlockNum) {
+        String jailTypeOrCommand = (new CustomJailGuiItem(SPPlugin.getInstance())).getJailTypeOrCommand(jailBlockNum);
+        if (jailTypeOrCommand.equalsIgnoreCase("internal")) {
+            jailPlayerInternal(player, jailTime);
+        } else {
+            if (Bukkit.getPlayer(player) != null) {
+                Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), Messages.translateMSG(jailTypeOrCommand, Objects.requireNonNull(Bukkit.getPlayer(player)).getName(), String.valueOf(jailTime)+"s"));
+            }
+        }
     }
 
     public static void unjailPlayer(UUID player, boolean teleportBack) {

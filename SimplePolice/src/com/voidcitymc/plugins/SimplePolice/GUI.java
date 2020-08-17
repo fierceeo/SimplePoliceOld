@@ -53,7 +53,7 @@ public class GUI implements Listener {
         if (Bukkit.getPlayer(jailedPlayerUUID) != null) {
             Objects.requireNonNull(Bukkit.getPlayer(jailedPlayerUUID)).sendMessage(Messages.getMessage("JailTimeMSG", String.valueOf(jailTime)));
         }
-        Jail.jailPlayer(UUID.fromString(jailedPlayerUUID), jailTime * 60);
+        Jail.jailPlayer(UUID.fromString(jailedPlayerUUID), jailTime * 60, i + 1);
 
     }
 
