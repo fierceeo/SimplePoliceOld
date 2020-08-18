@@ -31,8 +31,6 @@ ShowCords911: false
 #frisk cooldown in seconds
 FriskCooldown: 600
 UsePlayerDisplayNameInPoliceChat: true
-#use the essentials jail system instead of the internal one
-UseEssentialsJailSystem: false
 ArrestGUI:
 - Perm: null
   Material: AIR
