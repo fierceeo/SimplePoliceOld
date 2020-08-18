@@ -38,7 +38,7 @@ ArrestGUI:
   Material: AIR
   JailTime: '0'
   Message: "&bClick here to jail the player for $1 minutes"
-  JailCmd: "essentials:jail jail1 $1 $2"
+  JailCmd: "essentials:jail $1 jail1 $2"
 - Perm: null
   Material: AIR
   JailTime: '0'
