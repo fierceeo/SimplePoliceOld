@@ -53,7 +53,7 @@ public class CustomJailGuiItem {
 
     public String getJailTypeOrCommand(int i) {
         if (!this.isItemNull(i)) {
-            return ((HashMap<String, String>) plugin.getConfig().getList("ArrestGUI").get(i - 1)).get("UseEssentialsJailSystem");
+            return ((HashMap<String, String>) plugin.getConfig().getList("ArrestGUI").get(i - 1)).get("JailCmd");
         } else {
             return null;
         }
