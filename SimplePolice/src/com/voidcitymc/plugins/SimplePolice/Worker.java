@@ -248,7 +248,7 @@ public class Worker {
     }
 
     public Material getBatonMaterial() {
-        String mat = plugin.Data.getString("BatonMaterialType");
+        String mat = plugin.getConfig().getString("BatonMaterialType");
         if (mat != null && Material.getMaterial(mat) != null) {
             return Material.getMaterial(mat);
         } else {
