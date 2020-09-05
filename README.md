@@ -127,14 +127,6 @@ Note: your plugin will have to depend (or soft depend) on SimplePolice to use th
 
 Also, if you can't access the maven repo, please check the releases page for the api jar.
 
-**Note:**
-
-Requires Essentials to be setup and a jail named “jail1”
-
-This plugin has uuid support
-
-I will be adding support for multiple jails soon!
-
 **Latest Dev Build:**
 <img src="https://ci.codemc.io/job/ramdon-person/job/SimplePolice/badge/icon"
      alt="Badge"
