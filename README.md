@@ -3,9 +3,7 @@ Thanks for checking out my police plugin. Here is some information on how to use
 **Usage**
 
 Make sure to have essentials installed and create a jail named “jail1”
-
 To add a police do /police add (username)
-
 To jail a player, make sure you are a police and attack a player with a blaze rod
 
 **Features**
@@ -20,39 +18,32 @@ https://github.com/ramdon-person/SimplePolice/tree/master/Translations
 6. Police chat
 
 Jailing System:
-
 You can attack a player with a blaze rod (you can change the baton material in the config.yml file) which will open a gui asking how how long you want to jail that player for.
 
 
 Frisking system:
-
 A frisking system allows you to basically scan players for contraband items.
 Things like the precent chance of an item being detected and the material for the frisk stick can be configured in the config file.
 The frisking system supports custom items, and has support for quality armory guns.
 
 
 911 System:
-
 Players can "dial 911" using /911 (message) or just simply /911 which notifies all the police on the server
 
 
 Police Tp:
-
 Police can teleport to players within a configuged radius of them which notifies the player.
 
 
 Police Chat:
-
 Police can chat with /police chat
 
 
 Api:
-
 Simple Police has an api which is constantly improving and is open to user feedback and suggestions.
 
 
 Plugins that use SimplePolice:
-
 https://www.spigotmc.org/resources/simplebankrobbing.78558/
 
 
