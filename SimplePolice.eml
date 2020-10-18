@@ -71,12 +71,12 @@
 	<lib name="Maven: org.apache.logging.log4j:log4j-slf4j-impl:2.8.1" scope="PROVIDED"/>
 	<lib name="Maven: org.apache.logging.log4j:log4j-api:2.8.1" scope="PROVIDED"/>
 	<lib name="Maven: org.bstats:bstats-bukkit:1.7" scope="PROVIDED"/>
-	<lib name="Maven: com.sk89q.worldguard:worldguard-bukkit:7.0.3" scope="PROVIDED"/>
-	<lib name="Maven: com.sk89q.worldguard:worldguard-core:7.0.3" scope="PROVIDED"/>
-	<lib name="Maven: com.sk89q.worldguard.worldguard-libs:core:7.0.3" scope="PROVIDED"/>
+	<lib name="Maven: com.sk89q.worldguard:worldguard-bukkit:7.0.4" scope="PROVIDED"/>
+	<lib name="Maven: com.sk89q.worldguard:worldguard-core:7.0.4" scope="PROVIDED"/>
+	<lib name="Maven: com.sk89q.worldguard.worldguard-libs:core:7.0.4" scope="PROVIDED"/>
 	<lib name="Maven: org.flywaydb:flyway-core:3.0" scope="PROVIDED"/>
 	<lib name="Maven: com.sk89q:commandbook:2.3" scope="PROVIDED"/>
-	<lib name="Maven: me.zombie_striker:QualityArmory:1.1.174" scope="PROVIDED"/>
+	<lib name="Maven: me.zombie_striker:QualityArmory:1.1.176" scope="PROVIDED"/>
 	<levels>
 		<level name="Maven: org.spigotmc:spigot-api:1.16.1-R0.1-SNAPSHOT" value="project"/>
 		<level name="Maven: commons-lang:commons-lang:2.6" value="project"/>
@@ -145,11 +145,11 @@
 		<level name="Maven: org.apache.logging.log4j:log4j-slf4j-impl:2.8.1" value="project"/>
 		<level name="Maven: org.apache.logging.log4j:log4j-api:2.8.1" value="project"/>
 		<level name="Maven: org.bstats:bstats-bukkit:1.7" value="project"/>
-		<level name="Maven: com.sk89q.worldguard:worldguard-bukkit:7.0.3" value="project"/>
-		<level name="Maven: com.sk89q.worldguard:worldguard-core:7.0.3" value="project"/>
-		<level name="Maven: com.sk89q.worldguard.worldguard-libs:core:7.0.3" value="project"/>
+		<level name="Maven: com.sk89q.worldguard:worldguard-bukkit:7.0.4" value="project"/>
+		<level name="Maven: com.sk89q.worldguard:worldguard-core:7.0.4" value="project"/>
+		<level name="Maven: com.sk89q.worldguard.worldguard-libs:core:7.0.4" value="project"/>
 		<level name="Maven: org.flywaydb:flyway-core:3.0" value="project"/>
 		<level name="Maven: com.sk89q:commandbook:2.3" value="project"/>
-		<level name="Maven: me.zombie_striker:QualityArmory:1.1.174" value="project"/>
+		<level name="Maven: me.zombie_striker:QualityArmory:1.1.176" value="project"/>
 	</levels>
 </component>

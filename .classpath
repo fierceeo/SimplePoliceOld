@@ -79,11 +79,11 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: org.apache.logging.log4j:log4j-slf4j-impl:2.8.1"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: org.apache.logging.log4j:log4j-api:2.8.1"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: org.bstats:bstats-bukkit:1.7"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: com.sk89q.worldguard:worldguard-bukkit:7.0.3"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: com.sk89q.worldguard:worldguard-core:7.0.3"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: com.sk89q.worldguard.worldguard-libs:core:7.0.3"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: com.sk89q.worldguard:worldguard-bukkit:7.0.4"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: com.sk89q.worldguard:worldguard-core:7.0.4"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: com.sk89q.worldguard.worldguard-libs:core:7.0.4"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: org.flywaydb:flyway-core:3.0"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: com.sk89q:commandbook:2.3"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: me.zombie_striker:QualityArmory:1.1.174"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: me.zombie_striker:QualityArmory:1.1.176"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
