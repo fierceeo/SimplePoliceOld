@@ -1,5 +1,4 @@
 name: SimplePolice
-api-version: 1.13
 author: ramdon_person
 main: com.voidcitymc.plugins.SimplePolice.SPPlugin
 version: 4.1-pre
