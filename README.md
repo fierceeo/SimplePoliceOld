@@ -1,3 +1,5 @@
+**Project has moved to: https://github.com/fierceeo/SimplePolice**
+
 Thanks for checking out my police plugin. Here is some information on how to use this.
 
 **Usage**
